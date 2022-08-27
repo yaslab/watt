@@ -31,6 +31,10 @@
 		0E0D1EB528BA6895005B9693 /* PowerAdapterInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EB428BA6895005B9693 /* PowerAdapterInformationViewModel.swift */; };
 		0E0D1EB828BA6A43005B9693 /* QuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EB728BA6A43005B9693 /* QuitView.swift */; };
 		0E0D1EBA28BA6D5C005B9693 /* NSMenuItem+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EB928BA6D5C005B9693 /* NSMenuItem+SwiftUI.swift */; };
+		0E0D1EC228BA8138005B9693 /* WattLauncherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EC128BA8138005B9693 /* WattLauncherApp.swift */; };
+		0E0D1EC428BA8138005B9693 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EC328BA8138005B9693 /* ContentView.swift */; };
+		0E0D1EC628BA8139005B9693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D1EC528BA8139005B9693 /* Assets.xcassets */; };
+		0E0D1EC928BA8139005B9693 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D1EC828BA8139005B9693 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,10 +65,24 @@
 		0E0D1EB428BA6895005B9693 /* PowerAdapterInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerAdapterInformationViewModel.swift; sourceTree = "<group>"; };
 		0E0D1EB728BA6A43005B9693 /* QuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitView.swift; sourceTree = "<group>"; };
 		0E0D1EB928BA6D5C005B9693 /* NSMenuItem+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenuItem+SwiftUI.swift"; sourceTree = "<group>"; };
+		0E0D1EBF28BA8138005B9693 /* WattLauncher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WattLauncher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E0D1EC128BA8138005B9693 /* WattLauncherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WattLauncherApp.swift; sourceTree = "<group>"; };
+		0E0D1EC328BA8138005B9693 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0E0D1EC528BA8139005B9693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0E0D1EC828BA8139005B9693 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0E0D1ECA28BA8139005B9693 /* WattLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WattLauncher.entitlements; sourceTree = "<group>"; };
+		0E0D1ECE28BA8181005B9693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0E0D1E7528BA4999005B9693 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E0D1EBC28BA8138005B9693 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -78,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0D1E7A28BA4999005B9693 /* Watt */,
+				0E0D1EC028BA8138005B9693 /* WattLauncher */,
 				0E0D1E7928BA4999005B9693 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0D1E7828BA4999005B9693 /* Watt.app */,
+				0E0D1EBF28BA8138005B9693 /* WattLauncher.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,6 +175,27 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		0E0D1EC028BA8138005B9693 /* WattLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				0E0D1EC528BA8139005B9693 /* Assets.xcassets */,
+				0E0D1EC328BA8138005B9693 /* ContentView.swift */,
+				0E0D1ECE28BA8181005B9693 /* Info.plist */,
+				0E0D1EC728BA8139005B9693 /* Preview Content */,
+				0E0D1ECA28BA8139005B9693 /* WattLauncher.entitlements */,
+				0E0D1EC128BA8138005B9693 /* WattLauncherApp.swift */,
+			);
+			path = WattLauncher;
+			sourceTree = "<group>";
+		};
+		0E0D1EC728BA8139005B9693 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0E0D1EC828BA8139005B9693 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -176,6 +217,23 @@
 			productReference = 0E0D1E7828BA4999005B9693 /* Watt.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0E0D1EBE28BA8138005B9693 /* WattLauncher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E0D1ECD28BA8139005B9693 /* Build configuration list for PBXNativeTarget "WattLauncher" */;
+			buildPhases = (
+				0E0D1EBB28BA8138005B9693 /* Sources */,
+				0E0D1EBC28BA8138005B9693 /* Frameworks */,
+				0E0D1EBD28BA8138005B9693 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WattLauncher;
+			productName = WattLauncher;
+			productReference = 0E0D1EBF28BA8138005B9693 /* WattLauncher.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -187,6 +245,9 @@
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					0E0D1E7728BA4999005B9693 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					0E0D1EBE28BA8138005B9693 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
@@ -205,6 +266,7 @@
 			projectRoot = "";
 			targets = (
 				0E0D1E7728BA4999005B9693 /* Watt */,
+				0E0D1EBE28BA8138005B9693 /* WattLauncher */,
 			);
 		};
 /* End PBXProject section */
@@ -216,6 +278,15 @@
 			files = (
 				0E0D1E8328BA499A005B9693 /* Preview Assets.xcassets in Resources */,
 				0E0D1E8028BA499A005B9693 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E0D1EBD28BA8138005B9693 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E0D1EC928BA8139005B9693 /* Preview Assets.xcassets in Resources */,
+				0E0D1EC628BA8139005B9693 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +340,15 @@
 				0E0D1EA128BA5713005B9693 /* TransportType.swift in Sources */,
 				0E0D1EA528BA5713005B9693 /* LowBatteryWarningLevel.swift in Sources */,
 				0E0D1E8C28BA4BFB005B9693 /* WattAppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0E0D1EBB28BA8138005B9693 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0E0D1EC428BA8138005B9693 /* ContentView.swift in Sources */,
+				0E0D1EC228BA8138005B9693 /* WattLauncherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +520,60 @@
 			};
 			name = Release;
 		};
+		0E0D1ECB28BA8139005B9693 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WattLauncher/WattLauncher.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WattLauncher/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WattLauncher/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yaslab.WattLauncher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		0E0D1ECC28BA8139005B9693 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WattLauncher/WattLauncher.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WattLauncher/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WattLauncher/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yaslab.WattLauncher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -457,6 +591,15 @@
 			buildConfigurations = (
 				0E0D1E8828BA499A005B9693 /* Debug */,
 				0E0D1E8928BA499A005B9693 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0E0D1ECD28BA8139005B9693 /* Build configuration list for PBXNativeTarget "WattLauncher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0E0D1ECB28BA8139005B9693 /* Debug */,
+				0E0D1ECC28BA8139005B9693 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
