@@ -20,6 +20,7 @@
 		0E0D1E7F28BA499A005B9693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E0D1E8228BA499A005B9693 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0E0D1E8428BA499A005B9693 /* Watt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Watt.entitlements; sourceTree = "<group>"; };
+		0E0D1E8A28BA4B33005B9693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +53,12 @@
 		0E0D1E7A28BA4999005B9693 /* Watt */ = {
 			isa = PBXGroup;
 			children = (
-				0E0D1E7B28BA4999005B9693 /* WattApp.swift */,
-				0E0D1E7D28BA4999005B9693 /* ContentView.swift */,
 				0E0D1E7F28BA499A005B9693 /* Assets.xcassets */,
-				0E0D1E8428BA499A005B9693 /* Watt.entitlements */,
+				0E0D1E7D28BA4999005B9693 /* ContentView.swift */,
+				0E0D1E8A28BA4B33005B9693 /* Info.plist */,
 				0E0D1E8128BA499A005B9693 /* Preview Content */,
+				0E0D1E8428BA499A005B9693 /* Watt.entitlements */,
+				0E0D1E7B28BA4999005B9693 /* WattApp.swift */,
 			);
 			path = Watt;
 			sourceTree = "<group>";
@@ -272,6 +274,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Watt/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Watt/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -297,6 +300,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Watt/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Watt/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
