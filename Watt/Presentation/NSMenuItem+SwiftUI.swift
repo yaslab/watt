@@ -92,9 +92,7 @@ private struct MenuItemButton<T: View>: View {
 
     private func backgroundColor() -> Color {
         if proxy.isHighlighted, action != nil {
-            let nsColor = NSColor.unemphasizedSelectedContentBackgroundColor
-                .withSystemEffect(.rollover)
-            return Color(nsColor: nsColor)
+            return .secondary
         } else {
             return .clear
         }

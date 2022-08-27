@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Combine
 
 class StatusItemManager {
     private weak var controller: WattAppController?
@@ -13,6 +14,8 @@ class StatusItemManager {
     private weak var ps: PowerSource?
 
     private lazy var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+
+    private var cancellable: AnyCancellable?
 
     init(_ controller: WattAppController, _ ps: PowerSource) {
         self.controller = controller
@@ -79,14 +82,9 @@ class StatusItemManager {
             return
         }
 
-        Task { @MainActor in
-            let events = ps.notificationPublisher(name: .any)
-                .throttle(for: 2.0, scheduler: DispatchQueue.main, latest: true)
-                .values
-
-            for await _ in events {
-                updateButton()
-            }
-        }
+        cancellable = ps.notificationPublisher(name: .any)
+            .throttle(for: 2.0, scheduler: DispatchQueue.main, latest: true)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in self?.updateButton() }
     }
 }
