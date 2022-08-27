@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct WattApp: App {
+    @NSApplicationDelegateAdaptor
+    private var delegate: WattAppDelegate
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Text("Hello, world!")
+                .padding()
         }
     }
 }

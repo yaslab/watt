@@ -8,19 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		0E0D1E7C28BA4999005B9693 /* WattApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E7B28BA4999005B9693 /* WattApp.swift */; };
-		0E0D1E7E28BA4999005B9693 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E7D28BA4999005B9693 /* ContentView.swift */; };
 		0E0D1E8028BA499A005B9693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D1E7F28BA499A005B9693 /* Assets.xcassets */; };
 		0E0D1E8328BA499A005B9693 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D1E8228BA499A005B9693 /* Preview Assets.xcassets */; };
+		0E0D1E8C28BA4BFB005B9693 /* WattAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E8B28BA4BFB005B9693 /* WattAppDelegate.swift */; };
+		0E0D1E8E28BA4C14005B9693 /* WattAppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E8D28BA4C14005B9693 /* WattAppController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E0D1E7828BA4999005B9693 /* Watt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E0D1E7B28BA4999005B9693 /* WattApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WattApp.swift; sourceTree = "<group>"; };
-		0E0D1E7D28BA4999005B9693 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0E0D1E7F28BA499A005B9693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E0D1E8228BA499A005B9693 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0E0D1E8428BA499A005B9693 /* Watt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Watt.entitlements; sourceTree = "<group>"; };
 		0E0D1E8A28BA4B33005B9693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0E0D1E8B28BA4BFB005B9693 /* WattAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WattAppDelegate.swift; sourceTree = "<group>"; };
+		0E0D1E8D28BA4C14005B9693 /* WattAppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WattAppController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,11 +56,12 @@
 			isa = PBXGroup;
 			children = (
 				0E0D1E7F28BA499A005B9693 /* Assets.xcassets */,
-				0E0D1E7D28BA4999005B9693 /* ContentView.swift */,
 				0E0D1E8A28BA4B33005B9693 /* Info.plist */,
 				0E0D1E8128BA499A005B9693 /* Preview Content */,
 				0E0D1E8428BA499A005B9693 /* Watt.entitlements */,
 				0E0D1E7B28BA4999005B9693 /* WattApp.swift */,
+				0E0D1E8D28BA4C14005B9693 /* WattAppController.swift */,
+				0E0D1E8B28BA4BFB005B9693 /* WattAppDelegate.swift */,
 			);
 			path = Watt;
 			sourceTree = "<group>";
@@ -141,8 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E0D1E7E28BA4999005B9693 /* ContentView.swift in Sources */,
+				0E0D1E8E28BA4C14005B9693 /* WattAppController.swift in Sources */,
 				0E0D1E7C28BA4999005B9693 /* WattApp.swift in Sources */,
+				0E0D1E8C28BA4BFB005B9693 /* WattAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
