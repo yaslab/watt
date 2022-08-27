@@ -14,11 +14,18 @@ class WattAppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         controller.closeWindow()
+        controller.setupStatusItem()
     }
 
     // MARK: - Terminating Applications
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return false
+    }
+
+    // MARK: - Dummy
+
+    @objc func onDummy() {
+        assertionFailure("This method should not be called.")
     }
 }
