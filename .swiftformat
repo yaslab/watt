@@ -1,0 +1,7 @@
+--swiftversion 5.6
+
+--disable redundantRawValues,redundantReturn,unusedArguments
+--enable acronyms,wrapConditionalBodies
+
+--ifdef outdent
+--extensionacl on-declarations
