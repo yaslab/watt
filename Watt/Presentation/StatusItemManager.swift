@@ -36,7 +36,7 @@ class StatusItemManager {
 
         let infoViewModel = PowerAdapterInformationViewModel(ps: ps)
         menu.addItem(NSMenuItem(
-            size: NSSize(width: 280, height: 140),
+            size: NSSize(width: 256, height: 512),
             content: { PowerAdapterInformationView(viewModel: infoViewModel) }
         ))
 
