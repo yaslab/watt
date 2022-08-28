@@ -5,7 +5,7 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
-import Cocoa
+import AppKit
 import Combine
 
 class StatusItemManager {
@@ -41,6 +41,12 @@ class StatusItemManager {
         menu.addItem(NSMenuItem(
             size: NSSize(width: 256, height: 512),
             content: { PowerAdapterInformationView(viewModel: infoViewModel) }
+        ))
+
+        menu.addItem(.separator())
+
+        menu.addItem(NSMenuItem(
+            content: { AutoLaunchView() }
         ))
 
         menu.addItem(.separator())

@@ -5,13 +5,13 @@
 //  Created by Yasuhiro Hatta on 2022/08/28.
 //
 
-import SwiftUI
+import AppKit
 
 @main
-struct WattLauncherApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+enum WattLauncherApp {
+    static func main() {
+        let delegate = WattLauncherAppDelegate()
+        NSApplication.shared.delegate = delegate
+        _ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
     }
 }

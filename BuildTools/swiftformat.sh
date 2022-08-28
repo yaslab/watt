@@ -12,3 +12,4 @@ function run_swiftformat() {
 }
 
 run_swiftformat Watt
+run_swiftformat WattLauncher

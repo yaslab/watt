@@ -75,23 +75,33 @@ private struct MenuItemButton<T: View>: View {
     var proxy: EventProxy
 
     var body: some View {
-        Button(action: { action?() }) {
-            content()
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
+        Group {
+            if let action = action {
+                Button(action: action) {
+                    paddingAddedContent()
+                }
+                .buttonStyle(.borderless)
+                .foregroundColor(.primary)
+                .background(
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(backgroundColor())
+                        .opacity(colorScheme == .light ? 0.24 : 0.4)
+                )
+            } else {
+                paddingAddedContent()
+            }
         }
-        .buttonStyle(.borderless)
-        .background(
-            RoundedRectangle(cornerRadius: 4)
-                .fill(backgroundColor())
-                .opacity(colorScheme == .light ? 0.24 : 0.4)
-        )
-        .foregroundColor(.primary)
         .padding(.horizontal, 6)
     }
 
+    private func paddingAddedContent() -> some View {
+        content()
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+    }
+
     private func backgroundColor() -> Color {
-        if proxy.isHighlighted, action != nil {
+        if proxy.isHighlighted {
             return .secondary
         } else {
             return .clear

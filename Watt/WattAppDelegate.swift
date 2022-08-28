@@ -5,7 +5,7 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
-import Cocoa
+import AppKit
 
 class WattAppDelegate: NSObject, NSApplicationDelegate {
     private lazy var controller = WattAppController()
