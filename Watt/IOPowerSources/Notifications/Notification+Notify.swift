@@ -59,6 +59,7 @@ extension PowerSource {
         public func cancel() {
             if case let .running(token) = state {
                 notify_cancel(token)
+                state = .finished
             }
         }
     }
