@@ -16,19 +16,29 @@ struct Switch: NSViewRepresentable {
 
     func makeNSView(context: Context) -> NSSwitch {
         let view = _Switch()
-        view.state = isOn ? .on : .off
+        view.isOn = isOn
         view.addObserver(view, forKeyPath: stateKey, options: [.new], context: nil)
         view.callback = { isOn = $0 }
         return view
     }
 
     func updateNSView(_ view: NSSwitch, context: Context) {
-        view.state = isOn ? .on : .off
+        let view = view as! _Switch
+        if view.isOn != isOn {
+            Task { @MainActor in
+                view.animator().isOn = isOn
+            }
+        }
     }
 }
 
 private class _Switch: NSSwitch {
     var callback: ((Bool) -> Void)?
+
+    var isOn: Bool {
+        get { state != .off }
+        set { state = newValue ? .on : .off }
+    }
 
     // See: https://stackoverflow.com/q/39944383
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
