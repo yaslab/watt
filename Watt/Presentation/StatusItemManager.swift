@@ -13,13 +13,16 @@ class StatusItemManager {
 
     private weak var ps: PowerSource?
 
+    private weak var launcherManager: LauncherManager?
+
     private lazy var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
     private var cancellable: AnyCancellable?
 
-    init(_ controller: WattAppController, _ ps: PowerSource) {
+    init(_ controller: WattAppController, _ ps: PowerSource, _ launcherManager: LauncherManager) {
         self.controller = controller
         self.ps = ps
+        self.launcherManager = launcherManager
     }
 
     func setup() {
@@ -37,7 +40,7 @@ class StatusItemManager {
     private func makeMenu() -> NSMenu {
         let menu = NSMenu()
 
-        let infoViewModel = PowerAdapterInformationViewModel(ps: ps)
+        let infoViewModel = PowerAdapterInformationViewModel(ps)
         menu.addItem(NSMenuItem(
             size: NSSize(width: 256, height: 512),
             content: { PowerAdapterInformationView(viewModel: infoViewModel) }
@@ -45,8 +48,9 @@ class StatusItemManager {
 
         menu.addItem(.separator())
 
+        let autoLaunchViewModel = AutoLaunchViewModel(launcherManager)
         menu.addItem(NSMenuItem(
-            content: { AutoLaunchView() }
+            content: { AutoLaunchView(viewModel: autoLaunchViewModel) }
         ))
 
         menu.addItem(.separator())

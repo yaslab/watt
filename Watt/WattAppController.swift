@@ -9,7 +9,8 @@ import AppKit
 
 class WattAppController {
     private lazy var ps = PowerSource()
-    private lazy var statusItemManager = StatusItemManager(self, ps)
+    private lazy var launcherManager = LauncherManager()
+    private lazy var statusItemManager = StatusItemManager(self, ps, launcherManager)
 
     func closeWindow() {
         guard let window = NSApp.windows.first else {

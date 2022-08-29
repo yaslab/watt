@@ -8,28 +8,49 @@
 import AppKit
 import ServiceManagement
 
-enum LauncherManager {
-    private static let launcherAppBundle: Bundle = {
-        let launcherAppName = "WattLauncher.app"
-        let launcherAppURL = Bundle.main
-            .bundleURL
-            .appendingPathComponent("Contents", isDirectory: true)
-            .appendingPathComponent("Library", isDirectory: true)
-            .appendingPathComponent("LoginItems", isDirectory: true)
-            .appendingPathComponent(launcherAppName, isDirectory: true)
-        return Bundle(url: launcherAppURL)!
-    }()
+class LauncherManager {
+    private let launcherApp = LauncherApp()
 
-    private static var launcherAppID: String {
-        launcherAppBundle.bundleIdentifier!
+    var isEnabled: Bool {
+        legacyGetEnabled()
     }
 
-    static var isEnabled: Bool {
-        let apps = NSRunningApplication.runningApplications(withBundleIdentifier: launcherAppID)
-        return !apps.isEmpty
+    func register() throws {
+        try legacySetEnabled(true)
     }
 
-    static func setEnabled(_ enabled: Bool) -> Bool {
-        SMLoginItemSetEnabled(launcherAppID as CFString, enabled)
+    func unregister() throws {
+        try legacySetEnabled(false)
+    }
+
+    // MARK: - Legacy (macOS 12 and earlier)
+
+    private let legacyLabelKey = "Label" as CFString
+    private let legacyOnDemandKey = "OnDemand" as CFString
+
+    private func legacyGetEnabled() -> Bool {
+        guard let jobs = SMCopyAllJobDictionaries(kSMDomainUserLaunchd)?.takeRetainedValue() else {
+            return false
+        }
+
+        let labelKey = Unmanaged<CFString>.passUnretained(legacyLabelKey)
+        let onDemandKey = Unmanaged<CFString>.passUnretained(legacyOnDemandKey)
+
+        for i in 0 ..< CFArrayGetCount(jobs) {
+            let job = Unmanaged<CFDictionary>.fromOpaque(CFArrayGetValueAtIndex(jobs, i)).takeUnretainedValue()
+            let label = Unmanaged<CFString>.fromOpaque(CFDictionaryGetValue(job, labelKey.toOpaque())).takeUnretainedValue()
+            if case .compareEqualTo = CFStringCompare(label, launcherApp.id as CFString, []) {
+                let onDemand = Unmanaged<CFBoolean>.fromOpaque(CFDictionaryGetValue(job, onDemandKey.toOpaque())).takeUnretainedValue()
+                return CFBooleanGetValue(onDemand)
+            }
+        }
+
+        return false
+    }
+
+    private func legacySetEnabled(_ enabled: Bool) throws {
+        guard SMLoginItemSetEnabled(launcherApp.id as CFString, enabled) else {
+            throw NSError(domain: "", code: -1)
+        }
     }
 }

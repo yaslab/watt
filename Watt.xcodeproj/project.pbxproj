@@ -37,6 +37,8 @@
 		0E0D1ED728BA8837005B9693 /* LauncherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1ED628BA8837005B9693 /* LauncherManager.swift */; };
 		0E0D1ED928BA89FF005B9693 /* AutoLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1ED828BA89FF005B9693 /* AutoLaunchView.swift */; };
 		0E0D1EDB28BA8B01005B9693 /* NSSwitch+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EDA28BA8B01005B9693 /* NSSwitch+SwiftUI.swift */; };
+		0E7176B728BCBB6900FF950D /* AutoLaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176B628BCBB6900FF950D /* AutoLaunchViewModel.swift */; };
+		0E7176BB28BD0F5400FF950D /* LauncherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176BA28BD0F5400FF950D /* LauncherApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,9 @@
 		0E0D1ED628BA8837005B9693 /* LauncherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherManager.swift; sourceTree = "<group>"; };
 		0E0D1ED828BA89FF005B9693 /* AutoLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLaunchView.swift; sourceTree = "<group>"; };
 		0E0D1EDA28BA8B01005B9693 /* NSSwitch+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSwitch+SwiftUI.swift"; sourceTree = "<group>"; };
+		0E7176B628BCBB6900FF950D /* AutoLaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLaunchViewModel.swift; sourceTree = "<group>"; };
+		0E7176B928BD064700FF950D /* WattLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WattLauncher.entitlements; sourceTree = "<group>"; };
+		0E7176BA28BD0F5400FF950D /* LauncherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0D1ED828BA89FF005B9693 /* AutoLaunchView.swift */,
+				0E7176B628BCBB6900FF950D /* AutoLaunchViewModel.swift */,
 				0E0D1EB928BA6D5C005B9693 /* NSMenuItem+SwiftUI.swift */,
 				0E0D1EDA28BA8B01005B9693 /* NSSwitch+SwiftUI.swift */,
 				0E0D1EB228BA6889005B9693 /* PowerAdapterInformationView.swift */,
@@ -207,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0D1ECE28BA8181005B9693 /* Info.plist */,
+				0E7176B928BD064700FF950D /* WattLauncher.entitlements */,
 				0E0D1EC128BA8138005B9693 /* WattLauncherApp.swift */,
 				0E0D1ECF28BA830B005B9693 /* WattLauncherAppDelegate.swift */,
 			);
@@ -217,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0D1ED628BA8837005B9693 /* LauncherManager.swift */,
+				0E7176BA28BD0F5400FF950D /* LauncherApp.swift */,
 			);
 			path = Launcher;
 			sourceTree = "<group>";
@@ -353,6 +361,7 @@
 				0E0D1EAA28BA5713005B9693 /* NotificationName.swift in Sources */,
 				0E0D1EAC28BA5713005B9693 /* Notification+Combine.swift in Sources */,
 				0E0D1EA028BA5713005B9693 /* PowerSourceType.swift in Sources */,
+				0E7176BB28BD0F5400FF950D /* LauncherApp.swift in Sources */,
 				0E0D1EA828BA5713005B9693 /* PowerSourceState.swift in Sources */,
 				0E0D1EA728BA5713005B9693 /* PowerSource.swift in Sources */,
 				0E0D1EA228BA5713005B9693 /* TimeRemainingEstimate.swift in Sources */,
@@ -365,6 +374,7 @@
 				0E0D1EB828BA6A43005B9693 /* QuitView.swift in Sources */,
 				0E0D1E8E28BA4C14005B9693 /* WattAppController.swift in Sources */,
 				0E0D1E7C28BA4999005B9693 /* WattApp.swift in Sources */,
+				0E7176B728BCBB6900FF950D /* AutoLaunchViewModel.swift in Sources */,
 				0E0D1EA128BA5713005B9693 /* TransportType.swift in Sources */,
 				0E0D1EA528BA5713005B9693 /* LowBatteryWarningLevel.swift in Sources */,
 				0E0D1E8C28BA4BFB005B9693 /* WattAppDelegate.swift in Sources */,
@@ -567,6 +577,7 @@
 		0E0D1ECB28BA8139005B9693 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WattLauncher/WattLauncher.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -593,6 +604,7 @@
 		0E0D1ECC28BA8139005B9693 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WattLauncher/WattLauncher.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;

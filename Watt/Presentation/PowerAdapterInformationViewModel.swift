@@ -22,7 +22,7 @@ private func string(from bool: Bool) -> String {
 class PowerAdapterInformationViewModel: ObservableObject {
     private weak var ps: PowerSource?
 
-    init(ps: PowerSource?) {
+    init(_ ps: PowerSource?) {
         self.ps = ps
     }
 

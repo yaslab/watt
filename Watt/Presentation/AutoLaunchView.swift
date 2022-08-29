@@ -8,25 +8,24 @@
 import SwiftUI
 
 struct AutoLaunchView: View {
-    @State
-    private var isEnabled = false
+    @ObservedObject
+    var viewModel: AutoLaunchViewModel
 
     var body: some View {
         HStack {
             Text("Launch at login")
             Spacer()
-            Switch(isOn: $isEnabled)
-        }
-        .onAppear {
-            isEnabled = LauncherManager.isEnabled
-        }
-        .onChange(of: isEnabled) { newValue in
-            let success = LauncherManager.setEnabled(newValue)
-            if !success {
-                Task { @MainActor in
-                    isEnabled = !newValue
+            ZStack {
+                Switch(isOn: $viewModel.isEnabled)
+                    .disabled(viewModel.isUpdating)
+                if viewModel.isUpdating {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .controlSize(.small)
                 }
             }
         }
+        .onAppear(perform: viewModel.onAppear)
+        .onChange(of: viewModel.isEnabled, perform: viewModel.onIsEnabledChange(_:))
     }
 }

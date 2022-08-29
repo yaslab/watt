@@ -5,13 +5,16 @@
 //  Created by Yasuhiro Hatta on 2022/08/28.
 //
 
-import AppKit
+import SwiftUI
 
 @main
-enum WattLauncherApp {
-    static func main() {
-        let delegate = WattLauncherAppDelegate()
-        NSApplication.shared.delegate = delegate
-        _ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
+struct WattLauncherApp: App {
+    @NSApplicationDelegateAdaptor
+    private var delegate: WattLauncherAppDelegate
+
+    var body: some Scene {
+        WindowGroup {
+            EmptyView()
+        }
     }
 }
