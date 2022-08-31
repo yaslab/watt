@@ -16,6 +16,14 @@ class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
             window.close()
         }
 
+        Task { @MainActor in
+            await launchMainApp()
+            NSApp.terminate(nil)
+        }
+    }
+
+    @MainActor
+    private func launchMainApp() async {
         log.debug("begin")
 
         let thisAppBundle = Bundle.main
@@ -23,7 +31,6 @@ class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
 
         guard let index = thisAppID.lastIndex(of: ".") else {
             log.debug("no dot in bundle id")
-            NSApp.terminate(nil)
             return
         }
 
@@ -33,11 +40,10 @@ class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
 
         guard runningApps.isEmpty else {
             log.debug("the main app is running (\(runningApps.count))")
-            NSApp.terminate(nil)
             return
         }
 
-        let mainAppURL = Bundle.main.bundleURL
+        let mainAppURL = thisAppBundle.bundleURL
             // Drop `WattLauncher.app`
             .deletingLastPathComponent()
             // Drop `LoginItems`
@@ -53,21 +59,18 @@ class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
             // The main app is not exist.
             // This happens when this app is not in the main bundle (e.g. debug run).
             log.debug("no main app name in path")
-            NSApp.terminate(nil)
             return
         }
 
-        let config = NSWorkspace.OpenConfiguration()
-        NSWorkspace.shared.openApplication(at: mainAppURL, configuration: config) { _, error in
-            if let error = error {
-                log.debug("\(error.localizedDescription)")
-            } else {
-                log.debug("launched")
-            }
+        do {
+            log.debug("launching")
 
-            NSApp.terminate(nil)
+            let config = NSWorkspace.OpenConfiguration()
+            _ = try await NSWorkspace.shared.openApplication(at: mainAppURL, configuration: config)
+
+            log.debug("launched")
+        } catch {
+            log.debug("\(error.localizedDescription)")
         }
-
-        log.debug("launching")
     }
 }
