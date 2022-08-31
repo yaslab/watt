@@ -56,6 +56,17 @@ class StatusItemManager {
         menu.addItem(.separator())
 
         menu.addItem(NSMenuItem(
+            content: { AcknowledgmentsView() }
+        ))
+
+        menu.addItem(NSMenuItem(
+            action: { NSWorkspace.shared.open(URL(string: "https://hiyokoyarou.com/")!) },
+            content: { PiyotasoView() }
+        ))
+
+        menu.addItem(.separator())
+
+        menu.addItem(NSMenuItem(
             action: { [weak controller] in controller?.onQuit() },
             content: { QuitView() }
         ))

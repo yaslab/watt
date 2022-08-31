@@ -39,6 +39,8 @@
 		0E0D1EDB28BA8B01005B9693 /* NSSwitch+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EDA28BA8B01005B9693 /* NSSwitch+SwiftUI.swift */; };
 		0E7176B728BCBB6900FF950D /* AutoLaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176B628BCBB6900FF950D /* AutoLaunchViewModel.swift */; };
 		0E7176BB28BD0F5400FF950D /* LauncherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176BA28BD0F5400FF950D /* LauncherApp.swift */; };
+		0E7176BD28BD152300FF950D /* PiyotasoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176BC28BD152300FF950D /* PiyotasoView.swift */; };
+		0E7176BF28BD16D600FF950D /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176BE28BD16D600FF950D /* AcknowledgmentsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		0E7176B628BCBB6900FF950D /* AutoLaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLaunchViewModel.swift; sourceTree = "<group>"; };
 		0E7176B928BD064700FF950D /* WattLauncher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WattLauncher.entitlements; sourceTree = "<group>"; };
 		0E7176BA28BD0F5400FF950D /* LauncherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherApp.swift; sourceTree = "<group>"; };
+		0E7176BC28BD152300FF950D /* PiyotasoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiyotasoView.swift; sourceTree = "<group>"; };
+		0E7176BE28BD16D600FF950D /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,10 +201,12 @@
 		0E0D1EB628BA69E0005B9693 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				0E7176BE28BD16D600FF950D /* AcknowledgmentsView.swift */,
 				0E0D1ED828BA89FF005B9693 /* AutoLaunchView.swift */,
 				0E7176B628BCBB6900FF950D /* AutoLaunchViewModel.swift */,
 				0E0D1EB928BA6D5C005B9693 /* NSMenuItem+SwiftUI.swift */,
 				0E0D1EDA28BA8B01005B9693 /* NSSwitch+SwiftUI.swift */,
+				0E7176BC28BD152300FF950D /* PiyotasoView.swift */,
 				0E0D1EB228BA6889005B9693 /* PowerAdapterInformationView.swift */,
 				0E0D1EB428BA6895005B9693 /* PowerAdapterInformationViewModel.swift */,
 				0E0D1EB728BA6A43005B9693 /* QuitView.swift */,
@@ -352,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E0D1EDB28BA8B01005B9693 /* NSSwitch+SwiftUI.swift in Sources */,
+				0E7176BF28BD16D600FF950D /* AcknowledgmentsView.swift in Sources */,
 				0E0D1EAD28BA5713005B9693 /* Notification+Concurrency.swift in Sources */,
 				0E0D1EB328BA6889005B9693 /* PowerAdapterInformationView.swift in Sources */,
 				0E0D1EA328BA5713005B9693 /* ProvidingPowerSourceType.swift in Sources */,
@@ -367,6 +374,7 @@
 				0E0D1EA228BA5713005B9693 /* TimeRemainingEstimate.swift in Sources */,
 				0E0D1EAB28BA5713005B9693 /* Notification+Notify.swift in Sources */,
 				0E0D1EA928BA5713005B9693 /* Notification+RunLoop.swift in Sources */,
+				0E7176BD28BD152300FF950D /* PiyotasoView.swift in Sources */,
 				0E0D1ED928BA89FF005B9693 /* AutoLaunchView.swift in Sources */,
 				0E0D1EB528BA6895005B9693 /* PowerAdapterInformationViewModel.swift in Sources */,
 				0E0D1ED728BA8837005B9693 /* LauncherManager.swift in Sources */,
