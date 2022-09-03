@@ -8,13 +8,16 @@
 import AppKit
 
 class WattAppDelegate: NSObject, NSApplicationDelegate {
-    private lazy var controller = WattAppController()
+    private let container = DIContainer()
+
+    private lazy var controller: WattAppController = container.resolve()
+    private lazy var statusItemManager: StatusItemManager = container.resolve()
 
     // MARK: - Launching Applications
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        controller.closeWindow()
-        controller.setupStatusItem()
+        controller.closeWindows()
+        statusItemManager.setup()
     }
 
     // MARK: - Terminating Applications

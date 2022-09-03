@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E04A62F28C3AA24005FC40A /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A62E28C3AA24005FC40A /* DIContainer.swift */; };
 		0E0D1E7C28BA4999005B9693 /* WattApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E7B28BA4999005B9693 /* WattApp.swift */; };
 		0E0D1E8028BA499A005B9693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D1E7F28BA499A005B9693 /* Assets.xcassets */; };
 		0E0D1E8C28BA4BFB005B9693 /* WattAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E8B28BA4BFB005B9693 /* WattAppDelegate.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E04A62E28C3AA24005FC40A /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		0E0D1E7828BA4999005B9693 /* Watt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E0D1E7B28BA4999005B9693 /* WattApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WattApp.swift; sourceTree = "<group>"; };
 		0E0D1E7F28BA499A005B9693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +126,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E04A62D28C3AA0F005FC40A /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A62E28C3AA24005FC40A /* DIContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 		0E0D1E6F28BA4999005B9693 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0D1E7F28BA499A005B9693 /* Assets.xcassets */,
+				0E04A62D28C3AA0F005FC40A /* DI */,
 				0E0D1E8A28BA4B33005B9693 /* Info.plist */,
 				0E0D1E9028BA5713005B9693 /* IOPowerSources */,
 				0E0D1ED528BA8821005B9693 /* Launcher */,
@@ -367,6 +378,7 @@
 				0E0D1EB528BA6895005B9693 /* PowerAdapterInformationViewModel.swift in Sources */,
 				0E0D1ED728BA8837005B9693 /* LauncherManager.swift in Sources */,
 				0E0D1EAF28BA6488005B9693 /* StatusItemManager.swift in Sources */,
+				0E04A62F28C3AA24005FC40A /* DIContainer.swift in Sources */,
 				0E0D1EB828BA6A43005B9693 /* QuitView.swift in Sources */,
 				0E0D1E8E28BA4C14005B9693 /* WattAppController.swift in Sources */,
 				0E0D1E7C28BA4999005B9693 /* WattApp.swift in Sources */,

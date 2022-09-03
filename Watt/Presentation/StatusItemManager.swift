@@ -9,11 +9,11 @@ import AppKit
 import Combine
 
 class StatusItemManager {
-    private weak var controller: WattAppController?
+    private let controller: WattAppController
 
-    private weak var ps: PowerSource?
+    private let ps: PowerSource
 
-    private weak var launcherManager: LauncherManager?
+    private let launcherManager: LauncherManager
 
     private lazy var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
@@ -75,34 +75,32 @@ class StatusItemManager {
     }
 
     private func updateButton() {
-        if let ps = ps, let button = statusItem.button {
-            var title = ""
-
-            if let details = ps.externalPowerAdapterDetails {
-                if let watts = details.value(forKey: .watts) {
-                    title = "\(watts)W"
-                }
-            }
-
-            button.title = title
-
-            var imageName = "bolt.slash.fill"
-
-            if let sources = ps.powerSources() {
-                if sources.contains(where: { $0.value(forKey: .isCharging) }) {
-                    imageName = "bolt.fill"
-                }
-            }
-
-            button.image = NSImage(systemSymbolName: imageName, accessibilityDescription: nil)
-        }
-    }
-
-    private func subscribePowerSourceEvents() {
-        guard let ps = ps else {
+        guard let button = statusItem.button else {
             return
         }
 
+        var title = ""
+
+        if let details = ps.externalPowerAdapterDetails {
+            if let watts = details.value(forKey: .watts) {
+                title = "\(watts)W"
+            }
+        }
+
+        button.title = title
+
+        var imageName = "bolt.slash.fill"
+
+        if let sources = ps.powerSources() {
+            if sources.contains(where: { $0.value(forKey: .isCharging) }) {
+                imageName = "bolt.fill"
+            }
+        }
+
+        button.image = NSImage(systemSymbolName: imageName, accessibilityDescription: nil)
+    }
+
+    private func subscribePowerSourceEvents() {
         cancellable = ps.notificationPublisher(name: .any)
             .throttle(for: 2.0, scheduler: DispatchQueue.main, latest: true)
             .receive(on: DispatchQueue.main)
