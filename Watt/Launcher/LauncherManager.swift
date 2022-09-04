@@ -25,24 +25,23 @@ class LauncherManager {
 
     // MARK: - Legacy (macOS 12 and earlier)
 
-    private let legacyLabelKey = "Label" as CFString
-    private let legacyOnDemandKey = "OnDemand" as CFString
-
     private func legacyGetEnabled() -> Bool {
         guard let jobs = SMCopyAllJobDictionaries(kSMDomainUserLaunchd)?.takeRetainedValue() else {
             return false
         }
 
-        let labelKey = Unmanaged<CFString>.passUnretained(legacyLabelKey)
-        let onDemandKey = Unmanaged<CFString>.passUnretained(legacyOnDemandKey)
-
         for i in 0 ..< CFArrayGetCount(jobs) {
-            let job = Unmanaged<CFDictionary>.fromOpaque(CFArrayGetValueAtIndex(jobs, i)).takeUnretainedValue()
-            let label = Unmanaged<CFString>.fromOpaque(CFDictionaryGetValue(job, labelKey.toOpaque())).takeUnretainedValue()
-            if case .compareEqualTo = CFStringCompare(label, launcherApp.id as CFString, []) {
-                let onDemand = Unmanaged<CFBoolean>.fromOpaque(CFDictionaryGetValue(job, onDemandKey.toOpaque())).takeUnretainedValue()
-                return CFBooleanGetValue(onDemand)
+            let job = jobs.get(at: i, as: CFDictionary.self)
+
+            guard
+                let label = job.get(forKey: "Label", as: CFString.self),
+                case .compareEqualTo = CFStringCompare(label, launcherApp.id as CFString, [])
+            else {
+                continue
             }
+
+            let onDemand = job.get(forKey: "OnDemand", as: CFBoolean.self)
+            return CFBooleanGetValue(onDemand ?? kCFBooleanFalse)
         }
 
         return false
@@ -52,5 +51,22 @@ class LauncherManager {
         guard SMLoginItemSetEnabled(launcherApp.id as CFString, enabled) else {
             throw NSError(domain: "", code: -1)
         }
+    }
+}
+
+extension CFArray {
+    fileprivate func get<T: CFTypeRef>(at index: CFIndex, as type: T.Type) -> T {
+        let value = CFArrayGetValueAtIndex(self, index)!
+        return Unmanaged<T>.fromOpaque(value).takeUnretainedValue()
+    }
+}
+
+extension CFDictionary {
+    fileprivate func get<T: CFTypeRef>(forKey key: String, as type: T.Type) -> T? {
+        let key = Unmanaged<CFString>.passUnretained(key as CFString)
+        guard let value = CFDictionaryGetValue(self, key.toOpaque()) else {
+            return nil
+        }
+        return Unmanaged<T>.fromOpaque(value).takeUnretainedValue()
     }
 }
