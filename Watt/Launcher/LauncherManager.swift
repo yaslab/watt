@@ -5,25 +5,54 @@
 //  Created by Yasuhiro Hatta on 2022/08/28.
 //
 
-import AppKit
+import Foundation
 import ServiceManagement
 
-class LauncherManager {
-    private let launcherApp = LauncherApp()
+protocol LauncherManager: AnyObject {
+    var isEnabled: Bool { get }
+    var isRequiresApproval: Bool { get }
 
+    func register() throws
+    func unregister() throws
+
+    static func openSystemSettingsLoginItems()
+}
+
+enum LauncherManagerHelper {
+    static func resolve() -> LauncherManager {
+        let launcherApp = LauncherApp()
+
+        if #available(macOS 13.0, *) {
+            return SMAppService.loginItem(identifier: launcherApp.id)
+        } else {
+            return LauncherManagerLegacy(launcherApp: launcherApp)
+        }
+    }
+}
+
+// MARK: - SMAppService
+
+@available(macOS 13.0, *)
+extension SMAppService: LauncherManager {
     var isEnabled: Bool {
-        legacyGetEnabled()
+        status == .enabled
     }
 
-    func register() throws {
-        try legacySetEnabled(true)
+    var isRequiresApproval: Bool {
+        status == .requiresApproval
     }
+}
 
-    func unregister() throws {
-        try legacySetEnabled(false)
+// MARK: - Legacy
+
+// Note: This class is for compatibility with macOS 12 and earlier.
+
+private class LauncherManagerLegacy {
+    private let launcherApp: LauncherApp
+
+    init(launcherApp: LauncherApp) {
+        self.launcherApp = launcherApp
     }
-
-    // MARK: - Legacy (macOS 12 and earlier)
 
     private func legacyGetEnabled() -> Bool {
         guard let jobs = SMCopyAllJobDictionaries(kSMDomainUserLaunchd)?.takeRetainedValue() else {
@@ -51,6 +80,28 @@ class LauncherManager {
         guard SMLoginItemSetEnabled(launcherApp.id as CFString, enabled) else {
             throw NSError(domain: "", code: -1)
         }
+    }
+}
+
+extension LauncherManagerLegacy: LauncherManager {
+    var isEnabled: Bool {
+        legacyGetEnabled()
+    }
+
+    var isRequiresApproval: Bool {
+        false
+    }
+
+    func register() throws {
+        try legacySetEnabled(true)
+    }
+
+    func unregister() throws {
+        try legacySetEnabled(false)
+    }
+
+    static func openSystemSettingsLoginItems() {
+        // Do nothing.
     }
 }
 
