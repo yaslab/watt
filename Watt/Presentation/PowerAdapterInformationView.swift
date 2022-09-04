@@ -12,11 +12,13 @@ struct PowerAdapterInformationView: View {
     var viewModel: PowerAdapterInformationViewModel
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text("AC Charger Information")
                 .font(.headline)
+                .padding(.top, 4)
+                .padding(.bottom, 8)
 
-            Group {
+            VStack {
                 Row(title: "Connected", value: viewModel.isConnected)
 
                 Row(title: "Wattage", value: viewModel.wattage)

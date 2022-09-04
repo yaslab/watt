@@ -13,7 +13,7 @@ import SwiftUI
 //   - https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MenuList/Articles/ViewsInMenuItems.html
 
 extension NSMenuItem {
-    convenience init<Content: View>(size: NSSize = NSSize(width: 256, height: 32), action: (() -> Void)? = nil, content: @escaping () -> Content) {
+    convenience init<Content: View>(size: NSSize = NSSize(width: 300, height: 32), action: (() -> Void)? = nil, content: @escaping () -> Content) {
         // Note: If action is nil, highlighting doesn't work, so set a dummy selector.
         self.init(title: "", action: #selector(WattAppDelegate.onDummy), keyEquivalent: "")
 
