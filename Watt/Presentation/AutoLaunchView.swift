@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct AutoLaunchView: View {
-    @ObservedObject
+    @StateObject
     var viewModel: AutoLaunchViewModel
 
     var body: some View {
         HStack {
             Text("Launch at login")
+
             Spacer()
+
             ZStack {
                 Switch(isOn: $viewModel.isEnabled)
                     .disabled(viewModel.isUpdating)
+
                 if viewModel.isUpdating {
                     ProgressView()
                         .progressViewStyle(.circular)

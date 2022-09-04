@@ -11,6 +11,7 @@ struct AcknowledgmentsView: View {
     var body: some View {
         HStack {
             Text("Acknowledgments")
+
             Spacer()
         }
         .font(.callout.bold())

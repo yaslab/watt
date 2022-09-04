@@ -5,11 +5,13 @@
 //  Created by Yasuhiro Hatta on 2022/09/04.
 //
 
+import ServiceManagement
+
 class DIContainer {
     private lazy var shared = (
         controller: WattAppController(),
         ps: PowerSource(),
-        launcherManager: LauncherManager()
+        launcherManager: LauncherManagerHelper.resolve()
     )
 
     func resolve() -> WattAppController {
@@ -26,9 +28,29 @@ class DIContainer {
 
     func resolve() -> StatusItemManager {
         StatusItemManager(
+            resolver: self,
             controller: resolve(),
-            ps: resolve(),
+            presenter: resolve()
+        )
+    }
+}
+
+extension DIContainer: ViewModelResolver {
+    func resolve() -> PowerAdapterInformationViewModel {
+        PowerAdapterInformationViewModel(
+            ps: resolve()
+        )
+    }
+
+    func resolve() -> AutoLaunchViewModel {
+        AutoLaunchViewModel(
             launcherManager: resolve()
+        )
+    }
+
+    func resolve() -> StatusBarButtonPresenter {
+        StatusBarButtonPresenter(
+            ps: resolve()
         )
     }
 }

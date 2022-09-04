@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PowerAdapterInformationView: View {
-    @ObservedObject
+    @StateObject
     var viewModel: PowerAdapterInformationViewModel
 
     var body: some View {
@@ -51,7 +51,9 @@ extension PowerAdapterInformationView {
         var body: some View {
             HStack {
                 Text("\(title):")
+
                 Spacer()
+
                 Text(value)
             }
         }

@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct QuitView: View {
+    let controller: WattAppController
+
     var body: some View {
-        HStack {
+        Button(action: controller.onQuit) {
             Text("Quit")
+
             Spacer()
         }
+        .buttonStyle(.borderless)
+        .foregroundColor(.primary)
     }
 }

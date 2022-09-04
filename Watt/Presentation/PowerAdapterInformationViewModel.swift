@@ -7,24 +7,14 @@
 
 import Foundation
 
-private func string(from string: String?) -> String {
-    if let string = string {
-        return string
-    } else {
-        return "-"
-    }
-}
-
-private func string(from bool: Bool) -> String {
-    return bool ? "Yes" : "No"
-}
-
 class PowerAdapterInformationViewModel: ObservableObject {
-    private weak var ps: PowerSource?
+    private let ps: PowerSource
 
-    init(_ ps: PowerSource?) {
+    init(ps: PowerSource) {
         self.ps = ps
     }
+
+    // MARK: - View States
 
     @Published
     private(set) var isConnected = string(from: false)
@@ -52,7 +42,7 @@ class PowerAdapterInformationViewModel: ObservableObject {
 
 extension PowerAdapterInformationViewModel {
     func onAppear() {
-        if let ps = ps, let details = ps.externalPowerAdapterDetails {
+        if let details = ps.externalPowerAdapterDetails {
             isConnected = string(from: true)
 
             wattage = string(from: details.value(forKey: .watts)
@@ -89,4 +79,18 @@ extension PowerAdapterInformationViewModel {
             isCharging = string(from: nil)
         }
     }
+}
+
+// MARK: - Utilities
+
+private func string(from string: String?) -> String {
+    if let string = string {
+        return string
+    } else {
+        return "-"
+    }
+}
+
+private func string(from bool: Bool) -> String {
+    return bool ? "Yes" : "No"
 }

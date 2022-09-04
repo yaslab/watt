@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct PiyotasoView: View {
+    @Environment(\.openURL)
+    private var openURL
+
     var body: some View {
-        HStack {
+        Button(action: { openURL(URL(string: "https://hiyokoyarou.com/")!) }) {
             Text("Illustration of app icon by ぴよたそ")
+
             Spacer()
         }
+        .buttonStyle(.borderless)
+        .foregroundColor(.primary)
     }
 }

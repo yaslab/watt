@@ -41,6 +41,8 @@
 		0E7176BB28BD0F5400FF950D /* LauncherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176BA28BD0F5400FF950D /* LauncherApp.swift */; };
 		0E7176BD28BD152300FF950D /* PiyotasoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176BC28BD152300FF950D /* PiyotasoView.swift */; };
 		0E7176BF28BD16D600FF950D /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176BE28BD16D600FF950D /* AcknowledgmentsView.swift */; };
+		0EC16DF528C47EE8000B7F8E /* ViewModelResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC16DF428C47EE8000B7F8E /* ViewModelResolver.swift */; };
+		0EC16DF728C481DE000B7F8E /* StatusBarButtonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC16DF628C481DE000B7F8E /* StatusBarButtonPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		0E7176BA28BD0F5400FF950D /* LauncherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherApp.swift; sourceTree = "<group>"; };
 		0E7176BC28BD152300FF950D /* PiyotasoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiyotasoView.swift; sourceTree = "<group>"; };
 		0E7176BE28BD16D600FF950D /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
+		0EC16DF428C47EE8000B7F8E /* ViewModelResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelResolver.swift; sourceTree = "<group>"; };
+		0EC16DF628C481DE000B7F8E /* StatusBarButtonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarButtonPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				0E04A62E28C3AA24005FC40A /* DIContainer.swift */,
+				0EC16DF428C47EE8000B7F8E /* ViewModelResolver.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 				0E0D1EB228BA6889005B9693 /* PowerAdapterInformationView.swift */,
 				0E0D1EB428BA6895005B9693 /* PowerAdapterInformationViewModel.swift */,
 				0E0D1EB728BA6A43005B9693 /* QuitView.swift */,
+				0EC16DF628C481DE000B7F8E /* StatusBarButtonPresenter.swift */,
 				0E0D1EAE28BA6488005B9693 /* StatusItemManager.swift */,
 			);
 			path = Presentation;
@@ -229,8 +235,8 @@
 		0E0D1ED528BA8821005B9693 /* Launcher */ = {
 			isa = PBXGroup;
 			children = (
-				0E0D1ED628BA8837005B9693 /* LauncherManager.swift */,
 				0E7176BA28BD0F5400FF950D /* LauncherApp.swift */,
+				0E0D1ED628BA8837005B9693 /* LauncherManager.swift */,
 			);
 			path = Launcher;
 			sourceTree = "<group>";
@@ -362,8 +368,10 @@
 				0E0D1EB328BA6889005B9693 /* PowerAdapterInformationView.swift in Sources */,
 				0E0D1EA328BA5713005B9693 /* ProvidingPowerSourceType.swift in Sources */,
 				0E0D1EBA28BA6D5C005B9693 /* NSMenuItem+SwiftUI.swift in Sources */,
+				0EC16DF728C481DE000B7F8E /* StatusBarButtonPresenter.swift in Sources */,
 				0E0D1EA628BA5713005B9693 /* ExternalPowerAdapterDetails.swift in Sources */,
 				0E0D1EA428BA5713005B9693 /* PowerSourceDescription.swift in Sources */,
+				0EC16DF528C47EE8000B7F8E /* ViewModelResolver.swift in Sources */,
 				0E0D1EAA28BA5713005B9693 /* NotificationName.swift in Sources */,
 				0E0D1EAC28BA5713005B9693 /* Notification+Combine.swift in Sources */,
 				0E0D1EA028BA5713005B9693 /* PowerSourceType.swift in Sources */,

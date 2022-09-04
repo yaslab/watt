@@ -25,10 +25,4 @@ class WattAppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return false
     }
-
-    // MARK: - Dummy
-
-    @objc func onDummy() {
-        assertionFailure("This method should not be called.")
-    }
 }

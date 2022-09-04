@@ -8,41 +8,39 @@
 import Foundation
 
 class AutoLaunchViewModel: ObservableObject {
+    private let launcherManager: LauncherManager
+
+    init(launcherManager: LauncherManager) {
+        self.launcherManager = launcherManager
+        isEnabled = launcherManager.isEnabled
+    }
+
+    // MARK: - View States
+
     @Published
     var isEnabled: Bool
 
     @Published
     private(set) var isUpdating = false
+}
 
-    private weak var manager: LauncherManager?
+// MARK: - View Events
 
-    init(_ manager: LauncherManager?) {
-        isEnabled = manager?.isEnabled ?? false
-        self.manager = manager
-    }
-
+extension AutoLaunchViewModel {
     func onAppear() {
-        guard let manager = manager else {
-            return
-        }
-
-        isEnabled = manager.isEnabled
+        isEnabled = launcherManager.isEnabled
     }
 
     func onIsEnabledChange(_ enabled: Bool) {
-        guard let manager = manager else {
-            return
-        }
-
-        if enabled == manager.isEnabled {
+        if enabled == launcherManager.isEnabled {
             return
         }
 
         do {
             if enabled {
-                try manager.register()
+                try launcherManager.register()
             } else {
-                try manager.unregister()
+                try launcherManager.unregister()
             }
         } catch {
             isUpdating = true

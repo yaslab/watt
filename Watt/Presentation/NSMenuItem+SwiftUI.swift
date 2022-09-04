@@ -13,14 +13,22 @@ import SwiftUI
 //   - https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MenuList/Articles/ViewsInMenuItems.html
 
 extension NSMenuItem {
-    convenience init<Content: View>(size: NSSize = NSSize(width: 300, height: 32), action: (() -> Void)? = nil, content: @escaping () -> Content) {
+    convenience init<Content: View>(size: NSSize = NSSize(width: 300, height: 32), isHighlightEnabled: Bool = false, content: @escaping () -> Content) {
         // Note: If action is nil, highlighting doesn't work, so set a dummy selector.
-        self.init(title: "", action: #selector(WattAppDelegate.onDummy), keyEquivalent: "")
+        self.init(title: "", action: #selector(NSMenuItem.onDummy), keyEquivalent: "")
 
-        let view = MenuItemView(action: action, content: content)
+        target = self
+
+        let view = MenuItemView(isHighlightEnabled: isHighlightEnabled, content: content)
         view.setFrameSize(size)
         view.autoresizingMask = [.width, .height]
         self.view = view
+    }
+
+    // MARK: - Dummy
+
+    @objc func onDummy() {
+        assertionFailure("This method should not be called.")
     }
 }
 
@@ -32,10 +40,10 @@ private class EventProxy: ObservableObject {
 private class MenuItemView<Content: View>: NSView {
     private let proxy = EventProxy()
 
-    init(action: (() -> Void)?, content: @escaping () -> Content) {
+    init(isHighlightEnabled: Bool, content: @escaping () -> Content) {
         super.init(frame: .zero)
 
-        let view = NSHostingView(rootView: MenuItemButton(action: action, content: content, proxy: proxy))
+        let view = NSHostingView(rootView: MenuItemButton(proxy: proxy, isHighlightEnabled: isHighlightEnabled, content: content))
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -67,44 +75,25 @@ private struct MenuItemButton<T: View>: View {
     @Environment(\.colorScheme)
     private var colorScheme
 
-    let action: (() -> Void)?
-
-    let content: () -> T
-
     @ObservedObject
     var proxy: EventProxy
 
+    let isHighlightEnabled: Bool
+
+    let content: () -> T
+
     var body: some View {
-        Group {
-            if let action = action {
-                Button(action: action) {
-                    paddingAddedContent()
-                }
-                .buttonStyle(.borderless)
-                .foregroundColor(.primary)
-                .background(
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(backgroundColor())
-                        .opacity(colorScheme == .light ? 0.24 : 0.4)
-                )
-            } else {
-                paddingAddedContent()
+        ZStack {
+            if isHighlightEnabled, proxy.isHighlighted {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.secondary)
+                    .opacity(colorScheme == .light ? 0.24 : 0.4)
             }
+
+            content()
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
         }
         .padding(.horizontal, 6)
-    }
-
-    private func paddingAddedContent() -> some View {
-        content()
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-    }
-
-    private func backgroundColor() -> Color {
-        if proxy.isHighlighted {
-            return .secondary
-        } else {
-            return .clear
-        }
     }
 }
