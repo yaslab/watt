@@ -5,25 +5,30 @@
 //  Created by Yasuhiro Hatta on 2022/09/04.
 //
 
-import Foundation
-
 class DIContainer {
+    private lazy var shared = (
+        controller: WattAppController(),
+        ps: PowerSource(),
+        launcherManager: LauncherManager()
+    )
+
     func resolve() -> WattAppController {
-        enum Static { static let shared = WattAppController() }
-        return Static.shared
+        shared.controller
     }
 
     private func resolve() -> PowerSource {
-        enum Static { static let shared = PowerSource() }
-        return Static.shared
+        shared.ps
     }
 
     private func resolve() -> LauncherManager {
-        enum Static { static let shared = LauncherManager() }
-        return Static.shared
+        shared.launcherManager
     }
 
     func resolve() -> StatusItemManager {
-        StatusItemManager(resolve(), resolve(), resolve())
+        StatusItemManager(
+            controller: resolve(),
+            ps: resolve(),
+            launcherManager: resolve()
+        )
     }
 }

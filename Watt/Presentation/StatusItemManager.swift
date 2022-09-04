@@ -19,7 +19,7 @@ class StatusItemManager {
 
     private var cancellable: AnyCancellable?
 
-    init(_ controller: WattAppController, _ ps: PowerSource, _ launcherManager: LauncherManager) {
+    init(controller: WattAppController, ps: PowerSource, launcherManager: LauncherManager) {
         self.controller = controller
         self.ps = ps
         self.launcherManager = launcherManager
