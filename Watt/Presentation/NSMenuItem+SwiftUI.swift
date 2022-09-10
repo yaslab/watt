@@ -12,10 +12,14 @@ import SwiftUI
 // - Views in Menu Items
 //   - https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MenuList/Articles/ViewsInMenuItems.html
 
-extension NSMenuItem {
-    convenience init<Content: View>(size: NSSize = NSSize(width: 300, height: 32), isHighlightEnabled: Bool = false, content: @escaping () -> Content) {
+class MenuItem: NSMenuItem {
+    private let size: NSSize
+
+    init<Content: View>(size: NSSize = NSSize(width: 300, height: 32), isHighlightEnabled: Bool = false, content: @escaping () -> Content) {
+        self.size = size
+
         // Note: If action is nil, highlighting doesn't work, so set a dummy selector.
-        self.init(title: "", action: #selector(NSMenuItem.onDummy), keyEquivalent: "")
+        super.init(title: "", action: #selector(MenuItem.onDummy), keyEquivalent: "")
 
         target = self
 
@@ -25,9 +29,21 @@ extension NSMenuItem {
         self.view = view
     }
 
+    @available(*, unavailable)
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override var isHidden: Bool {
+        didSet {
+            view?.isHidden = isHidden
+            view?.setFrameSize(isHidden ? .zero : size)
+        }
+    }
+
     // MARK: - Dummy
 
-    @objc func onDummy() {
+    @objc private func onDummy() {
         assertionFailure("This method should not be called.")
     }
 }
@@ -35,6 +51,9 @@ extension NSMenuItem {
 private class EventProxy: ObservableObject {
     @Published
     var isHighlighted = false
+
+    @Published
+    var isHidden = false
 }
 
 private class MenuItemView<Content: View>: NSView {
@@ -62,6 +81,12 @@ private class MenuItemView<Content: View>: NSView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override var isHidden: Bool {
+        didSet {
+            proxy.isHidden = isHidden
+        }
+    }
+
     override func draw(_ rect: NSRect) {
         super.draw(rect)
 
@@ -83,17 +108,21 @@ private struct MenuItemButton<T: View>: View {
     let content: () -> T
 
     var body: some View {
-        ZStack {
-            if isHighlightEnabled, proxy.isHighlighted {
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(Color.secondary)
-                    .opacity(colorScheme == .light ? 0.24 : 0.4)
-            }
+        if proxy.isHidden {
+            EmptyView()
+        } else {
+            ZStack {
+                if isHighlightEnabled, proxy.isHighlighted {
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.secondary)
+                        .opacity(colorScheme == .light ? 0.24 : 0.4)
+                }
 
-            content()
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
+                content()
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+            }
+            .padding(.horizontal, 6)
         }
-        .padding(.horizontal, 6)
     }
 }

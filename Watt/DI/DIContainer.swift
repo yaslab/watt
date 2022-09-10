@@ -14,10 +14,6 @@ class DIContainer {
         launcherManager: LauncherManagerHelper.resolve()
     )
 
-    func resolve() -> WattAppController {
-        shared.controller
-    }
-
     private func resolve() -> PowerSource {
         shared.ps
     }
@@ -29,13 +25,15 @@ class DIContainer {
     func resolve() -> StatusItemManager {
         StatusItemManager(
             resolver: self,
-            controller: resolve(),
-            presenter: resolve()
+            statusBarButtonPresenter: resolve(),
+            openSystemSettingsMenuItemPresenter: resolve()
         )
     }
 }
 
-extension DIContainer: ViewModelResolver {
+extension DIContainer: DIResolver {
+    // MARK: View Model
+
     func resolve() -> PowerAdapterInformationViewModel {
         PowerAdapterInformationViewModel(
             ps: resolve()
@@ -48,9 +46,29 @@ extension DIContainer: ViewModelResolver {
         )
     }
 
+    func resolve() -> OpenSystemSettingsViewModel {
+        OpenSystemSettingsViewModel(
+            launcherManager: resolve()
+        )
+    }
+
+    // MARK: Controller
+
+    func resolve() -> WattAppController {
+        shared.controller
+    }
+
+    // MARK: Presenter
+
     func resolve() -> StatusBarButtonPresenter {
         StatusBarButtonPresenter(
             ps: resolve()
+        )
+    }
+
+    func resolve() -> OpenSystemSettingsMenuItemPresenter {
+        OpenSystemSettingsMenuItemPresenter(
+            launcherManager: resolve()
         )
     }
 }

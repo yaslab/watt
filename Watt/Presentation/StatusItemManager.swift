@@ -8,18 +8,24 @@
 import AppKit
 
 class StatusItemManager {
-    private let resolver: ViewModelResolver
+    private let resolver: DIResolver
 
-    private let controller: WattAppController
+    private let statusBarButtonPresenter: StatusBarButtonPresenter
 
-    private let presenter: StatusBarButtonPresenter
+    private let openSystemSettingsMenuItemPresenter: OpenSystemSettingsMenuItemPresenter
 
     private lazy var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
-    init(resolver: ViewModelResolver, controller: WattAppController, presenter: StatusBarButtonPresenter) {
+    private lazy var delegate = MenuEventProxy()
+
+    init(
+        resolver: DIResolver,
+        statusBarButtonPresenter: StatusBarButtonPresenter,
+        openSystemSettingsMenuItemPresenter: OpenSystemSettingsMenuItemPresenter
+    ) {
         self.resolver = resolver
-        self.controller = controller
-        self.presenter = presenter
+        self.statusBarButtonPresenter = statusBarButtonPresenter
+        self.openSystemSettingsMenuItemPresenter = openSystemSettingsMenuItemPresenter
     }
 
     func setup() {
@@ -27,40 +33,51 @@ class StatusItemManager {
 
         if let button = statusItem.button {
             button.imagePosition = .imageLeading
-            presenter.assign(button)
+            statusBarButtonPresenter.attach(button)
         }
     }
 
     private func makeMenu() -> NSMenu {
         let menu = NSMenu()
 
-        menu.addItem(NSMenuItem(
-            size: NSSize(width: 256, height: 512),
+        menu.delegate = delegate
+
+        menu.addItem(MenuItem(
+            size: NSSize(width: 300, height: 512),
             content: { [resolver] in PowerAdapterInformationView(viewModel: resolver.resolve()) }
         ))
 
         menu.addItem(.separator())
 
-        menu.addItem(NSMenuItem(
+        menu.addItem(MenuItem(
             content: { [resolver] in AutoLaunchView(viewModel: resolver.resolve()) }
         ))
 
+        menu.addItem({
+            let item = MenuItem(
+                isHighlightEnabled: true,
+                content: { [resolver] in OpenSystemSettingsView(viewModel: resolver.resolve()) }
+            )
+            openSystemSettingsMenuItemPresenter.attach(item, events: delegate)
+            return item
+        }())
+
         menu.addItem(.separator())
 
-        menu.addItem(NSMenuItem(
+        menu.addItem(MenuItem(
             content: { AcknowledgmentsView() }
         ))
 
-        menu.addItem(NSMenuItem(
+        menu.addItem(MenuItem(
             isHighlightEnabled: true,
             content: { PiyotasoView() }
         ))
 
         menu.addItem(.separator())
 
-        menu.addItem(NSMenuItem(
+        menu.addItem(MenuItem(
             isHighlightEnabled: true,
-            content: { [controller] in QuitView(controller: controller) }
+            content: { [resolver] in QuitView(controller: resolver.resolve()) }
         ))
 
         return menu

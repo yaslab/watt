@@ -19,7 +19,7 @@ class StatusBarButtonPresenter {
         self.ps = ps
     }
 
-    func assign(_ button: NSStatusBarButton?) {
+    func attach(_ button: NSStatusBarButton?) {
         self.button = button
 
         updateButton()
