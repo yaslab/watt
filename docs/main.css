@@ -1,12 +1,14 @@
 :root {
     --background-color: white;
     --foreground-color: black;
+    --link-color: slateblue;
 }
 
 @media (prefers-color-scheme: dark) {
 :root {
     --background-color: black;
     --foreground-color: white;
+    --link-color: skyblue;
 }
 }
 
@@ -15,6 +17,15 @@ body {
     text-align: center;
     background-color: var(--background-color);
     color: var(--foreground-color);
+}
+
+a:link, a:visited {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    text-decoration: underline;
 }
 
 .secondary {
