@@ -17,14 +17,6 @@ body {
     color: var(--foreground-color);
 }
 
-span {
-    vertical-align: middle;
-}
-
-img {
-    vertical-align: middle;
-}
-
 .secondary {
     color: slategray;
 }
