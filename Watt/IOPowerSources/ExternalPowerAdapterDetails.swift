@@ -45,8 +45,9 @@ extension ExternalPowerAdapterDetails.Key {
     public static var current: _Key<Int?> { .init(rawValue: kIOPSPowerAdapterCurrentKey) }
     public static var source: _Key<Int?> { .init(rawValue: kIOPSPowerAdapterSourceKey) }
 
-    // Undocumentd
+    // Undocumented
     public static var voltage: _Key<Int?> { .init(rawValue: kIOPSVoltageKey) }
+    public static var adapterVoltage: _Key<Int?> { .init(rawValue: "AdapterVoltage") }
     public static var name: _Key<String?> { .init(rawValue: kIOPSNameKey) }
     public static var manufacturer: _Key<String?> { .init(rawValue: "Manufacturer") }
 }

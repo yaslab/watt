@@ -21,7 +21,6 @@ class OpenSystemSettingsViewModel: ObservableObject {
 
 extension OpenSystemSettingsViewModel {
     func onClick() {
-        type(of: launcherManager)
-            .openSystemSettingsLoginItems()
+        launcherManager.openSystemSettingsLoginItems()
     }
 }

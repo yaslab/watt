@@ -5,20 +5,29 @@
 //  Created by Yasuhiro Hatta on 2022/09/04.
 //
 
-import ServiceManagement
+private class SharedObjects {
+    let controller: WattAppController
+
+    let launcherManager: any LauncherManager
+
+    let externalPowerAdapterRepository: ExternalPowerAdapterRepository
+
+    init() {
+        controller = WattAppController()
+
+        launcherManager = LauncherManagerHelper.resolve()
+
+        let ps = PowerSource()
+        externalPowerAdapterRepository = ExternalPowerAdapterRepository(
+            ps: ps
+        )
+    }
+}
 
 class DIContainer {
-    private lazy var shared = (
-        controller: WattAppController(),
-        ps: PowerSource(),
-        launcherManager: LauncherManagerHelper.resolve()
-    )
+    private lazy var shared = SharedObjects()
 
-    private func resolve() -> PowerSource {
-        shared.ps
-    }
-
-    private func resolve() -> LauncherManager {
+    private func resolve() -> any LauncherManager {
         shared.launcherManager
     }
 
@@ -26,17 +35,28 @@ class DIContainer {
         StatusItemManager(
             resolver: self,
             statusBarButtonPresenter: resolve(),
+            powerAdapterInformationPresenter: resolve(),
             openSystemSettingsMenuItemPresenter: resolve()
         )
+    }
+
+    func resolve() -> ExternalPowerAdapterRepository {
+        shared.externalPowerAdapterRepository
     }
 }
 
 extension DIContainer: DIResolver {
     // MARK: View Model
 
+    func resolve() -> PowerAdapterHeaderViewModel {
+        PowerAdapterHeaderViewModel(
+            externalPowerAdapterRepository: resolve()
+        )
+    }
+
     func resolve() -> PowerAdapterInformationViewModel {
         PowerAdapterInformationViewModel(
-            ps: resolve()
+            externalPowerAdapterRepository: resolve()
         )
     }
 
@@ -62,7 +82,13 @@ extension DIContainer: DIResolver {
 
     func resolve() -> StatusBarButtonPresenter {
         StatusBarButtonPresenter(
-            ps: resolve()
+            externalPowerAdapterRepository: resolve()
+        )
+    }
+
+    func resolve() -> PowerAdapterInformationPresenter {
+        PowerAdapterInformationPresenter(
+            externalPowerAdapterRepository: resolve()
         )
     }
 

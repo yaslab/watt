@@ -1,5 +1,5 @@
 //
-//  AcknowledgmentsView.swift
+//  SectionHeader.swift
 //  Watt
 //
 //  Created by Yasuhiro Hatta on 2022/08/30.
@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct AcknowledgmentsView: View {
+struct SectionHeader: View {
+    let title: String
+
     var body: some View {
         HStack {
-            Text("Acknowledgments")
+            Text(title)
 
             Spacer()
         }

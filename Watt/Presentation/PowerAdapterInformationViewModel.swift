@@ -5,92 +5,57 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
+import Combine
 import Foundation
 
 class PowerAdapterInformationViewModel: ObservableObject {
-    private let ps: PowerSource
+    private var cancellable: AnyCancellable?
 
-    init(ps: PowerSource) {
-        self.ps = ps
+    init(externalPowerAdapterRepository: ExternalPowerAdapterRepository) {
+        updateValues(externalPowerAdapterRepository.value)
+
+        cancellable = externalPowerAdapterRepository
+            .publisher
+//            .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in self?.updateValues($0) }
     }
 
     // MARK: - View States
 
     @Published
-    private(set) var isConnected = string(from: false)
+    private(set) var wattage: Wattage?
 
     @Published
-    private(set) var wattage = string(from: nil)
+    private(set) var voltage: Voltage?
 
     @Published
-    private(set) var voltage = string(from: nil)
+    private(set) var current: Current?
 
     @Published
-    private(set) var current = string(from: nil)
+    private(set) var name: String?
 
     @Published
-    private(set) var name = string(from: nil)
+    private(set) var manufacturer: String?
 
     @Published
-    private(set) var manufacturer = string(from: nil)
+    private(set) var isCharging: Bool = false
 
-    @Published
-    private(set) var isCharging = string(from: nil)
+    private func updateValues(_ source: ExternalPowerAdapter) {
+        wattage = source.wattage
+
+        voltage = source.voltage
+
+        current = source.current
+
+        name = source.name
+
+        manufacturer = source.manufacturer
+
+        isCharging = source.batteries?.contains(where: \.isCharging) ?? false
+    }
 }
 
 // MARK: - View Events
 
-extension PowerAdapterInformationViewModel {
-    func onAppear() {
-        if let details = ps.externalPowerAdapterDetails {
-            isConnected = string(from: true)
-
-            wattage = string(from: details.value(forKey: .watts)
-                .map { "\($0)W" })
-
-            voltage = string(from: details.value(forKey: .voltage)
-                .map { String(format: "%.2fV", Double($0) / 1000.0) })
-
-            current = string(from: details.value(forKey: .current)
-                .map { String(format: "%.2fA", Double($0) / 1000.0) })
-
-            name = string(from: details.value(forKey: .name))
-
-            manufacturer = string(from: details.value(forKey: .manufacturer))
-
-            if let sources = ps.powerSources(), sources.contains(where: { $0.value(forKey: .isCharging) }) {
-                isCharging = string(from: true)
-            } else {
-                isCharging = string(from: false)
-            }
-        } else {
-            isConnected = string(from: false)
-
-            wattage = string(from: nil)
-
-            voltage = string(from: nil)
-
-            current = string(from: nil)
-
-            name = string(from: nil)
-
-            manufacturer = string(from: nil)
-
-            isCharging = string(from: nil)
-        }
-    }
-}
-
-// MARK: - Utilities
-
-private func string(from string: String?) -> String {
-    if let string = string {
-        return string
-    } else {
-        return "-"
-    }
-}
-
-private func string(from bool: Bool) -> String {
-    return bool ? "Yes" : "No"
-}
+extension PowerAdapterInformationViewModel {}

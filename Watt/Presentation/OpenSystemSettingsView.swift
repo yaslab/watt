@@ -32,7 +32,7 @@ struct OpenSystemSettingsView_Previews: PreviewProvider {
         func register() throws {}
         func unregister() throws {}
 
-        static func openSystemSettingsLoginItems() {}
+        func openSystemSettingsLoginItems() {}
     }
 
     static var previews: some View {

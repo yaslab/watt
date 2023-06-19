@@ -12,50 +12,82 @@ struct PowerAdapterInformationView: View {
     var viewModel: PowerAdapterInformationViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("AC Charger Information")
-                .font(.headline)
-                .padding(.top, 4)
-                .padding(.bottom, 8)
+        VStack {
+            if let name = viewModel.name {
+                HStack {
+                    Text(name)
 
-            VStack {
-                Row(title: "Connected", value: viewModel.isConnected)
+                    if let manufacturer = viewModel.manufacturer {
+                        Text("(" + manufacturer + ")")
+                    }
 
-                Row(title: "Wattage", value: viewModel.wattage)
-
-                Group {
-                    Row(title: "Voltage", value: viewModel.voltage)
-
-                    Row(title: "Current", value: viewModel.current)
+                    Spacer()
                 }
-                .foregroundColor(.secondary)
-                .padding(.leading)
-
-                Row(title: "Name", value: viewModel.name)
-
-                Row(title: "Manufacturer", value: viewModel.manufacturer)
-
-                Row(title: "Charging", value: viewModel.isCharging)
             }
-            .padding(.leading)
+
+            if let wattage = viewModel.wattage {
+                HStack {
+                    Text(wattage.format())
+
+                    if let text = format(voltage: viewModel.voltage, current: viewModel.current) {
+                        Text(text)
+                    }
+
+                    Spacer()
+                }
+            }
+
+            HStack {
+                Text("Battery:")
+
+                Text(format(charging: viewModel.isCharging))
+
+                Spacer()
+            }
         }
-        .onAppear(perform: viewModel.onAppear)
+        .font(.callout)
+        .foregroundColor(.secondary)
+    }
+
+    private func format(voltage: Voltage?, current: Current?) -> String? {
+        var builder = "("
+
+        if let v = voltage, let c = current {
+            builder += v.format()
+            builder += ", "
+            builder += c.format()
+        } else if let v = voltage {
+            builder += v.format()
+        } else if let c = current {
+            builder += c.format()
+        } else {
+            return nil
+        }
+
+        builder += ")"
+
+        return builder
+    }
+
+    private func format(charging: Bool) -> String {
+        if charging {
+            return "Charging"
+        } else {
+            return "Not Charging"
+        }
     }
 }
 
-extension PowerAdapterInformationView {
-    private struct Row: View {
-        let title: String
-        let value: String
-
-        var body: some View {
-            HStack {
-                Text("\(title):")
-
-                Spacer()
-
-                Text(value)
-            }
+struct PowerAdapterInformationView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            PowerAdapterInformationView(
+                viewModel: PowerAdapterInformationViewModel(
+                    externalPowerAdapterRepository: ExternalPowerAdapterRepository(
+                        ps: PowerSource()
+                    )
+                )
+            )
         }
     }
 }

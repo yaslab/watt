@@ -15,7 +15,7 @@ protocol LauncherManager: AnyObject {
     func register() throws
     func unregister() throws
 
-    static func openSystemSettingsLoginItems()
+    func openSystemSettingsLoginItems()
 }
 
 enum LauncherManagerHelper {
@@ -100,7 +100,7 @@ extension LauncherManagerLegacy: LauncherManager {
         try legacySetEnabled(false)
     }
 
-    static func openSystemSettingsLoginItems() {
+    func openSystemSettingsLoginItems() {
         // Do nothing.
     }
 }

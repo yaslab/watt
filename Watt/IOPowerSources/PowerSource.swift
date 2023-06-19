@@ -30,7 +30,7 @@ public class PowerSource {
 
     // MARK: - Power Source Descriptions
 
-    public var externalPowerAdapterDetails: ExternalPowerAdapterDetails? {
+    public func externalPowerAdapterDetails() -> ExternalPowerAdapterDetails? {
         guard let details = IOPSCopyExternalPowerAdapterDetails()?.takeRetainedValue() else {
             return nil
         }

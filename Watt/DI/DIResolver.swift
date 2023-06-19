@@ -8,6 +8,7 @@
 protocol DIResolver {
     // MARK: View Model
 
+    func resolve() -> PowerAdapterHeaderViewModel
     func resolve() -> PowerAdapterInformationViewModel
     func resolve() -> AutoLaunchViewModel
     func resolve() -> OpenSystemSettingsViewModel
