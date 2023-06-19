@@ -22,26 +22,30 @@ enum LauncherManagerHelper {
     static func resolve() -> LauncherManager {
         let launcherApp = LauncherApp()
 
-//        if #available(macOS 13.0, *) {
-//            return SMAppService.loginItem(identifier: launcherApp.id)
-//        } else {
-        return LauncherManagerLegacy(launcherApp: launcherApp)
-//        }
+        if #available(macOS 13.0, *) {
+            return SMAppService.loginItem(identifier: launcherApp.id)
+        } else {
+            return LauncherManagerLegacy(launcherApp: launcherApp)
+        }
     }
 }
 
 // MARK: - SMAppService
 
-// @available(macOS 13.0, *)
-// extension SMAppService: LauncherManager {
-//    var isEnabled: Bool {
-//        status == .enabled
-//    }
-//
-//    var isRequiresApproval: Bool {
-//        status == .requiresApproval
-//    }
-// }
+@available(macOS 13.0, *)
+extension SMAppService: LauncherManager {
+    var isEnabled: Bool {
+        status == .enabled
+    }
+
+    var isRequiresApproval: Bool {
+        status == .requiresApproval
+    }
+
+    func openSystemSettingsLoginItems() {
+        SMAppService.openSystemSettingsLoginItems()
+    }
+}
 
 // MARK: - Legacy
 
