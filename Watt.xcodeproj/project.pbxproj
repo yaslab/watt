@@ -292,7 +292,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0E0D1E8728BA499A005B9693 /* Build configuration list for PBXNativeTarget "Watt" */;
 			buildPhases = (
-				0E0D1E8F28BA53BA005B9693 /* Run Script - swiftformat.sh */,
 				0E0D1E7428BA4999005B9693 /* Sources */,
 				0E0D1E7528BA4999005B9693 /* Frameworks */,
 				0E0D1E7628BA4999005B9693 /* Resources */,
@@ -352,6 +351,9 @@
 				Base,
 			);
 			mainGroup = 0E0D1E6F28BA4999005B9693;
+			packageReferences = (
+				0E5AAF1D2B02789E00CF68A7 /* XCRemoteSwiftPackageReference "swift-format" */,
+			);
 			productRefGroup = 0E0D1E7928BA4999005B9693 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -379,27 +381,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0E0D1E8F28BA53BA005B9693 /* Run Script - swiftformat.sh */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script - swiftformat.sh";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT/BuildTools/swiftformat.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0E0D1E7428BA4999005B9693 /* Sources */ = {
@@ -741,6 +722,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E5AAF1D2B02789E00CF68A7 /* XCRemoteSwiftPackageReference "swift-format" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-format.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 509.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 0E0D1E7028BA4999005B9693 /* Project object */;
 }
