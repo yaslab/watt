@@ -5,6 +5,7 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
+import var IOKit.ps.kIOPSNameKey
 import var IOKit.ps.kIOPSPowerAdapterCurrentKey
 import var IOKit.ps.kIOPSPowerAdapterFamilyKey
 import var IOKit.ps.kIOPSPowerAdapterIDKey
@@ -12,8 +13,6 @@ import var IOKit.ps.kIOPSPowerAdapterRevisionKey
 import var IOKit.ps.kIOPSPowerAdapterSerialNumberKey
 import var IOKit.ps.kIOPSPowerAdapterSourceKey
 import var IOKit.ps.kIOPSPowerAdapterWattsKey
-
-import var IOKit.ps.kIOPSNameKey
 import var IOKit.ps.kIOPSVoltageKey
 
 public struct ExternalPowerAdapterDetails {

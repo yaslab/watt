@@ -8,7 +8,6 @@
 import func CoreFoundation.CFArrayGetCount
 import func CoreFoundation.CFArrayGetValueAtIndex
 import typealias CoreFoundation.CFTypeRef
-
 import func IOKit.ps.IOPSCopyExternalPowerAdapterDetails
 import func IOKit.ps.IOPSCopyPowerSourcesInfo
 import func IOKit.ps.IOPSCopyPowerSourcesList

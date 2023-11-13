@@ -6,10 +6,9 @@
 //
 
 import class Dispatch.DispatchQueue
-
+import var notify.NOTIFY_STATUS_OK
 import func notify.notify_cancel
 import func notify.notify_register_dispatch
-import var notify.NOTIFY_STATUS_OK
 
 private let _queue = DispatchQueue(label: "net.yaslab.IOPowerSource.Notify")
 

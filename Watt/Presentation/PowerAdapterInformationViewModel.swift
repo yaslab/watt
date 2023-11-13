@@ -16,7 +16,7 @@ class PowerAdapterInformationViewModel: ObservableObject {
 
         cancellable = externalPowerAdapterRepository
             .publisher
-//            .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
+            // .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.updateValues($0) }
     }

@@ -6,7 +6,6 @@
 //
 
 import struct IOKit.ps.IOPSLowBatteryWarningLevel
-
 import var IOKit.ps.kIOPSLowBatteryWarningEarly
 import var IOKit.ps.kIOPSLowBatteryWarningFinal
 import var IOKit.ps.kIOPSLowBatteryWarningNone

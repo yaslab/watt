@@ -5,17 +5,15 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
-import class Foundation.Thread
-
 import func CoreFoundation.CFRunLoopAddSource
 import func CoreFoundation.CFRunLoopGetCurrent
 import struct CoreFoundation.CFRunLoopMode
 import func CoreFoundation.CFRunLoopRemoveSource
 import class CoreFoundation.CFRunLoopSource
-
-import typealias IOKit.ps.IOPowerSourceCallbackType
+import class Foundation.Thread
 import func IOKit.ps.IOPSCreateLimitedPowerNotification
 import func IOKit.ps.IOPSNotificationCreateRunLoopSource
+import typealias IOKit.ps.IOPowerSourceCallbackType
 
 extension PowerSource {
     public class RunLoopTask {

@@ -23,7 +23,7 @@ class OpenSystemSettingsMenuItemPresenter {
         self.item = item
 
         cancellable = events.publisher
-//            .receive(on: DispatchQueue.main)
+            // .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.onEvent($0) }
     }
 

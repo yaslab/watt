@@ -37,7 +37,7 @@ class ExternalPowerAdapterRepository {
         self.subject = subject
 
         let cancellable = ps.notificationPublisher(name: .any)
-//            .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
+            // .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
             .map { convert(ps.externalPowerAdapterDetails(), ps.powerSources()) }
             .share()
             .sink { subject.send($0) }

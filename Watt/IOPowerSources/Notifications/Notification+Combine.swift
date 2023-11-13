@@ -22,11 +22,10 @@ extension PowerSource {
             subject.send(completion: .finished)
         }
 
-        return subject
-            .handleEvents(
-                receiveCompletion: { _ in task.cancel() },
-                receiveCancel: { task.cancel() }
-            )
-            .eraseToAnyPublisher()
+        return subject.handleEvents(
+            receiveCompletion: { _ in task.cancel() },
+            receiveCancel: { task.cancel() }
+        )
+        .eraseToAnyPublisher()
     }
 }

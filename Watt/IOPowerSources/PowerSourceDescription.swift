@@ -14,7 +14,7 @@ import var IOKit.ps.kIOPSCurrentCapacityKey
 import var IOKit.ps.kIOPSCurrentKey
 import var IOKit.ps.kIOPSDesignCapacityKey
 import var IOKit.ps.kIOPSHardwareSerialNumberKey
-import var IOKit.ps.kIOPSHealthConfidenceKey // DEPRECATED
+import var IOKit.ps.kIOPSHealthConfidenceKey  // DEPRECATED
 import var IOKit.ps.kIOPSInternalFailureKey
 import var IOKit.ps.kIOPSIsChargedKey
 import var IOKit.ps.kIOPSIsChargingKey

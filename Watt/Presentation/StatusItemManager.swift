@@ -44,7 +44,7 @@ class StatusItemManager {
         }
 
         cancellable = delegate.publisher
-//            .receive(on: DispatchQueue.main)
+            // .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.onMenuEvent($0) }
     }
 
@@ -53,55 +53,71 @@ class StatusItemManager {
 
         menu.delegate = delegate
 
-        menu.addItem(MenuItem(
-            content: { [resolver] in PowerAdapterHeaderView(viewModel: resolver.resolve()) }
-        ))
-
-        menu.addItem({
-            let item = MenuItem(
-                size: NSSize(width: 300, height: 512),
-                content: { [resolver] in PowerAdapterInformationView(viewModel: resolver.resolve()) }
+        menu.addItem(
+            MenuItem(
+                content: { [resolver] in PowerAdapterHeaderView(viewModel: resolver.resolve()) }
             )
-            powerAdapterInformationPresenter.attach(item, events: delegate)
-            return item
-        }())
+        )
+
+        menu.addItem(
+            {
+                let item = MenuItem(
+                    size: NSSize(width: 300, height: 512),
+                    content: { [resolver] in PowerAdapterInformationView(viewModel: resolver.resolve()) }
+                )
+                powerAdapterInformationPresenter.attach(item, events: delegate)
+                return item
+            }()
+        )
 
         menu.addItem(.separator())
 
-        menu.addItem(MenuItem(
-            content: { SectionHeader(title: "Settings") }
-        ))
+        menu.addItem(
+            MenuItem(
+                content: { SectionHeader(title: "Settings") }
+            )
+        )
 
-        menu.addItem(MenuItem(
-            content: { [resolver] in AutoLaunchView(viewModel: resolver.resolve()) }
-        ))
+        menu.addItem(
+            MenuItem(
+                content: { [resolver] in AutoLaunchView(viewModel: resolver.resolve()) }
+            )
+        )
 
-        menu.addItem({
-            let item = MenuItem(
+        menu.addItem(
+            {
+                let item = MenuItem(
+                    isHighlightEnabled: true,
+                    content: { [resolver] in OpenSystemSettingsView(viewModel: resolver.resolve()) }
+                )
+                openSystemSettingsMenuItemPresenter.attach(item, events: delegate)
+                return item
+            }()
+        )
+
+        menu.addItem(.separator())
+
+        menu.addItem(
+            MenuItem(
+                content: { SectionHeader(title: "Acknowledgments") }
+            )
+        )
+
+        menu.addItem(
+            MenuItem(
                 isHighlightEnabled: true,
-                content: { [resolver] in OpenSystemSettingsView(viewModel: resolver.resolve()) }
+                content: { PiyotasoView() }
             )
-            openSystemSettingsMenuItemPresenter.attach(item, events: delegate)
-            return item
-        }())
+        )
 
         menu.addItem(.separator())
 
-        menu.addItem(MenuItem(
-            content: { SectionHeader(title: "Acknowledgments") }
-        ))
-
-        menu.addItem(MenuItem(
-            isHighlightEnabled: true,
-            content: { PiyotasoView() }
-        ))
-
-        menu.addItem(.separator())
-
-        menu.addItem(MenuItem(
-            isHighlightEnabled: true,
-            content: { [resolver] in QuitView(controller: resolver.resolve()) }
-        ))
+        menu.addItem(
+            MenuItem(
+                isHighlightEnabled: true,
+                content: { [resolver] in QuitView(controller: resolver.resolve()) }
+            )
+        )
 
         return menu
     }

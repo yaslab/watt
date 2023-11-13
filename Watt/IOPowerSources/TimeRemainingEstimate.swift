@@ -6,7 +6,6 @@
 //
 
 import struct Foundation.TimeInterval
-
 import var IOKit.ps.kIOPSTimeRemainingUnknown
 import var IOKit.ps.kIOPSTimeRemainingUnlimited
 
