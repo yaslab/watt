@@ -39,7 +39,7 @@ public class PowerSource {
     public func powerSources(snapshot: Bool = false) -> [PowerSourceDescription]? {
         let info: CFTypeRef
         if snapshot {
-            guard let _snapshot = _snapshot else {
+            guard let _snapshot else {
                 return nil
             }
             info = _snapshot
@@ -69,7 +69,7 @@ public class PowerSource {
     public func providingPowerSourceType(snapshot: Bool = false) -> ProvidingPowerSourceType? {
         let info: CFTypeRef?
         if snapshot {
-            guard let _snapshot = _snapshot else {
+            guard let _snapshot else {
                 return nil
             }
             info = _snapshot

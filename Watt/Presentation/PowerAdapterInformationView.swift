@@ -50,23 +50,21 @@ struct PowerAdapterInformationView: View {
     }
 
     private func format(voltage: Voltage?, current: Current?) -> String? {
-        var builder = "("
+        var values: [String] = []
 
-        if let v = voltage, let c = current {
-            builder += v.format()
-            builder += ", "
-            builder += c.format()
-        } else if let v = voltage {
-            builder += v.format()
-        } else if let c = current {
-            builder += c.format()
-        } else {
+        if let voltage {
+            values.append(voltage.format())
+        }
+
+        if let current {
+            values.append(current.format())
+        }
+
+        if values.isEmpty {
             return nil
         }
 
-        builder += ")"
-
-        return builder
+        return "(" + values.joined(separator: ", ") + ")"
     }
 
     private func format(charging: Bool) -> String {
@@ -78,16 +76,12 @@ struct PowerAdapterInformationView: View {
     }
 }
 
-struct PowerAdapterInformationView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            PowerAdapterInformationView(
-                viewModel: PowerAdapterInformationViewModel(
-                    externalPowerAdapterRepository: ExternalPowerAdapterRepository(
-                        ps: PowerSource()
-                    )
-                )
+#Preview {
+    PowerAdapterInformationView(
+        viewModel: PowerAdapterInformationViewModel(
+            externalPowerAdapterRepository: ExternalPowerAdapterRepository(
+                ps: PowerSource()
             )
-        }
-    }
+        )
+    )
 }

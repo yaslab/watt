@@ -24,8 +24,8 @@ struct OpenSystemSettingsView: View {
     }
 }
 
-struct OpenSystemSettingsView_Previews: PreviewProvider {
-    private class MockLauncherManager: LauncherManager {
+#Preview {
+    class MockLauncherManager: LauncherManager {
         var isEnabled: Bool = false
         var isRequiresApproval: Bool = false
 
@@ -35,11 +35,9 @@ struct OpenSystemSettingsView_Previews: PreviewProvider {
         func openSystemSettingsLoginItems() {}
     }
 
-    static var previews: some View {
-        OpenSystemSettingsView(
-            viewModel: OpenSystemSettingsViewModel(
-                launcherManager: MockLauncherManager()
-            )
+    return OpenSystemSettingsView(
+        viewModel: OpenSystemSettingsViewModel(
+            launcherManager: MockLauncherManager()
         )
-    }
+    )
 }

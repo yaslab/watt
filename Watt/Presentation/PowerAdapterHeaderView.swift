@@ -34,16 +34,12 @@ struct PowerAdapterHeaderView: View {
     }
 }
 
-struct PowerAdapterHeader_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            PowerAdapterHeaderView(
-                viewModel: PowerAdapterHeaderViewModel(
-                    externalPowerAdapterRepository: ExternalPowerAdapterRepository(
-                        ps: PowerSource()
-                    )
-                )
+#Preview {
+    PowerAdapterHeaderView(
+        viewModel: PowerAdapterHeaderViewModel(
+            externalPowerAdapterRepository: ExternalPowerAdapterRepository(
+                ps: PowerSource()
             )
-        }
-    }
+        )
+    )
 }
