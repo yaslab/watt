@@ -13,11 +13,11 @@ struct PowerAdapterInformationView: View {
 
     var body: some View {
         VStack {
-            if let name = viewModel.name {
+            if let name = viewModel.adapter.name {
                 HStack {
                     Text(name)
 
-                    if let manufacturer = viewModel.manufacturer {
+                    if let manufacturer = viewModel.adapter.manufacturer {
                         Text("(" + manufacturer + ")")
                     }
 
@@ -25,11 +25,11 @@ struct PowerAdapterInformationView: View {
                 }
             }
 
-            if let wattage = viewModel.wattage {
+            if let wattage = viewModel.adapter.wattage {
                 HStack {
                     Text(wattage.format())
 
-                    if let text = format(voltage: viewModel.voltage, current: viewModel.current) {
+                    if let text = viewModel.adapter.formatVA() {
                         Text(text)
                     }
 
@@ -40,39 +40,13 @@ struct PowerAdapterInformationView: View {
             HStack {
                 Text("Battery:")
 
-                Text(format(charging: viewModel.isCharging))
+                Text(viewModel.adapter.formatCharging())
 
                 Spacer()
             }
         }
         .font(.callout)
         .foregroundColor(.secondary)
-    }
-
-    private func format(voltage: Voltage?, current: Current?) -> String? {
-        var values: [String] = []
-
-        if let voltage {
-            values.append(voltage.format())
-        }
-
-        if let current {
-            values.append(current.format())
-        }
-
-        if values.isEmpty {
-            return nil
-        }
-
-        return "(" + values.joined(separator: ", ") + ")"
-    }
-
-    private func format(charging: Bool) -> String {
-        if charging {
-            return "Charging"
-        } else {
-            return "Not Charging"
-        }
     }
 }
 

@@ -27,13 +27,38 @@ extension ExternalPowerAdapter {
         return wattage != nil
     }
 
-    func format() -> String {
-        var text = name ?? "Unknown Adapter"
+    var isCharging: Bool {
+        guard let batteries else {
+            return false
+        }
+        return batteries.contains(where: \.isCharging)
+    }
+}
 
-        if let manufacturer {
-            text += " (" + manufacturer + ")"
+extension ExternalPowerAdapter {
+    func formatVA() -> String? {
+        var values: [String] = []
+
+        if let voltage {
+            values.append(voltage.format())
         }
 
-        return text
+        if let current {
+            values.append(current.format())
+        }
+
+        if values.isEmpty {
+            return nil
+        }
+
+        return "(" + values.joined(separator: ", ") + ")"
+    }
+    
+    func formatCharging() -> String {
+        if isCharging {
+            return "Charging"
+        } else {
+            return "Not Charging"
+        }
     }
 }
