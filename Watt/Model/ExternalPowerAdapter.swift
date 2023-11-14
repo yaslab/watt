@@ -53,7 +53,7 @@ extension ExternalPowerAdapter {
 
         return "(" + values.joined(separator: ", ") + ")"
     }
-    
+
     func formatCharging() -> String {
         if isCharging {
             return "Charging"

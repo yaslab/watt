@@ -17,13 +17,13 @@ class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
         }
 
         Task { @MainActor in
-            await launchMainApp()
-            NSApp.terminate(nil)
+            launchMainApp {
+                NSApp.terminate(nil)
+            }
         }
     }
 
-    @MainActor
-    private func launchMainApp() async {
+    private func launchMainApp(callback: @escaping () -> Void) {
         log.debug("begin")
 
         let thisAppBundle = Bundle.main
@@ -70,6 +70,8 @@ class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
             } else {
                 log.debug("launched")
             }
+
+            callback()
         }
     }
 }
