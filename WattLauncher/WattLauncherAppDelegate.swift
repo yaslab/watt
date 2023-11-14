@@ -62,15 +62,14 @@ class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        do {
-            log.debug("launching")
+        log.debug("launching")
 
-            let config = NSWorkspace.OpenConfiguration()
-            _ = try await NSWorkspace.shared.openApplication(at: mainAppURL, configuration: config)
-
-            log.debug("launched")
-        } catch {
-            log.debug("\(error.localizedDescription)")
+        NSWorkspace.shared.openApplication(at: mainAppURL, configuration: .init()) { runningApp, error in
+            if let error {
+                log.debug("\(error.localizedDescription)")
+            } else {
+                log.debug("launched")
+            }
         }
     }
 }
