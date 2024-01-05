@@ -21,6 +21,7 @@ extension PowerSource {
             case error
         }
 
+        // TODO: Make `state` thread safe.
         private var state: State
 
         init(state: State) {

@@ -5,12 +5,11 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
+import class CoreFoundation.CFRunLoop
 import func CoreFoundation.CFRunLoopAddSource
 import func CoreFoundation.CFRunLoopGetCurrent
-import struct CoreFoundation.CFRunLoopMode
 import func CoreFoundation.CFRunLoopRemoveSource
 import class CoreFoundation.CFRunLoopSource
-import class Foundation.Thread
 import func IOKit.ps.IOPSCreateLimitedPowerNotification
 import func IOKit.ps.IOPSNotificationCreateRunLoopSource
 import typealias IOKit.ps.IOPowerSourceCallbackType
@@ -19,13 +18,12 @@ extension PowerSource {
     public class RunLoopTask {
         enum State {
             case ready(CFRunLoopSource)
-            case running(CFRunLoopSource)
+            case running(CFRunLoopSource, CFRunLoop)
             case finished
             case error
         }
 
-        private weak var thread: Thread?
-
+        // TODO: Make `state` thread safe.
         private var state: State
 
         private let context: Any?
@@ -47,18 +45,22 @@ extension PowerSource {
             }
         }
 
+        /// Add source to the current thread's run loop.
+        ///
+        /// Run loops other than the main thread are not running by default, so you need to call `CFRunLoopRun()`.
+        ///
+        /// - SeeAlso: [Is DispatchQueue using RunLoop?](https://stackoverflow.com/a/70791936)
         public func start() {
             if case let .ready(source) = state {
-                CFRunLoopAddSource(CFRunLoopGetCurrent(), source, CFRunLoopMode.defaultMode)
-                thread = Thread.current
-                state = .running(source)
+                let loop: CFRunLoop = CFRunLoopGetCurrent()
+                CFRunLoopAddSource(loop, source, .defaultMode)
+                state = .running(source, loop)
             }
         }
 
         public func cancel() {
-            if case let .running(source) = state {
-                assert(Thread.current == thread)
-                CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, CFRunLoopMode.defaultMode)
+            if case let .running(source, loop) = state {
+                CFRunLoopRemoveSource(loop, source, .defaultMode)
                 state = .finished
             }
         }
