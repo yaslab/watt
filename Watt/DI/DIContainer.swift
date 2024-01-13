@@ -15,7 +15,7 @@ private class SharedObjects {
     init() {
         controller = WattAppController()
 
-        launcherManager = LauncherManagerHelper.resolve()
+        launcherManager = LauncherManagerHelper.makeManager()
 
         let ps = PowerSource()
         externalPowerAdapterRepository = ExternalPowerAdapterRepository(
