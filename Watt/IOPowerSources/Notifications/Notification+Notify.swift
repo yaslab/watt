@@ -46,11 +46,11 @@ extension PowerSource {
             stateSyncQueue.sync {
                 if case let .ready(name, queue, callback) = state {
                     var token: Int32 = 0
-                    
+
                     let status = notify_register_dispatch(name, &token, queue) { _ in
                         callback()
                     }
-                    
+
                     if status == NOTIFY_STATUS_OK {
                         state = .running(token)
                     } else {
