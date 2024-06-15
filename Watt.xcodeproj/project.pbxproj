@@ -731,7 +731,7 @@
 			repositoryURL = "https://github.com/apple/swift-format.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 509.0.0;
+				minimumVersion = 510.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
