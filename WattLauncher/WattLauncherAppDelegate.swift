@@ -10,7 +10,7 @@ import os
 
 private let log = Logger(subsystem: "net.yaslab.watt.launcher", category: "App")
 
-class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
+final class WattLauncherAppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         for window in NSApp.windows {
             window.close()

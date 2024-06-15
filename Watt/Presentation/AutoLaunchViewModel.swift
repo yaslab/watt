@@ -7,7 +7,8 @@
 
 import Foundation
 
-class AutoLaunchViewModel: ObservableObject {
+@MainActor
+final class AutoLaunchViewModel: ObservableObject {
     private let launcherManager: LauncherManager
 
     init(launcherManager: LauncherManager) {

@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class PowerAdapterInformationViewModel: ObservableObject {
+final class PowerAdapterInformationViewModel: ObservableObject {
     private var cancellable: AnyCancellable?
 
     init(externalPowerAdapterRepository: ExternalPowerAdapterRepository) {

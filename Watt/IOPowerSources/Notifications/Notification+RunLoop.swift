@@ -15,7 +15,7 @@ import func IOKit.ps.IOPSNotificationCreateRunLoopSource
 import typealias IOKit.ps.IOPowerSourceCallbackType
 
 extension PowerSource {
-    public class RunLoopTask {
+    public final class RunLoopTask {
         enum State {
             case ready(CFRunLoopSource)
             case running(CFRunLoopSource, CFRunLoop)
@@ -67,7 +67,7 @@ extension PowerSource {
     }
 
     public func notificationRunLoopTask(name: NotificationName, callback: @escaping () -> Void) -> RunLoopTask {
-        class Context {
+        final class Context {
             let callback: () -> Void
             init(_ callback: @escaping () -> Void) {
                 self.callback = callback

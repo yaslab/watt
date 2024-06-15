@@ -9,7 +9,7 @@ import var IOKit.ps.kIOPMACPowerKey
 import var IOKit.ps.kIOPMBatteryPowerKey
 import var IOKit.ps.kIOPMUPSPowerKey
 
-public struct ProvidingPowerSourceType: RawRepresentable, Equatable {
+public struct ProvidingPowerSourceType: RawRepresentable, Sendable, Equatable {
     public let rawValue: String
 
     public init(rawValue: String) {

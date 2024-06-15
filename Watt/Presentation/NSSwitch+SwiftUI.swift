@@ -32,7 +32,7 @@ struct Switch: NSViewRepresentable {
     }
 }
 
-private class _Switch: NSSwitch {
+private final class _Switch: NSSwitch {
     var callback: ((Bool) -> Void)?
 
     var isOn: Bool {

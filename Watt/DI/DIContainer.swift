@@ -5,7 +5,7 @@
 //  Created by Yasuhiro Hatta on 2022/09/04.
 //
 
-private class SharedObjects {
+private final class SharedObjects {
     let controller: WattAppController
 
     let launcherManager: any LauncherManager
@@ -24,13 +24,14 @@ private class SharedObjects {
     }
 }
 
-class DIContainer {
+final class DIContainer {
     private lazy var shared = SharedObjects()
 
     private func resolve() -> any LauncherManager {
         shared.launcherManager
     }
 
+    @MainActor
     func resolve() -> StatusItemManager {
         StatusItemManager(
             resolver: self,

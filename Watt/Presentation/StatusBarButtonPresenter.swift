@@ -8,7 +8,8 @@
 import AppKit
 import Combine
 
-class StatusBarButtonPresenter {
+@MainActor
+final class StatusBarButtonPresenter {
     private weak var button: NSStatusBarButton?
 
     private let externalPowerAdapterRepository: ExternalPowerAdapterRepository

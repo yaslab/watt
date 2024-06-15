@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class PowerAdapterHeaderViewModel: ObservableObject {
+final class PowerAdapterHeaderViewModel: ObservableObject {
     private let externalPowerAdapterRepository: ExternalPowerAdapterRepository
 
     private var cancellable: AnyCancellable?

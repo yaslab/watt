@@ -7,7 +7,7 @@
 
 import Foundation
 
-class OpenSystemSettingsViewModel: ObservableObject {
+final class OpenSystemSettingsViewModel: ObservableObject {
     private let launcherManager: LauncherManager
 
     init(launcherManager: LauncherManager) {

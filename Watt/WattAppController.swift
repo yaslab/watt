@@ -7,7 +7,8 @@
 
 import AppKit
 
-class WattAppController {
+@MainActor
+final class WattAppController {
     func closeWindows() {
         for window in NSApp.windows {
             window.close()

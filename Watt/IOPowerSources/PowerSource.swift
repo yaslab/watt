@@ -16,7 +16,7 @@ import func IOKit.ps.IOPSGetPowerSourceDescription
 import func IOKit.ps.IOPSGetProvidingPowerSourceType
 import func IOKit.ps.IOPSGetTimeRemainingEstimate
 
-public class PowerSource {
+public final class PowerSource {
     private var _snapshot: CFTypeRef?
 
     public init() {}

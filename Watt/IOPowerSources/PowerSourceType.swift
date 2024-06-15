@@ -8,7 +8,7 @@
 import var IOKit.ps.kIOPSInternalBatteryType
 import var IOKit.ps.kIOPSUPSType
 
-public struct PowerSourceType: RawRepresentable, Equatable {
+public struct PowerSourceType: RawRepresentable, Sendable, Equatable {
     public let rawValue: String
 
     public init(rawValue: String) {

@@ -8,7 +8,7 @@
 import AppKit
 import Combine
 
-class MenuEventProxy: NSObject, NSMenuDelegate {
+final class MenuEventProxy: NSObject, NSMenuDelegate {
     enum Event {
         case open
         case close

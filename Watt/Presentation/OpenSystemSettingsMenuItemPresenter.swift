@@ -8,7 +8,7 @@
 import AppKit
 import Combine
 
-class OpenSystemSettingsMenuItemPresenter {
+final class OpenSystemSettingsMenuItemPresenter {
     private weak var item: NSMenuItem?
 
     private let launcherManager: LauncherManager

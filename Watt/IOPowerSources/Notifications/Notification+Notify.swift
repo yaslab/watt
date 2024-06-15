@@ -10,10 +10,10 @@ import var notify.NOTIFY_STATUS_OK
 import func notify.notify_cancel
 import func notify.notify_register_dispatch
 
-private let _queue = DispatchQueue(label: "net.yaslab.IOPowerSource.Notify")
+private let _notifyQueue = DispatchQueue(label: "net.yaslab.IOPowerSource.Notify")
 
 extension PowerSource {
-    public class NotifyTask {
+    public final class NotifyTask: @unchecked Sendable {
         enum State {
             case ready(String, DispatchQueue, () -> Void)
             case running(Int32)
@@ -21,8 +21,8 @@ extension PowerSource {
             case error
         }
 
-        // TODO: Make `state` thread safe.
         private var state: State
+        private let stateSyncQueue = DispatchQueue(label: "net.yaslab.IOPowerSource.NotifyTask.queue")
 
         init(state: State) {
             self.state = state
@@ -33,38 +33,44 @@ extension PowerSource {
         }
 
         public var isError: Bool {
-            if case .error = state {
-                return true
-            } else {
-                return false
+            stateSyncQueue.sync {
+                if case .error = state {
+                    return true
+                } else {
+                    return false
+                }
             }
         }
 
         public func start() {
-            if case let .ready(name, queue, callback) = state {
-                var token: Int32 = 0
-
-                let status = notify_register_dispatch(name, &token, queue) { _ in
-                    callback()
-                }
-
-                if status == NOTIFY_STATUS_OK {
-                    state = .running(token)
-                } else {
-                    state = .error
+            stateSyncQueue.sync {
+                if case let .ready(name, queue, callback) = state {
+                    var token: Int32 = 0
+                    
+                    let status = notify_register_dispatch(name, &token, queue) { _ in
+                        callback()
+                    }
+                    
+                    if status == NOTIFY_STATUS_OK {
+                        state = .running(token)
+                    } else {
+                        state = .error
+                    }
                 }
             }
         }
 
         public func cancel() {
-            if case let .running(token) = state {
-                notify_cancel(token)
-                state = .finished
+            stateSyncQueue.sync {
+                if case let .running(token) = state {
+                    notify_cancel(token)
+                    state = .finished
+                }
             }
         }
     }
 
     public func notificationTask(name: NotificationName, queue: DispatchQueue? = nil, callback: @escaping () -> Void) -> NotifyTask {
-        return NotifyTask(state: .ready(name.rawValue, queue ?? _queue, callback))
+        return NotifyTask(state: .ready(name.rawValue, queue ?? _notifyQueue, callback))
     }
 }

@@ -8,7 +8,8 @@
 import AppKit
 import Combine
 
-class StatusItemManager {
+@MainActor
+final class StatusItemManager {
     private let resolver: DIResolver
 
     private let statusBarButtonPresenter: StatusBarButtonPresenter

@@ -7,7 +7,8 @@
 
 import AppKit
 
-class WattAppDelegate: NSObject, NSApplicationDelegate {
+@MainActor
+final class WattAppDelegate: NSObject, NSApplicationDelegate {
     private let container = DIContainer()
 
     private lazy var controller: WattAppController = container.resolve()

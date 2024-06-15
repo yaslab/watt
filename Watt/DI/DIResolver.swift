@@ -10,6 +10,7 @@ protocol DIResolver {
 
     func resolve() -> PowerAdapterHeaderViewModel
     func resolve() -> PowerAdapterInformationViewModel
+    @MainActor
     func resolve() -> AutoLaunchViewModel
     func resolve() -> OpenSystemSettingsViewModel
 
@@ -19,6 +20,7 @@ protocol DIResolver {
 
     // MARK: Presenter
 
+    @MainActor
     func resolve() -> StatusBarButtonPresenter
     func resolve() -> OpenSystemSettingsMenuItemPresenter
 }

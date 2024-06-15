@@ -9,7 +9,7 @@ import var IOKit.ps.kIOPSACPowerValue
 import var IOKit.ps.kIOPSBatteryPowerValue
 import var IOKit.ps.kIOPSOffLineValue
 
-public struct PowerSourceState: RawRepresentable, Equatable {
+public struct PowerSourceState: RawRepresentable, Sendable, Equatable {
     public let rawValue: String
 
     public init(rawValue: String) {

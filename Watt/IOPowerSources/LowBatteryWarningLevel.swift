@@ -10,7 +10,7 @@ import var IOKit.ps.kIOPSLowBatteryWarningEarly
 import var IOKit.ps.kIOPSLowBatteryWarningFinal
 import var IOKit.ps.kIOPSLowBatteryWarningNone
 
-public struct LowBatteryWarningLevel: RawRepresentable, Equatable {
+public struct LowBatteryWarningLevel: RawRepresentable, Sendable, Equatable {
     public let rawValue: IOPSLowBatteryWarningLevel
 
     public init(rawValue: IOPSLowBatteryWarningLevel) {

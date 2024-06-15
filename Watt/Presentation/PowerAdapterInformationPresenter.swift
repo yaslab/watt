@@ -8,7 +8,7 @@
 import AppKit
 import Combine
 
-class PowerAdapterInformationPresenter {
+final class PowerAdapterInformationPresenter {
     private weak var item: NSMenuItem?
 
     private let externalPowerAdapterRepository: ExternalPowerAdapterRepository

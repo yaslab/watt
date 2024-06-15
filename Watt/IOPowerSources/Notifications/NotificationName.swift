@@ -11,8 +11,8 @@ import var IOKit.ps.kIOPSNotifyPowerSource
 import var IOKit.ps.kIOPSNotifyTimeRemaining
 
 extension PowerSource {
-    public struct NotificationName: RawRepresentable, Equatable {
-        public var rawValue: String
+    public struct NotificationName: RawRepresentable, Sendable, Equatable {
+        public let rawValue: String
 
         public init(rawValue: String) {
             self.rawValue = rawValue

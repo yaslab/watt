@@ -12,9 +12,10 @@ import SwiftUI
 // - Views in Menu Items
 //   - https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MenuList/Articles/ViewsInMenuItems.html
 
-class MenuItem: NSMenuItem {
+final class MenuItem: NSMenuItem {
     private let size: NSSize
 
+    @MainActor
     init<Content: View>(size: NSSize = NSSize(width: 300, height: 32), isHighlightEnabled: Bool = false, content: @escaping () -> Content) {
         self.size = size
 
@@ -34,6 +35,7 @@ class MenuItem: NSMenuItem {
         fatalError("init(coder:) has not been implemented")
     }
 
+    @MainActor
     override var isHidden: Bool {
         didSet {
             view?.isHidden = isHidden
@@ -48,7 +50,7 @@ class MenuItem: NSMenuItem {
     }
 }
 
-private class EventProxy: ObservableObject {
+private final class EventProxy: ObservableObject {
     @Published
     var isHighlighted = false
 
@@ -56,7 +58,7 @@ private class EventProxy: ObservableObject {
     var isHidden = false
 }
 
-private class MenuItemView<Content: View>: NSView {
+private final class MenuItemView<Content: View>: NSView {
     private let proxy = EventProxy()
 
     init(isHighlightEnabled: Bool, content: @escaping () -> Content) {

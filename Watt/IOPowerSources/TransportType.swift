@@ -10,7 +10,7 @@ import var IOKit.ps.kIOPSNetworkTransportType
 import var IOKit.ps.kIOPSSerialTransportType
 import var IOKit.ps.kIOPSUSBTransportType
 
-public struct TransportType: RawRepresentable, Equatable {
+public struct TransportType: RawRepresentable, Sendable,  Equatable {
     public let rawValue: String
 
     public init(rawValue: String) {

@@ -9,7 +9,7 @@ import struct Foundation.TimeInterval
 import var IOKit.ps.kIOPSTimeRemainingUnknown
 import var IOKit.ps.kIOPSTimeRemainingUnlimited
 
-public struct TimeRemainingEstimate: RawRepresentable, Equatable {
+public struct TimeRemainingEstimate: RawRepresentable, Sendable, Equatable {
     public let rawValue: TimeInterval
 
     public init(rawValue: Double) {

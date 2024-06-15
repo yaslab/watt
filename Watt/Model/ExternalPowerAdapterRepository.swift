@@ -7,7 +7,7 @@
 
 import Combine
 
-class ExternalPowerAdapterRepository {
+final class ExternalPowerAdapterRepository {
     init(ps: PowerSource) {
         func convert(_ details: ExternalPowerAdapterDetails?, _ descriptions: [PowerSourceDescription]?) -> ExternalPowerAdapter {
             ExternalPowerAdapter(
