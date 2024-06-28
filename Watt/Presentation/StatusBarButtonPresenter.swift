@@ -37,18 +37,26 @@ final class StatusBarButtonPresenter {
             return
         }
 
-        var title = ""
+        let title: String
 
         if let wattage = source.wattage {
             title = wattage.format()
+        } else {
+            title = ""
         }
 
         button.title = title
 
-        var imageName = "bolt.slash.fill"
+        let imageName: String
 
-        if let batteries = source.batteries, batteries.contains(where: \.isCharging) {
-            imageName = "bolt.fill"
+        if source.isAdapterConnected {
+            if let batteries = source.batteries, batteries.contains(where: \.isCharging) {
+                imageName = "bolt.fill"
+            } else {
+                imageName = "bolt.badge.checkmark.fill"
+            }
+        } else {
+            imageName = "bolt.slash.fill"
         }
 
         button.image = NSImage(systemSymbolName: imageName, accessibilityDescription: nil)
