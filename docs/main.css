@@ -53,3 +53,8 @@ footer {
 
     margin: 8px;
 }
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
