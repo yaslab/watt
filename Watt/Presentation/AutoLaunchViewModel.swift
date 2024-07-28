@@ -32,7 +32,7 @@ extension AutoLaunchViewModel {
         isEnabled = launcherManager.isEnabled
     }
 
-    func onIsEnabledChange(_: Bool, _ enabled: Bool) {
+    func onIsEnabledChange(_ enabled: Bool) {
         if enabled == launcherManager.isEnabled {
             return
         }
