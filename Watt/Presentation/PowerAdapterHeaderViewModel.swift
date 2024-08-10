@@ -30,9 +30,9 @@ extension PowerAdapterHeaderViewModel {
     func onAppear() {
         isConnected = externalPowerAdapterRepository.value.isAdapterConnected
 
-        cancellable = externalPowerAdapterRepository
-            .publisher
+        cancellable = externalPowerAdapterRepository.publisher
             .map(\.isAdapterConnected)
+            .replaceError(with: false)
             .receive(on: DispatchQueue.main)
             .assign(to: \.isConnected, on: self)
     }

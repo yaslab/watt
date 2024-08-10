@@ -15,20 +15,6 @@
 		0E0D1E8028BA499A005B9693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D1E7F28BA499A005B9693 /* Assets.xcassets */; };
 		0E0D1E8C28BA4BFB005B9693 /* WattAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E8B28BA4BFB005B9693 /* WattAppDelegate.swift */; };
 		0E0D1E8E28BA4C14005B9693 /* WattAppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E8D28BA4C14005B9693 /* WattAppController.swift */; };
-		0E0D1EA028BA5713005B9693 /* PowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9128BA5713005B9693 /* PowerSourceType.swift */; };
-		0E0D1EA128BA5713005B9693 /* TransportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9228BA5713005B9693 /* TransportType.swift */; };
-		0E0D1EA228BA5713005B9693 /* TimeRemainingEstimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9328BA5713005B9693 /* TimeRemainingEstimate.swift */; };
-		0E0D1EA328BA5713005B9693 /* ProvidingPowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9428BA5713005B9693 /* ProvidingPowerSourceType.swift */; };
-		0E0D1EA428BA5713005B9693 /* PowerSourceDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9528BA5713005B9693 /* PowerSourceDescription.swift */; };
-		0E0D1EA528BA5713005B9693 /* LowBatteryWarningLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9628BA5713005B9693 /* LowBatteryWarningLevel.swift */; };
-		0E0D1EA628BA5713005B9693 /* ExternalPowerAdapterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9728BA5713005B9693 /* ExternalPowerAdapterDetails.swift */; };
-		0E0D1EA728BA5713005B9693 /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9828BA5713005B9693 /* PowerSource.swift */; };
-		0E0D1EA828BA5713005B9693 /* PowerSourceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9928BA5713005B9693 /* PowerSourceState.swift */; };
-		0E0D1EA928BA5713005B9693 /* Notification+RunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9B28BA5713005B9693 /* Notification+RunLoop.swift */; };
-		0E0D1EAA28BA5713005B9693 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9C28BA5713005B9693 /* NotificationName.swift */; };
-		0E0D1EAB28BA5713005B9693 /* Notification+Notify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9D28BA5713005B9693 /* Notification+Notify.swift */; };
-		0E0D1EAC28BA5713005B9693 /* Notification+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9E28BA5713005B9693 /* Notification+Combine.swift */; };
-		0E0D1EAD28BA5713005B9693 /* Notification+Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9F28BA5713005B9693 /* Notification+Concurrency.swift */; };
 		0E0D1EAF28BA6488005B9693 /* StatusItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EAE28BA6488005B9693 /* StatusItemManager.swift */; };
 		0E0D1EB328BA6889005B9693 /* PowerAdapterInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EB228BA6889005B9693 /* PowerAdapterInformationView.swift */; };
 		0E0D1EB528BA6895005B9693 /* PowerAdapterInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EB428BA6895005B9693 /* PowerAdapterInformationViewModel.swift */; };
@@ -40,6 +26,7 @@
 		0E0D1ED728BA8837005B9693 /* LauncherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1ED628BA8837005B9693 /* LauncherManager.swift */; };
 		0E0D1ED928BA89FF005B9693 /* AutoLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1ED828BA89FF005B9693 /* AutoLaunchView.swift */; };
 		0E0D1EDB28BA8B01005B9693 /* NSSwitch+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EDA28BA8B01005B9693 /* NSSwitch+SwiftUI.swift */; };
+		0E29026A2C67BAA900AB3CA7 /* IOPowerSources in Frameworks */ = {isa = PBXBuildFile; productRef = 0E2902692C67BAA900AB3CA7 /* IOPowerSources */; };
 		0E65B49228D07C0100F0E38F /* ExternalPowerAdapterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E65B49128D07C0100F0E38F /* ExternalPowerAdapterRepository.swift */; };
 		0E6CEF0628CE34BF00C7091E /* PowerAdapterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CEF0528CE34BF00C7091E /* PowerAdapterHeaderView.swift */; };
 		0E6CEF0828CE3B0600C7091E /* PowerAdapterHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CEF0728CE3B0600C7091E /* PowerAdapterHeaderViewModel.swift */; };
@@ -92,20 +79,6 @@
 		0E0D1E8A28BA4B33005B9693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0E0D1E8B28BA4BFB005B9693 /* WattAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WattAppDelegate.swift; sourceTree = "<group>"; };
 		0E0D1E8D28BA4C14005B9693 /* WattAppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WattAppController.swift; sourceTree = "<group>"; };
-		0E0D1E9128BA5713005B9693 /* PowerSourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSourceType.swift; sourceTree = "<group>"; };
-		0E0D1E9228BA5713005B9693 /* TransportType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportType.swift; sourceTree = "<group>"; };
-		0E0D1E9328BA5713005B9693 /* TimeRemainingEstimate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRemainingEstimate.swift; sourceTree = "<group>"; };
-		0E0D1E9428BA5713005B9693 /* ProvidingPowerSourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProvidingPowerSourceType.swift; sourceTree = "<group>"; };
-		0E0D1E9528BA5713005B9693 /* PowerSourceDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSourceDescription.swift; sourceTree = "<group>"; };
-		0E0D1E9628BA5713005B9693 /* LowBatteryWarningLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowBatteryWarningLevel.swift; sourceTree = "<group>"; };
-		0E0D1E9728BA5713005B9693 /* ExternalPowerAdapterDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalPowerAdapterDetails.swift; sourceTree = "<group>"; };
-		0E0D1E9828BA5713005B9693 /* PowerSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSource.swift; sourceTree = "<group>"; };
-		0E0D1E9928BA5713005B9693 /* PowerSourceState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSourceState.swift; sourceTree = "<group>"; };
-		0E0D1E9B28BA5713005B9693 /* Notification+RunLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+RunLoop.swift"; sourceTree = "<group>"; };
-		0E0D1E9C28BA5713005B9693 /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
-		0E0D1E9D28BA5713005B9693 /* Notification+Notify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Notify.swift"; sourceTree = "<group>"; };
-		0E0D1E9E28BA5713005B9693 /* Notification+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Combine.swift"; sourceTree = "<group>"; };
-		0E0D1E9F28BA5713005B9693 /* Notification+Concurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Concurrency.swift"; sourceTree = "<group>"; };
 		0E0D1EAE28BA6488005B9693 /* StatusItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemManager.swift; sourceTree = "<group>"; };
 		0E0D1EB228BA6889005B9693 /* PowerAdapterInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerAdapterInformationView.swift; sourceTree = "<group>"; };
 		0E0D1EB428BA6895005B9693 /* PowerAdapterInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerAdapterInformationViewModel.swift; sourceTree = "<group>"; };
@@ -141,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E29026A2C67BAA900AB3CA7 /* IOPowerSources in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +173,6 @@
 				0E0D1E7F28BA499A005B9693 /* Assets.xcassets */,
 				0E04A62D28C3AA0F005FC40A /* DI */,
 				0E0D1E8A28BA4B33005B9693 /* Info.plist */,
-				0E0D1E9028BA5713005B9693 /* IOPowerSources */,
 				0E0D1ED528BA8821005B9693 /* Launcher */,
 				0E0004E028CD904500EC2519 /* Model */,
 				0E0D1EB628BA69E0005B9693 /* Presentation */,
@@ -209,35 +182,6 @@
 				0E0D1E8B28BA4BFB005B9693 /* WattAppDelegate.swift */,
 			);
 			path = Watt;
-			sourceTree = "<group>";
-		};
-		0E0D1E9028BA5713005B9693 /* IOPowerSources */ = {
-			isa = PBXGroup;
-			children = (
-				0E0D1E9728BA5713005B9693 /* ExternalPowerAdapterDetails.swift */,
-				0E0D1E9628BA5713005B9693 /* LowBatteryWarningLevel.swift */,
-				0E0D1E9A28BA5713005B9693 /* Notifications */,
-				0E0D1E9828BA5713005B9693 /* PowerSource.swift */,
-				0E0D1E9528BA5713005B9693 /* PowerSourceDescription.swift */,
-				0E0D1E9928BA5713005B9693 /* PowerSourceState.swift */,
-				0E0D1E9128BA5713005B9693 /* PowerSourceType.swift */,
-				0E0D1E9428BA5713005B9693 /* ProvidingPowerSourceType.swift */,
-				0E0D1E9328BA5713005B9693 /* TimeRemainingEstimate.swift */,
-				0E0D1E9228BA5713005B9693 /* TransportType.swift */,
-			);
-			path = IOPowerSources;
-			sourceTree = "<group>";
-		};
-		0E0D1E9A28BA5713005B9693 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				0E0D1E9E28BA5713005B9693 /* Notification+Combine.swift */,
-				0E0D1E9F28BA5713005B9693 /* Notification+Concurrency.swift */,
-				0E0D1E9D28BA5713005B9693 /* Notification+Notify.swift */,
-				0E0D1E9B28BA5713005B9693 /* Notification+RunLoop.swift */,
-				0E0D1E9C28BA5713005B9693 /* NotificationName.swift */,
-			);
-			path = Notifications;
 			sourceTree = "<group>";
 		};
 		0E0D1EB628BA69E0005B9693 /* Presentation */ = {
@@ -352,7 +296,7 @@
 			);
 			mainGroup = 0E0D1E6F28BA4999005B9693;
 			packageReferences = (
-				0E5AAF1D2B02789E00CF68A7 /* XCRemoteSwiftPackageReference "swift-format" */,
+				0E2902682C67BAA900AB3CA7 /* XCRemoteSwiftPackageReference "IOPowerSources.swift" */,
 			);
 			productRefGroup = 0E0D1E7928BA4999005B9693 /* Products */;
 			projectDirPath = "";
@@ -389,27 +333,15 @@
 			files = (
 				0E0D1EDB28BA8B01005B9693 /* NSSwitch+SwiftUI.swift in Sources */,
 				0E7176BF28BD16D600FF950D /* SectionHeader.swift in Sources */,
-				0E0D1EAD28BA5713005B9693 /* Notification+Concurrency.swift in Sources */,
 				0E6CEF0828CE3B0600C7091E /* PowerAdapterHeaderViewModel.swift in Sources */,
 				0E0D1EB328BA6889005B9693 /* PowerAdapterInformationView.swift in Sources */,
 				0ED588EC2944C07F002F46B8 /* PowerAdapterInformationPresenter.swift in Sources */,
-				0E0D1EA328BA5713005B9693 /* ProvidingPowerSourceType.swift in Sources */,
 				0E0D1EBA28BA6D5C005B9693 /* NSMenuItem+SwiftUI.swift in Sources */,
 				0EC16DF728C481DE000B7F8E /* StatusBarButtonPresenter.swift in Sources */,
 				0EEE795028CC12CD00C1A58A /* NSMenu+EventProxy.swift in Sources */,
-				0E0D1EA628BA5713005B9693 /* ExternalPowerAdapterDetails.swift in Sources */,
-				0E0D1EA428BA5713005B9693 /* PowerSourceDescription.swift in Sources */,
 				0EC16DF528C47EE8000B7F8E /* DIResolver.swift in Sources */,
 				0E0004E228CD905D00EC2519 /* Wattage.swift in Sources */,
-				0E0D1EAA28BA5713005B9693 /* NotificationName.swift in Sources */,
-				0E0D1EAC28BA5713005B9693 /* Notification+Combine.swift in Sources */,
-				0E0D1EA028BA5713005B9693 /* PowerSourceType.swift in Sources */,
 				0E7176BB28BD0F5400FF950D /* LauncherApp.swift in Sources */,
-				0E0D1EA828BA5713005B9693 /* PowerSourceState.swift in Sources */,
-				0E0D1EA728BA5713005B9693 /* PowerSource.swift in Sources */,
-				0E0D1EA228BA5713005B9693 /* TimeRemainingEstimate.swift in Sources */,
-				0E0D1EAB28BA5713005B9693 /* Notification+Notify.swift in Sources */,
-				0E0D1EA928BA5713005B9693 /* Notification+RunLoop.swift in Sources */,
 				0E7176BD28BD152300FF950D /* PiyotasoView.swift in Sources */,
 				0E0004E428CD906700EC2519 /* Voltage.swift in Sources */,
 				0E0D1ED928BA89FF005B9693 /* AutoLaunchView.swift in Sources */,
@@ -423,10 +355,8 @@
 				0EEE795228CC14E500C1A58A /* OpenSystemSettingsViewModel.swift in Sources */,
 				0E0D1E7C28BA4999005B9693 /* WattApp.swift in Sources */,
 				0E7176B728BCBB6900FF950D /* AutoLaunchViewModel.swift in Sources */,
-				0E0D1EA128BA5713005B9693 /* TransportType.swift in Sources */,
 				0EEE794C28CA0F3000C1A58A /* OpenSystemSettingsView.swift in Sources */,
 				0E65B49228D07C0100F0E38F /* ExternalPowerAdapterRepository.swift in Sources */,
-				0E0D1EA528BA5713005B9693 /* LowBatteryWarningLevel.swift in Sources */,
 				0E0004E628CD907300EC2519 /* Current.swift in Sources */,
 				0EEE794E28CC0FC500C1A58A /* OpenSystemSettingsMenuItemPresenter.swift in Sources */,
 				0ECCD7BF2A408B5800B3BA7E /* ExternalPowerAdapter.swift in Sources */,
@@ -601,7 +531,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Development macOS";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -632,7 +562,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Watt App";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -663,7 +593,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard Development macOS";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -693,7 +623,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Watt App Launcher";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -730,15 +660,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0E5AAF1D2B02789E00CF68A7 /* XCRemoteSwiftPackageReference "swift-format" */ = {
+		0E2902682C67BAA900AB3CA7 /* XCRemoteSwiftPackageReference "IOPowerSources.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-format.git";
+			repositoryURL = "https://github.com/yaslab/IOPowerSources.swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 510.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E2902692C67BAA900AB3CA7 /* IOPowerSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E2902682C67BAA900AB3CA7 /* XCRemoteSwiftPackageReference "IOPowerSources.swift" */;
+			productName = IOPowerSources;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0E0D1E7028BA4999005B9693 /* Project object */;
 }

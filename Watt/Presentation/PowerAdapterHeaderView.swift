@@ -37,9 +37,7 @@ struct PowerAdapterHeaderView: View {
 #Preview {
     PowerAdapterHeaderView(
         viewModel: PowerAdapterHeaderViewModel(
-            externalPowerAdapterRepository: ExternalPowerAdapterRepository(
-                ps: PowerSource()
-            )
+            externalPowerAdapterRepository: ExternalPowerAdapterRepository()
         )
     )
 }

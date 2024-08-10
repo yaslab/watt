@@ -53,9 +53,7 @@ struct PowerAdapterInformationView: View {
 #Preview {
     PowerAdapterInformationView(
         viewModel: PowerAdapterInformationViewModel(
-            externalPowerAdapterRepository: ExternalPowerAdapterRepository(
-                ps: PowerSource()
-            )
+            externalPowerAdapterRepository: ExternalPowerAdapterRepository()
         )
     )
 }

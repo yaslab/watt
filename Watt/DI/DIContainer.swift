@@ -17,10 +17,7 @@ private final class SharedObjects {
 
         launcherManager = LauncherManagerHelper.makeManager()
 
-        let ps = PowerSource()
-        externalPowerAdapterRepository = ExternalPowerAdapterRepository(
-            ps: ps
-        )
+        externalPowerAdapterRepository = ExternalPowerAdapterRepository()
     }
 }
 

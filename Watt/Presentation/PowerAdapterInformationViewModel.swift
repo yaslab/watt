@@ -14,9 +14,9 @@ final class PowerAdapterInformationViewModel: ObservableObject {
     init(externalPowerAdapterRepository: ExternalPowerAdapterRepository) {
         adapter = externalPowerAdapterRepository.value
 
-        cancellable = externalPowerAdapterRepository
-            .publisher
+        cancellable = externalPowerAdapterRepository.publisher
             // .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
+            .replaceError(with: .empty)
             .receive(on: DispatchQueue.main)
             .assign(to: \.adapter, on: self)
     }

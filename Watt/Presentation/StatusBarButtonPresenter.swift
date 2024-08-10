@@ -25,9 +25,9 @@ final class StatusBarButtonPresenter {
 
         updateButton(externalPowerAdapterRepository.value)
 
-        cancellable = externalPowerAdapterRepository
-            .publisher
-            .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
+        cancellable = externalPowerAdapterRepository.publisher
+            //.throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
+            .replaceError(with: .empty)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.updateButton($0) }
     }
@@ -50,7 +50,7 @@ final class StatusBarButtonPresenter {
         let imageName: String
 
         if source.isAdapterConnected {
-            if let batteries = source.batteries, batteries.contains(where: \.isCharging) {
+            if source.batteries.contains(where: \.isCharging) {
                 imageName = "bolt.fill"
             } else {
                 imageName = "bolt.badge.checkmark.fill"

@@ -8,12 +8,14 @@
 import AppKit
 
 final class WattAppController {
+    @MainActor
     func closeWindows() {
         for window in NSApp.windows {
             window.close()
         }
     }
 
+    @MainActor
     @objc func onQuit() {
         NSApp.terminate(nil)
     }

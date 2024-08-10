@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 // References:
 //
@@ -13,34 +14,29 @@ import SwiftUI
 //   - https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MenuList/Articles/ViewsInMenuItems.html
 
 final class MenuItem: NSMenuItem {
-    private let size: NSSize
+    private var cancellable: AnyCancellable?
 
     @MainActor
     init<Content: View>(size: NSSize = NSSize(width: 300, height: 32), isHighlightEnabled: Bool = false, content: @escaping () -> Content) {
-        self.size = size
-
         // Note: If action is nil, highlighting doesn't work, so set a dummy selector.
         super.init(title: "", action: #selector(MenuItem.onDummy), keyEquivalent: "")
-
-        target = self
-
+        self.target = self
+        
         let view = MenuItemView(isHighlightEnabled: isHighlightEnabled, content: content)
         view.setFrameSize(size)
         view.autoresizingMask = [.width, .height]
         self.view = view
+        
+        self.cancellable = publisher(for: \.isHidden)
+            .sink {
+                view.isHidden = $0
+                view.setFrameSize($0 ? .zero : size)
+            }
     }
 
     @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    @MainActor
-    override var isHidden: Bool {
-        didSet {
-            view?.isHidden = isHidden
-            view?.setFrameSize(isHidden ? .zero : size)
-        }
     }
 
     // MARK: - Dummy

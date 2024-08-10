@@ -29,6 +29,8 @@ struct AutoLaunchView: View {
             }
         }
         .onAppear(perform: viewModel.onAppear)
-        .onChange(of: viewModel.isEnabled, perform: viewModel.onIsEnabledChange(_:))
+        .onChange(of: viewModel.isEnabled) { _, newValue in
+            viewModel.onIsEnabledChange(newValue)
+        }
     }
 }

@@ -15,10 +15,23 @@ struct ExternalPowerAdapter {
     let name: String?
     let manufacturer: String?
 
-    let batteries: [Battery]?
+    let batteries: [Battery]
 
     struct Battery {
         let isCharging: Bool
+    }
+}
+
+extension ExternalPowerAdapter {
+    static var empty: ExternalPowerAdapter {
+        ExternalPowerAdapter(
+            wattage: nil,
+            voltage: nil,
+            current: nil,
+            name: nil,
+            manufacturer: nil,
+            batteries: []
+        )
     }
 }
 
@@ -28,9 +41,6 @@ extension ExternalPowerAdapter {
     }
 
     var isCharging: Bool {
-        guard let batteries else {
-            return false
-        }
         return batteries.contains(where: \.isCharging)
     }
 }
