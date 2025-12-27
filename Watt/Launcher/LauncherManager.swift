@@ -20,8 +20,8 @@ protocol LauncherManager: AnyObject {
 
 enum LauncherManagerHelper {
     static func makeManager() -> LauncherManager {
-        let launcherApp = LauncherApp()
-        return SMAppService.loginItem(identifier: launcherApp.id)
+//        let launcherApp = LauncherApp()
+        return SMAppService.mainApp
     }
 }
 
