@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct PowerAdapterInformationView: View {
-    @Environment(\.powerAdapterClient) private var powerAdapterClient
+    let adapter: PowerAdapter
 
     var body: some View {
-        let adapter = powerAdapterClient.value
-
         VStack {
             if let name = adapter.name {
                 HStack {
@@ -51,6 +49,6 @@ struct PowerAdapterInformationView: View {
     }
 }
 
-#Preview {
-    PowerAdapterInformationView()
-}
+//#Preview {
+//    PowerAdapterInformationView(adapter: ...)
+//}

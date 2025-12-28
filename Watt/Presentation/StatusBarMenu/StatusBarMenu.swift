@@ -5,20 +5,25 @@
 //  Created by Yasuhiro Hatta on 2025/12/28.
 //
 
+import Combine
 import SwiftUI
 
 struct StatusBarMenu: View {
     @Environment(\.powerAdapterClient) private var powerAdapterClient
 
-    var body: some View {
-        let adapter = powerAdapterClient.value
+    @State private var adapter: PowerAdapter
 
+    init(adapter: PowerAdapter) {
+        _adapter = State(initialValue: adapter)
+    }
+
+    var body: some View {
         List {
             Section {
-                PowerAdapterHeaderView()
+                PowerAdapterHeaderView(adapter: adapter)
 
                 if adapter.isAdapterConnected {
-                    PowerAdapterInformationView()
+                    PowerAdapterInformationView(adapter: adapter)
                 }
             }
 
@@ -38,5 +43,13 @@ struct StatusBarMenu: View {
         }
         .listStyle(.plain)
         .fixedSize(horizontal: false, vertical: true)
+        .task {
+            let publisher = powerAdapterClient.publisher
+                .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: true)
+
+            for await newValue in publisher.values {
+                adapter = newValue
+            }
+        }
     }
 }
