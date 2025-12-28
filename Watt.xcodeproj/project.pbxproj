@@ -3,44 +3,8 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
-
-/* Begin PBXBuildFile section */
-		0E0004E228CD905D00EC2519 /* Wattage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0004E128CD905D00EC2519 /* Wattage.swift */; };
-		0E0004E428CD906700EC2519 /* Voltage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0004E328CD906700EC2519 /* Voltage.swift */; };
-		0E0004E628CD907300EC2519 /* Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0004E528CD907300EC2519 /* Current.swift */; };
-		0E04A62F28C3AA24005FC40A /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A62E28C3AA24005FC40A /* DIContainer.swift */; };
-		0E0D1E7C28BA4999005B9693 /* WattApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E7B28BA4999005B9693 /* WattApp.swift */; };
-		0E0D1E8028BA499A005B9693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D1E7F28BA499A005B9693 /* Assets.xcassets */; };
-		0E0D1EA028BA5713005B9693 /* PowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9128BA5713005B9693 /* PowerSourceType.swift */; };
-		0E0D1EA128BA5713005B9693 /* TransportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9228BA5713005B9693 /* TransportType.swift */; };
-		0E0D1EA228BA5713005B9693 /* TimeRemainingEstimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9328BA5713005B9693 /* TimeRemainingEstimate.swift */; };
-		0E0D1EA328BA5713005B9693 /* ProvidingPowerSourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9428BA5713005B9693 /* ProvidingPowerSourceType.swift */; };
-		0E0D1EA428BA5713005B9693 /* PowerSourceDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9528BA5713005B9693 /* PowerSourceDescription.swift */; };
-		0E0D1EA528BA5713005B9693 /* LowBatteryWarningLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9628BA5713005B9693 /* LowBatteryWarningLevel.swift */; };
-		0E0D1EA628BA5713005B9693 /* ExternalPowerAdapterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9728BA5713005B9693 /* ExternalPowerAdapterDetails.swift */; };
-		0E0D1EA728BA5713005B9693 /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9828BA5713005B9693 /* PowerSource.swift */; };
-		0E0D1EA828BA5713005B9693 /* PowerSourceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9928BA5713005B9693 /* PowerSourceState.swift */; };
-		0E0D1EA928BA5713005B9693 /* Notification+RunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9B28BA5713005B9693 /* Notification+RunLoop.swift */; };
-		0E0D1EAA28BA5713005B9693 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9C28BA5713005B9693 /* NotificationName.swift */; };
-		0E0D1EAB28BA5713005B9693 /* Notification+Notify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9D28BA5713005B9693 /* Notification+Notify.swift */; };
-		0E0D1EAC28BA5713005B9693 /* Notification+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9E28BA5713005B9693 /* Notification+Combine.swift */; };
-		0E0D1EAD28BA5713005B9693 /* Notification+Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1E9F28BA5713005B9693 /* Notification+Concurrency.swift */; };
-		0E0D1EB328BA6889005B9693 /* PowerAdapterInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EB228BA6889005B9693 /* PowerAdapterInformationView.swift */; };
-		0E0D1EB828BA6A43005B9693 /* QuitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1EB728BA6A43005B9693 /* QuitView.swift */; };
-		0E0D1ED728BA8837005B9693 /* LauncherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1ED628BA8837005B9693 /* LauncherManager.swift */; };
-		0E0D1ED928BA89FF005B9693 /* AutoLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D1ED828BA89FF005B9693 /* AutoLaunchView.swift */; };
-		0E65B49228D07C0100F0E38F /* ExternalPowerAdapterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E65B49128D07C0100F0E38F /* ExternalPowerAdapterRepository.swift */; };
-		0E6CEF0628CE34BF00C7091E /* PowerAdapterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CEF0528CE34BF00C7091E /* PowerAdapterHeaderView.swift */; };
-		0E7176BD28BD152300FF950D /* PiyotasoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7176BC28BD152300FF950D /* PiyotasoView.swift */; };
-		0E85A9CA2F00D75B008B5990 /* StatusBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85A9C92F00D75A008B5990 /* StatusBarButton.swift */; };
-		0E85A9CC2F00D76F008B5990 /* StatusBarMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85A9CB2F00D76E008B5990 /* StatusBarMenu.swift */; };
-		0E85A9CE2F00D7C4008B5990 /* StatusBarMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E85A9CD2F00D7C3008B5990 /* StatusBarMenuButton.swift */; };
-		0EC16DF528C47EE8000B7F8E /* DIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC16DF428C47EE8000B7F8E /* DIResolver.swift */; };
-		0ECCD7BF2A408B5800B3BA7E /* ExternalPowerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECCD7BE2A408B5800B3BA7E /* ExternalPowerAdapter.swift */; };
-		0EEE794C28CA0F3000C1A58A /* OpenSystemSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEE794B28CA0F3000C1A58A /* OpenSystemSettingsView.swift */; };
-/* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0E0D1ED128BA8791005B9693 /* CopyFiles */ = {
@@ -55,43 +19,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0E0004E128CD905D00EC2519 /* Wattage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wattage.swift; sourceTree = "<group>"; };
-		0E0004E328CD906700EC2519 /* Voltage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voltage.swift; sourceTree = "<group>"; };
-		0E0004E528CD907300EC2519 /* Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Current.swift; sourceTree = "<group>"; };
-		0E04A62E28C3AA24005FC40A /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		0E0D1E7828BA4999005B9693 /* Watt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watt.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E0D1E7B28BA4999005B9693 /* WattApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WattApp.swift; sourceTree = "<group>"; };
-		0E0D1E7F28BA499A005B9693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0E0D1E8428BA499A005B9693 /* Watt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Watt.entitlements; sourceTree = "<group>"; };
-		0E0D1E8A28BA4B33005B9693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		0E0D1E9128BA5713005B9693 /* PowerSourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSourceType.swift; sourceTree = "<group>"; };
-		0E0D1E9228BA5713005B9693 /* TransportType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportType.swift; sourceTree = "<group>"; };
-		0E0D1E9328BA5713005B9693 /* TimeRemainingEstimate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRemainingEstimate.swift; sourceTree = "<group>"; };
-		0E0D1E9428BA5713005B9693 /* ProvidingPowerSourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProvidingPowerSourceType.swift; sourceTree = "<group>"; };
-		0E0D1E9528BA5713005B9693 /* PowerSourceDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSourceDescription.swift; sourceTree = "<group>"; };
-		0E0D1E9628BA5713005B9693 /* LowBatteryWarningLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LowBatteryWarningLevel.swift; sourceTree = "<group>"; };
-		0E0D1E9728BA5713005B9693 /* ExternalPowerAdapterDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalPowerAdapterDetails.swift; sourceTree = "<group>"; };
-		0E0D1E9828BA5713005B9693 /* PowerSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSource.swift; sourceTree = "<group>"; };
-		0E0D1E9928BA5713005B9693 /* PowerSourceState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSourceState.swift; sourceTree = "<group>"; };
-		0E0D1E9B28BA5713005B9693 /* Notification+RunLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+RunLoop.swift"; sourceTree = "<group>"; };
-		0E0D1E9C28BA5713005B9693 /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
-		0E0D1E9D28BA5713005B9693 /* Notification+Notify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Notify.swift"; sourceTree = "<group>"; };
-		0E0D1E9E28BA5713005B9693 /* Notification+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Combine.swift"; sourceTree = "<group>"; };
-		0E0D1E9F28BA5713005B9693 /* Notification+Concurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Concurrency.swift"; sourceTree = "<group>"; };
-		0E0D1EB228BA6889005B9693 /* PowerAdapterInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerAdapterInformationView.swift; sourceTree = "<group>"; };
-		0E0D1EB728BA6A43005B9693 /* QuitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitView.swift; sourceTree = "<group>"; };
-		0E0D1ED628BA8837005B9693 /* LauncherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherManager.swift; sourceTree = "<group>"; };
-		0E0D1ED828BA89FF005B9693 /* AutoLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLaunchView.swift; sourceTree = "<group>"; };
-		0E65B49128D07C0100F0E38F /* ExternalPowerAdapterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerAdapterRepository.swift; sourceTree = "<group>"; };
-		0E6CEF0528CE34BF00C7091E /* PowerAdapterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerAdapterHeaderView.swift; sourceTree = "<group>"; };
-		0E7176BC28BD152300FF950D /* PiyotasoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiyotasoView.swift; sourceTree = "<group>"; };
-		0E85A9C92F00D75A008B5990 /* StatusBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarButton.swift; sourceTree = "<group>"; };
-		0E85A9CB2F00D76E008B5990 /* StatusBarMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarMenu.swift; sourceTree = "<group>"; };
-		0E85A9CD2F00D7C3008B5990 /* StatusBarMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarMenuButton.swift; sourceTree = "<group>"; };
-		0EC16DF428C47EE8000B7F8E /* DIResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIResolver.swift; sourceTree = "<group>"; };
-		0ECCD7BE2A408B5800B3BA7E /* ExternalPowerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerAdapter.swift; sourceTree = "<group>"; };
-		0EEE794B28CA0F3000C1A58A /* OpenSystemSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSystemSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0E85AA1D2F016EE4008B5990 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0E0D1E7728BA4999005B9693 /* Watt */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		0E85A9FA2F016EE4008B5990 /* Watt */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (0E85AA1D2F016EE4008B5990 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Watt; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0E0D1E7528BA4999005B9693 /* Frameworks */ = {
@@ -104,31 +47,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E0004E028CD904500EC2519 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0E0004E528CD907300EC2519 /* Current.swift */,
-				0ECCD7BE2A408B5800B3BA7E /* ExternalPowerAdapter.swift */,
-				0E65B49128D07C0100F0E38F /* ExternalPowerAdapterRepository.swift */,
-				0E0004E328CD906700EC2519 /* Voltage.swift */,
-				0E0004E128CD905D00EC2519 /* Wattage.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0E04A62D28C3AA0F005FC40A /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				0E04A62E28C3AA24005FC40A /* DIContainer.swift */,
-				0EC16DF428C47EE8000B7F8E /* DIResolver.swift */,
-			);
-			path = DI;
-			sourceTree = "<group>";
-		};
 		0E0D1E6F28BA4999005B9693 = {
 			isa = PBXGroup;
 			children = (
-				0E0D1E7A28BA4999005B9693 /* Watt */,
+				0E85A9FA2F016EE4008B5990 /* Watt */,
 				0E0D1E7928BA4999005B9693 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,91 +61,6 @@
 				0E0D1E7828BA4999005B9693 /* Watt.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		0E0D1E7A28BA4999005B9693 /* Watt */ = {
-			isa = PBXGroup;
-			children = (
-				0E0D1E7F28BA499A005B9693 /* Assets.xcassets */,
-				0E04A62D28C3AA0F005FC40A /* DI */,
-				0E0D1E8A28BA4B33005B9693 /* Info.plist */,
-				0E0D1E9028BA5713005B9693 /* IOPowerSources */,
-				0E0D1ED528BA8821005B9693 /* Launcher */,
-				0E0004E028CD904500EC2519 /* Model */,
-				0E0D1EB628BA69E0005B9693 /* Presentation */,
-				0E0D1E8428BA499A005B9693 /* Watt.entitlements */,
-				0E0D1E7B28BA4999005B9693 /* WattApp.swift */,
-			);
-			path = Watt;
-			sourceTree = "<group>";
-		};
-		0E0D1E9028BA5713005B9693 /* IOPowerSources */ = {
-			isa = PBXGroup;
-			children = (
-				0E0D1E9728BA5713005B9693 /* ExternalPowerAdapterDetails.swift */,
-				0E0D1E9628BA5713005B9693 /* LowBatteryWarningLevel.swift */,
-				0E0D1E9A28BA5713005B9693 /* Notifications */,
-				0E0D1E9828BA5713005B9693 /* PowerSource.swift */,
-				0E0D1E9528BA5713005B9693 /* PowerSourceDescription.swift */,
-				0E0D1E9928BA5713005B9693 /* PowerSourceState.swift */,
-				0E0D1E9128BA5713005B9693 /* PowerSourceType.swift */,
-				0E0D1E9428BA5713005B9693 /* ProvidingPowerSourceType.swift */,
-				0E0D1E9328BA5713005B9693 /* TimeRemainingEstimate.swift */,
-				0E0D1E9228BA5713005B9693 /* TransportType.swift */,
-			);
-			path = IOPowerSources;
-			sourceTree = "<group>";
-		};
-		0E0D1E9A28BA5713005B9693 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				0E0D1E9E28BA5713005B9693 /* Notification+Combine.swift */,
-				0E0D1E9F28BA5713005B9693 /* Notification+Concurrency.swift */,
-				0E0D1E9D28BA5713005B9693 /* Notification+Notify.swift */,
-				0E0D1E9B28BA5713005B9693 /* Notification+RunLoop.swift */,
-				0E0D1E9C28BA5713005B9693 /* NotificationName.swift */,
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
-		0E0D1EB628BA69E0005B9693 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				0E85A9C72F00D6D7008B5990 /* StatusBarButton */,
-				0E85A9C82F00D711008B5990 /* StatusBarMenu */,
-				0E0D1ED828BA89FF005B9693 /* AutoLaunchView.swift */,
-				0EEE794B28CA0F3000C1A58A /* OpenSystemSettingsView.swift */,
-				0E7176BC28BD152300FF950D /* PiyotasoView.swift */,
-				0E6CEF0528CE34BF00C7091E /* PowerAdapterHeaderView.swift */,
-				0E0D1EB228BA6889005B9693 /* PowerAdapterInformationView.swift */,
-				0E0D1EB728BA6A43005B9693 /* QuitView.swift */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		0E0D1ED528BA8821005B9693 /* Launcher */ = {
-			isa = PBXGroup;
-			children = (
-				0E0D1ED628BA8837005B9693 /* LauncherManager.swift */,
-			);
-			path = Launcher;
-			sourceTree = "<group>";
-		};
-		0E85A9C72F00D6D7008B5990 /* StatusBarButton */ = {
-			isa = PBXGroup;
-			children = (
-				0E85A9C92F00D75A008B5990 /* StatusBarButton.swift */,
-			);
-			path = StatusBarButton;
-			sourceTree = "<group>";
-		};
-		0E85A9C82F00D711008B5990 /* StatusBarMenu */ = {
-			isa = PBXGroup;
-			children = (
-				0E85A9CD2F00D7C3008B5990 /* StatusBarMenuButton.swift */,
-				0E85A9CB2F00D76E008B5990 /* StatusBarMenu.swift */,
-			);
-			path = StatusBarMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +79,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				0E85A9FA2F016EE4008B5990 /* Watt */,
+			);
 			name = Watt;
 			productName = Watt;
 			productReference = 0E0D1E7828BA4999005B9693 /* Watt.app */;
@@ -255,7 +95,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					0E0D1E7728BA4999005B9693 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -287,7 +127,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E0D1E8028BA499A005B9693 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,38 +137,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E0D1EAD28BA5713005B9693 /* Notification+Concurrency.swift in Sources */,
-				0E0D1EB328BA6889005B9693 /* PowerAdapterInformationView.swift in Sources */,
-				0E0D1EA328BA5713005B9693 /* ProvidingPowerSourceType.swift in Sources */,
-				0E0D1EA628BA5713005B9693 /* ExternalPowerAdapterDetails.swift in Sources */,
-				0E0D1EA428BA5713005B9693 /* PowerSourceDescription.swift in Sources */,
-				0E85A9CA2F00D75B008B5990 /* StatusBarButton.swift in Sources */,
-				0EC16DF528C47EE8000B7F8E /* DIResolver.swift in Sources */,
-				0E0004E228CD905D00EC2519 /* Wattage.swift in Sources */,
-				0E0D1EAA28BA5713005B9693 /* NotificationName.swift in Sources */,
-				0E0D1EAC28BA5713005B9693 /* Notification+Combine.swift in Sources */,
-				0E0D1EA028BA5713005B9693 /* PowerSourceType.swift in Sources */,
-				0E0D1EA828BA5713005B9693 /* PowerSourceState.swift in Sources */,
-				0E0D1EA728BA5713005B9693 /* PowerSource.swift in Sources */,
-				0E0D1EA228BA5713005B9693 /* TimeRemainingEstimate.swift in Sources */,
-				0E0D1EAB28BA5713005B9693 /* Notification+Notify.swift in Sources */,
-				0E0D1EA928BA5713005B9693 /* Notification+RunLoop.swift in Sources */,
-				0E7176BD28BD152300FF950D /* PiyotasoView.swift in Sources */,
-				0E0004E428CD906700EC2519 /* Voltage.swift in Sources */,
-				0E0D1ED928BA89FF005B9693 /* AutoLaunchView.swift in Sources */,
-				0E0D1ED728BA8837005B9693 /* LauncherManager.swift in Sources */,
-				0E04A62F28C3AA24005FC40A /* DIContainer.swift in Sources */,
-				0E0D1EB828BA6A43005B9693 /* QuitView.swift in Sources */,
-				0E6CEF0628CE34BF00C7091E /* PowerAdapterHeaderView.swift in Sources */,
-				0E0D1E7C28BA4999005B9693 /* WattApp.swift in Sources */,
-				0E0D1EA128BA5713005B9693 /* TransportType.swift in Sources */,
-				0EEE794C28CA0F3000C1A58A /* OpenSystemSettingsView.swift in Sources */,
-				0E65B49228D07C0100F0E38F /* ExternalPowerAdapterRepository.swift in Sources */,
-				0E85A9CC2F00D76F008B5990 /* StatusBarMenu.swift in Sources */,
-				0E0D1EA528BA5713005B9693 /* LowBatteryWarningLevel.swift in Sources */,
-				0E85A9CE2F00D7C4008B5990 /* StatusBarMenuButton.swift in Sources */,
-				0E0004E628CD907300EC2519 /* Current.swift in Sources */,
-				0ECCD7BF2A408B5800B3BA7E /* ExternalPowerAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +179,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 65W3HJERJX;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -393,6 +201,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -435,6 +244,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 65W3HJERJX;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -449,6 +259,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = targeted;
@@ -466,7 +277,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 65W3HJERJX;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -498,7 +308,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 65W3HJERJX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Watt/Info.plist;
