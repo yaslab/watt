@@ -28,7 +28,7 @@ extension PowerSource {
             self.state = state
         }
 
-        deinit {
+        isolated deinit {
             cancel()
         }
 
