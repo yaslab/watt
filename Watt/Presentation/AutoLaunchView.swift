@@ -8,27 +8,47 @@
 import SwiftUI
 
 struct AutoLaunchView: View {
-    @StateObject
-    var viewModel: AutoLaunchViewModel
+    @Environment(\.launcherManager) private var launcherManager
+
+    @State private var isAutoLaunchEnabled: Bool = false
+    @State private var task: Task<Void, Never>?
 
     var body: some View {
-        HStack {
-            Text("Launch at login")
-
-            Spacer()
-
-            ZStack {
-                Switch(isOn: $viewModel.isEnabled)
-                    .disabled(viewModel.isUpdating)
-
-                if viewModel.isUpdating {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                        .controlSize(.small)
-                }
+        Toggle("Launch at login", isOn: $isAutoLaunchEnabled)
+            .toggleStyle(.switch)
+            //.disabled(task != nil)
+            .onAppear {
+                isAutoLaunchEnabled = launcherManager.isEnabled
             }
+            .onChange(of: isAutoLaunchEnabled) { oldValue, newValue in
+                change(isEnabled: launcherManager.isEnabled, isOn: newValue)
+            }
+            .onChange(of: launcherManager.isEnabled) { oldValue, newValue in
+                change(isEnabled: newValue, isOn: isAutoLaunchEnabled)
+            }
+    }
+}
+
+extension AutoLaunchView {
+    private func change(isEnabled: Bool, isOn: Bool) {
+        if isEnabled == isOn {
+            return
         }
-        .onAppear(perform: viewModel.onAppear)
-        .onChange(of: viewModel.isEnabled, perform: viewModel.onIsEnabledChange(_:))
+
+        task?.cancel()
+
+        task = Task {
+            do {
+                if isOn {
+                    try launcherManager.register()
+                } else {
+                    try await launcherManager.unregister()
+                }
+            } catch {
+                isAutoLaunchEnabled = launcherManager.isEnabled
+            }
+
+            task = nil
+        }
     }
 }

@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct QuitView: View {
-    let controller: WattAppController
+    @Environment(\.dismiss) private var dismiss
+
+    let action: () -> Void
 
     var body: some View {
-        Button(action: controller.onQuit) {
-            Text("Quit")
-
-            Spacer()
+        Button {
+            Task {
+                try await Task.sleep(for: .seconds(0.25))
+                action()
+                dismiss()
+            }
+        } label: {
+            Label("Quit Watt", systemImage: "xmark.rectangle")
+                .statusBarMenuButton()
         }
-        .buttonStyle(.borderless)
-        .foregroundColor(.primary)
+        .buttonStyle(.plain)
+        .keyboardShortcut("Q", modifiers: .command)
     }
 }

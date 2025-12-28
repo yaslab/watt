@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct WattApp: App {
-    @NSApplicationDelegateAdaptor
-    private var delegate: WattAppDelegate
-
     var body: some Scene {
-        WindowGroup {
-            EmptyView()
+        MenuBarExtra {
+            StatusBarMenu()
+        } label: {
+            StatusBarButton()
         }
+        .menuBarExtraStyle(.window)
     }
 }

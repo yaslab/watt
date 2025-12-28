@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct PowerAdapterHeaderView: View {
-    @StateObject
-    var viewModel: PowerAdapterHeaderViewModel
+    @Environment(\.externalPowerAdapterRepository) private var externalPowerAdapterRepository
 
     var body: some View {
         HStack {
@@ -18,13 +17,13 @@ struct PowerAdapterHeaderView: View {
 
             Spacer()
 
-            Text(connected(viewModel.isConnected))
+            Text(connected(externalPowerAdapterRepository.value.isAdapterConnected))
                 .foregroundColor(.secondary)
         }
-        .onAppear(perform: viewModel.onAppear)
-        .onDisappear(perform: viewModel.onDisappear)
     }
+}
 
+extension PowerAdapterHeaderView {
     private func connected(_ connected: Bool) -> String {
         if connected {
             return "Connected"
@@ -35,11 +34,5 @@ struct PowerAdapterHeaderView: View {
 }
 
 #Preview {
-    PowerAdapterHeaderView(
-        viewModel: PowerAdapterHeaderViewModel(
-            externalPowerAdapterRepository: ExternalPowerAdapterRepository(
-                ps: PowerSource()
-            )
-        )
-    )
+    PowerAdapterHeaderView()
 }

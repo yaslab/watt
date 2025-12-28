@@ -51,7 +51,7 @@ extension PowerSource {
         ///
         /// - SeeAlso: [Is DispatchQueue using RunLoop?](https://stackoverflow.com/a/70791936)
         public func start() {
-            if case let .ready(source) = state {
+            if case .ready(let source) = state {
                 let loop: CFRunLoop = CFRunLoopGetCurrent()
                 CFRunLoopAddSource(loop, source, .defaultMode)
                 state = .running(source, loop)
@@ -59,7 +59,7 @@ extension PowerSource {
         }
 
         public func cancel() {
-            if case let .running(source, loop) = state {
+            if case .running(let source, let loop) = state {
                 CFRunLoopRemoveSource(loop, source, .defaultMode)
                 state = .finished
             }
