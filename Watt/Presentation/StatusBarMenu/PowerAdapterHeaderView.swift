@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PowerAdapterHeaderView: View {
-    @Environment(\.externalPowerAdapterRepository) private var externalPowerAdapterRepository
+    let adapter: PowerAdapter
 
     var body: some View {
         HStack {
@@ -17,7 +17,7 @@ struct PowerAdapterHeaderView: View {
 
             Spacer()
 
-            Text(connected(externalPowerAdapterRepository.value.isAdapterConnected))
+            Text(connected(adapter.isAdapterConnected))
                 .foregroundColor(.secondary)
         }
     }
@@ -33,6 +33,6 @@ extension PowerAdapterHeaderView {
     }
 }
 
-#Preview {
-    PowerAdapterHeaderView()
-}
+//#Preview {
+//    PowerAdapterHeaderView(adapter: ...)
+//}

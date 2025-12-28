@@ -14,7 +14,7 @@ struct StatusBarButton: View {
         case boltBadgeCheckmark = "bolt.badge.checkmark.fill"
     }
 
-    @Environment(\.externalPowerAdapterRepository) private var externalPowerAdapterRepository
+    @Environment(\.powerAdapterClient) private var powerAdapterClient
 
     @State private var title: String = ""
     @State private var imageName: ImageName = .boltSlash
@@ -23,7 +23,7 @@ struct StatusBarButton: View {
         Label(title, systemImage: imageName.rawValue)
             .labelStyle(.titleAndIcon)
             .onReceive(
-                externalPowerAdapterRepository.publisher
+                powerAdapterClient.publisher
                     .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
             ) { adapter in
                 update(adapter)
@@ -32,7 +32,7 @@ struct StatusBarButton: View {
 }
 
 extension StatusBarButton {
-    private func update(_ adapter: ExternalPowerAdapter) {
+    private func update(_ adapter: PowerAdapter) {
         if let wattage = adapter.wattage {
             title = wattage.format()
         } else {

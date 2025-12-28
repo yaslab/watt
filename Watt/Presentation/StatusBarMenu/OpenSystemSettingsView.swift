@@ -9,13 +9,13 @@ import SwiftUI
 
 struct OpenSystemSettingsView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.launcherManager) private var launcherManager
+    @Environment(\.launcherClient) private var launcherClient
 
     var body: some View {
         Button {
             Task {
                 try await Task.sleep(for: .seconds(0.25))
-                launcherManager.openSystemSettingsLoginItems()
+                launcherClient.openSystemSettingsLoginItems()
                 dismiss()
             }
         } label: {

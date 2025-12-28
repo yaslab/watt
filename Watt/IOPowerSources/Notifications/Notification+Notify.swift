@@ -5,35 +5,34 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
+import Synchronization
+
 import class Dispatch.DispatchQueue
 import var notify.NOTIFY_STATUS_OK
 import func notify.notify_cancel
 import func notify.notify_register_dispatch
 
-private let _notifyQueue = DispatchQueue(label: "net.yaslab.IOPowerSource.Notify")
-
 extension PowerSource {
-    public final class NotifyTask: @unchecked Sendable {
+    public final class NotifyTask: Sendable {
         enum State {
-            case ready(String, DispatchQueue, () -> Void)
+            case ready(String, () -> Void)
             case running(Int32)
             case finished
             case error
         }
 
-        private var state: State
-        private let stateSyncQueue = DispatchQueue(label: "net.yaslab.IOPowerSource.NotifyTask.queue")
+        private let state: Mutex<State>
 
         init(state: State) {
-            self.state = state
+            self.state = Mutex(state)
         }
 
-        deinit {
+        isolated deinit {
             cancel()
         }
 
         public var isError: Bool {
-            stateSyncQueue.sync {
+            state.withLock { state in
                 if case .error = state {
                     return true
                 } else {
@@ -43,11 +42,11 @@ extension PowerSource {
         }
 
         public func start() {
-            stateSyncQueue.sync {
-                if case .ready(let name, let queue, let callback) = state {
+            state.withLock { state in
+                if case .ready(let name, let callback) = state {
                     var token: Int32 = 0
 
-                    let status = notify_register_dispatch(name, &token, queue) { _ in
+                    let status = notify_register_dispatch(name, &token, .main) { _ in
                         callback()
                     }
 
@@ -61,7 +60,7 @@ extension PowerSource {
         }
 
         public func cancel() {
-            stateSyncQueue.sync {
+            state.withLock { state in
                 if case .running(let token) = state {
                     notify_cancel(token)
                     state = .finished
@@ -70,7 +69,7 @@ extension PowerSource {
         }
     }
 
-    public func notificationTask(name: NotificationName, queue: DispatchQueue? = nil, callback: @escaping () -> Void) -> NotifyTask {
-        return NotifyTask(state: .ready(name.rawValue, queue ?? _notifyQueue, callback))
+    public func notificationTask(name: NotificationName, callback: @escaping () -> Void) -> NotifyTask {
+        return NotifyTask(state: .ready(name.rawValue, callback))
     }
 }

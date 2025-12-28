@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct WattApp: App {
+    @Environment(\.powerAdapterClient) private var powerAdapterClient
+
     var body: some Scene {
         MenuBarExtra {
-            StatusBarMenu()
+            StatusBarMenu(adapter: powerAdapterClient.value)
         } label: {
             StatusBarButton()
         }

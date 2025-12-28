@@ -1,5 +1,5 @@
 //
-//  ExternalPowerAdapterRepository.swift
+//  PowerAdapterClient.swift
 //  Watt
 //
 //  Created by Yasuhiro Hatta on 2022/09/13.
@@ -10,10 +10,10 @@ import Combine
 import protocol SwiftUI.EnvironmentKey
 import struct SwiftUI.EnvironmentValues
 
-final class ExternalPowerAdapterRepository {
+final class PowerAdapterClient {
     init(ps: PowerSource) {
-        func convert(_ details: ExternalPowerAdapterDetails?, _ descriptions: [PowerSourceDescription]?) -> ExternalPowerAdapter {
-            ExternalPowerAdapter(
+        func convert(_ details: ExternalPowerAdapterDetails?, _ descriptions: [PowerSourceDescription]?) -> PowerAdapter {
+            PowerAdapter(
                 wattage: details?.value(forKey: .watts).map { Wattage(rawValue: $0) },
                 voltage: {
                     if let voltage = details?.value(forKey: .voltage) {
@@ -28,12 +28,12 @@ final class ExternalPowerAdapterRepository {
                 name: details?.value(forKey: .name),
                 manufacturer: details?.value(forKey: .manufacturer),
                 batteries: descriptions?.map {
-                    ExternalPowerAdapter.Battery(isCharging: $0.value(forKey: .isCharging))
+                    PowerAdapter.Battery(isCharging: $0.value(forKey: .isCharging))
                 }
             )
         }
 
-        let subject = CurrentValueSubject<ExternalPowerAdapter, Never>(
+        let subject = CurrentValueSubject<PowerAdapter, Never>(
             convert(ps.externalPowerAdapterDetails(), ps.powerSources())
         )
 
@@ -48,15 +48,15 @@ final class ExternalPowerAdapterRepository {
         self.cancellable = cancellable
     }
 
-    private let subject: CurrentValueSubject<ExternalPowerAdapter, Never>
+    private let subject: CurrentValueSubject<PowerAdapter, Never>
 
     private let cancellable: AnyCancellable
 
-    var publisher: AnyPublisher<ExternalPowerAdapter, Never> {
+    var publisher: AnyPublisher<PowerAdapter, Never> {
         subject.eraseToAnyPublisher()
     }
 
-    var value: ExternalPowerAdapter {
+    var value: PowerAdapter {
         subject.value
     }
 }
@@ -64,11 +64,11 @@ final class ExternalPowerAdapterRepository {
 // MARK: - Environment
 
 private struct _Key: EnvironmentKey {
-    static var defaultValue: ExternalPowerAdapterRepository = liveResolver.resolve()
+    static var defaultValue: PowerAdapterClient = liveResolver.resolve()
 }
 
 extension EnvironmentValues {
-    var externalPowerAdapterRepository: ExternalPowerAdapterRepository {
+    var powerAdapterClient: PowerAdapterClient {
         get { self[_Key.self] }
         set { self[_Key.self] = newValue }
     }
