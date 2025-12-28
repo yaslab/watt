@@ -7,6 +7,9 @@
 
 import Combine
 
+import protocol SwiftUI.EnvironmentKey
+import struct SwiftUI.EnvironmentValues
+
 final class ExternalPowerAdapterRepository {
     init(ps: PowerSource) {
         func convert(_ details: ExternalPowerAdapterDetails?, _ descriptions: [PowerSourceDescription]?) -> ExternalPowerAdapter {
@@ -55,5 +58,18 @@ final class ExternalPowerAdapterRepository {
 
     var value: ExternalPowerAdapter {
         subject.value
+    }
+}
+
+// MARK: - Environment
+
+private struct _Key: EnvironmentKey {
+    static var defaultValue: ExternalPowerAdapterRepository = liveResolver.resolve()
+}
+
+extension EnvironmentValues {
+    var externalPowerAdapterRepository: ExternalPowerAdapterRepository {
+        get { self[_Key.self] }
+        set { self[_Key.self] = newValue }
     }
 }

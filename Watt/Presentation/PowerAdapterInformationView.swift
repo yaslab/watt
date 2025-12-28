@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct PowerAdapterInformationView: View {
-    @StateObject
-    var viewModel: PowerAdapterInformationViewModel
+    @Environment(\.externalPowerAdapterRepository) private var externalPowerAdapterRepository
 
     var body: some View {
+        let adapter = externalPowerAdapterRepository.value
+
         VStack {
-            if let name = viewModel.adapter.name {
+            if let name = adapter.name {
                 HStack {
                     Text(name)
 
-                    if let manufacturer = viewModel.adapter.manufacturer {
+                    if let manufacturer = adapter.manufacturer {
                         Text("(" + manufacturer + ")")
                     }
 
@@ -25,11 +26,11 @@ struct PowerAdapterInformationView: View {
                 }
             }
 
-            if let wattage = viewModel.adapter.wattage {
+            if let wattage = adapter.wattage {
                 HStack {
                     Text(wattage.format())
 
-                    if let text = viewModel.adapter.formatVA() {
+                    if let text = adapter.formatVA() {
                         Text(text)
                     }
 
@@ -40,7 +41,7 @@ struct PowerAdapterInformationView: View {
             HStack {
                 Text("Battery:")
 
-                Text(viewModel.adapter.formatCharging())
+                Text(adapter.formatCharging())
 
                 Spacer()
             }
@@ -51,11 +52,5 @@ struct PowerAdapterInformationView: View {
 }
 
 #Preview {
-    PowerAdapterInformationView(
-        viewModel: PowerAdapterInformationViewModel(
-            externalPowerAdapterRepository: ExternalPowerAdapterRepository(
-                ps: PowerSource()
-            )
-        )
-    )
+    PowerAdapterInformationView()
 }

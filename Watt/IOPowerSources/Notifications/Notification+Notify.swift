@@ -44,7 +44,7 @@ extension PowerSource {
 
         public func start() {
             stateSyncQueue.sync {
-                if case let .ready(name, queue, callback) = state {
+                if case .ready(let name, let queue, let callback) = state {
                     var token: Int32 = 0
 
                     let status = notify_register_dispatch(name, &token, queue) { _ in
@@ -62,7 +62,7 @@ extension PowerSource {
 
         public func cancel() {
             stateSyncQueue.sync {
-                if case let .running(token) = state {
+                if case .running(let token) = state {
                     notify_cancel(token)
                     state = .finished
                 }

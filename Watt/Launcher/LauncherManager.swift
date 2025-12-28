@@ -5,36 +5,48 @@
 //  Created by Yasuhiro Hatta on 2022/08/28.
 //
 
-import Foundation
 import ServiceManagement
 
-protocol LauncherManager: AnyObject {
-    var isEnabled: Bool { get }
-    var isRequiresApproval: Bool { get }
+import protocol SwiftUI.EnvironmentKey
+import struct SwiftUI.EnvironmentValues
 
-    func register() throws
-    func unregister() throws
+class LauncherManager {
+    private let service: SMAppService
 
-    func openSystemSettingsLoginItems()
-}
-
-enum LauncherManagerHelper {
-    static func makeManager() -> LauncherManager {
-        let launcherApp = LauncherApp()
-        return SMAppService.loginItem(identifier: launcherApp.id)
+    init(service: SMAppService) {
+        self.service = service
     }
-}
 
-extension SMAppService: LauncherManager {
     var isEnabled: Bool {
-        status == .enabled
+        return service.status == .enabled
     }
 
     var isRequiresApproval: Bool {
-        status == .requiresApproval
+        return service.status == .requiresApproval
+    }
+
+    func register() throws {
+        try service.register()
+    }
+
+    func unregister() async throws {
+        try await service.unregister()
     }
 
     func openSystemSettingsLoginItems() {
         SMAppService.openSystemSettingsLoginItems()
+    }
+}
+
+// MARK: - Environment
+
+private struct _Key: EnvironmentKey {
+    static var defaultValue: LauncherManager = liveResolver.resolve()
+}
+
+extension EnvironmentValues {
+    var launcherManager: LauncherManager {
+        get { self[_Key.self] }
+        set { self[_Key.self] = newValue }
     }
 }

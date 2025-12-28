@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct PiyotasoView: View {
-    @Environment(\.openURL)
-    private var openURL
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
-        Button(action: { openURL(URL(string: "https://hiyokoyarou.com/")!) }) {
-            Text("Illustration of app icon by ぴよたそ")
-
-            Spacer()
+        Button {
+            Task {
+                try await Task.sleep(for: .seconds(0.25))
+                openURL(URL(string: "https://hiyokoyarou.com/")!)
+                dismiss()
+            }
+        } label: {
+            Label("Illustration of app icon by ぴよたそ", systemImage: "link")
+                .statusBarMenuButton()
         }
-        .buttonStyle(.borderless)
-        .foregroundColor(.primary)
+        .buttonStyle(.plain)
     }
 }

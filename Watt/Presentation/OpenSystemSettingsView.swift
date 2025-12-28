@@ -8,36 +8,24 @@
 import SwiftUI
 
 struct OpenSystemSettingsView: View {
-    @StateObject
-    var viewModel: OpenSystemSettingsViewModel
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.launcherManager) private var launcherManager
 
     var body: some View {
-        Button(action: viewModel.onClick) {
-            Image(systemName: "info.circle")
-
-            Text("Open System Settings")
-
-            Spacer()
+        Button {
+            Task {
+                try await Task.sleep(for: .seconds(0.25))
+                launcherManager.openSystemSettingsLoginItems()
+                dismiss()
+            }
+        } label: {
+            Label("Open System Settings", systemImage: "gear")
+                .statusBarMenuButton()
         }
-        .buttonStyle(.borderless)
-        .foregroundColor(.primary)
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
-    class MockLauncherManager: LauncherManager {
-        var isEnabled: Bool = false
-        var isRequiresApproval: Bool = false
-
-        func register() throws {}
-        func unregister() throws {}
-
-        func openSystemSettingsLoginItems() {}
-    }
-
-    return OpenSystemSettingsView(
-        viewModel: OpenSystemSettingsViewModel(
-            launcherManager: MockLauncherManager()
-        )
-    )
+    OpenSystemSettingsView()
 }
