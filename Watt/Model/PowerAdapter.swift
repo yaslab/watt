@@ -1,5 +1,5 @@
 //
-//  ExternalPowerAdapter.swift
+//  PowerAdapter.swift
 //  Watt
 //
 //  Created by Yasuhiro Hatta on 2023/06/19.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExternalPowerAdapter {
+struct PowerAdapter {
     let wattage: Wattage?
     let voltage: Voltage?
     let current: Current?
@@ -22,7 +22,7 @@ struct ExternalPowerAdapter {
     }
 }
 
-extension ExternalPowerAdapter {
+extension PowerAdapter {
     var isAdapterConnected: Bool {
         return wattage != nil
     }
@@ -35,7 +35,7 @@ extension ExternalPowerAdapter {
     }
 }
 
-extension ExternalPowerAdapter {
+extension PowerAdapter {
     func formatVA() -> String? {
         var values: [String] = []
 

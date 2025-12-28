@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AutoLaunchView: View {
-    @Environment(\.launcherManager) private var launcherManager
+    @Environment(\.launcherClient) private var launcherClient
 
     @State private var isAutoLaunchEnabled: Bool = false
     @State private var task: Task<Void, Never>?
@@ -18,12 +18,12 @@ struct AutoLaunchView: View {
             .toggleStyle(.switch)
             //.disabled(task != nil)
             .onAppear {
-                isAutoLaunchEnabled = launcherManager.isEnabled
+                isAutoLaunchEnabled = launcherClient.isEnabled
             }
             .onChange(of: isAutoLaunchEnabled) { oldValue, newValue in
-                change(isEnabled: launcherManager.isEnabled, isOn: newValue)
+                change(isEnabled: launcherClient.isEnabled, isOn: newValue)
             }
-            .onChange(of: launcherManager.isEnabled) { oldValue, newValue in
+            .onChange(of: launcherClient.isEnabled) { oldValue, newValue in
                 change(isEnabled: newValue, isOn: isAutoLaunchEnabled)
             }
     }
@@ -40,12 +40,12 @@ extension AutoLaunchView {
         task = Task {
             do {
                 if isOn {
-                    try launcherManager.register()
+                    try launcherClient.register()
                 } else {
-                    try await launcherManager.unregister()
+                    try await launcherClient.unregister()
                 }
             } catch {
-                isAutoLaunchEnabled = launcherManager.isEnabled
+                isAutoLaunchEnabled = launcherClient.isEnabled
             }
 
             task = nil

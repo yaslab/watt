@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct PowerAdapterInformationView: View {
-    @Environment(\.externalPowerAdapterRepository) private var externalPowerAdapterRepository
+    @Environment(\.powerAdapterClient) private var powerAdapterClient
 
     var body: some View {
-        let adapter = externalPowerAdapterRepository.value
+        let adapter = powerAdapterClient.value
 
         VStack {
             if let name = adapter.name {

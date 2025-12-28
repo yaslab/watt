@@ -1,5 +1,5 @@
 //
-//  LauncherManager.swift
+//  LauncherClient.swift
 //  Watt
 //
 //  Created by Yasuhiro Hatta on 2022/08/28.
@@ -10,7 +10,7 @@ import ServiceManagement
 import protocol SwiftUI.EnvironmentKey
 import struct SwiftUI.EnvironmentValues
 
-class LauncherManager {
+class LauncherClient {
     private let service: SMAppService
 
     init(service: SMAppService) {
@@ -41,11 +41,11 @@ class LauncherManager {
 // MARK: - Environment
 
 private struct _Key: EnvironmentKey {
-    static var defaultValue: LauncherManager = liveResolver.resolve()
+    static var defaultValue: LauncherClient = liveResolver.resolve()
 }
 
 extension EnvironmentValues {
-    var launcherManager: LauncherManager {
+    var launcherClient: LauncherClient {
         get { self[_Key.self] }
         set { self[_Key.self] = newValue }
     }
