@@ -46,7 +46,6 @@ struct PowerAdapterInformationView: View {
         }
         .font(.callout)
         .foregroundColor(.secondary)
-        .padding(.horizontal, 8)
     }
 }
 

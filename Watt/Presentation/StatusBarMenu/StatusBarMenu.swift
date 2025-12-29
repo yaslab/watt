@@ -21,7 +21,6 @@ struct StatusBarMenu: View {
             }
 
             Divider()
-                .padding(.horizontal, 8)
 
             Section {
                 AutoLaunchView()
@@ -32,7 +31,6 @@ struct StatusBarMenu: View {
             }
 
             Divider()
-                .padding(.horizontal, 8)
 
             Section {
                 PiyotasoView()
@@ -41,12 +39,12 @@ struct StatusBarMenu: View {
             }
 
             Divider()
-                .padding(.horizontal, 8)
 
             Section {
                 QuitView()
             }
         }
-        .padding(8)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
     }
 }

@@ -18,7 +18,6 @@ struct AutoLaunchView: View {
             StatusBarMenuLabel("Launch at login", systemImage: "arrow.up.right")
         }
         .toggleStyle(.switch)
-        .padding(.horizontal, 8)
         .onAppear {
             isAutoLaunchEnabled = launcherClient.isEnabled
         }

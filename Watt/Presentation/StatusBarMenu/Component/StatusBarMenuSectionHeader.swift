@@ -18,6 +18,5 @@ struct StatusBarMenuSectionHeader: View {
         Text(content)
             .font(.subheadline.bold())
             .foregroundStyle(.secondary)
-            .padding(.horizontal, 8)
     }
 }
