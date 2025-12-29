@@ -23,7 +23,9 @@ final class DIResolverImpl: DIResolver {
 
     // MARK: Client
 
-    private lazy var sharedLauncherClient = LauncherClient(service: .mainApp)
+    private lazy var sharedLauncherClient = LauncherClient(
+        service: .mainApp
+    )
 
     func resolve() -> LauncherClient {
         return sharedLauncherClient

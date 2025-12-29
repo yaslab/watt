@@ -5,20 +5,13 @@
 //  Created by Yasuhiro Hatta on 2025/12/28.
 //
 
-import Combine
 import SwiftUI
 
 struct StatusBarMenu: View {
-    @Environment(\.powerAdapterClient) private var powerAdapterClient
-
-    @State private var adapter: PowerAdapter
-
-    init(adapter: PowerAdapter) {
-        _adapter = State(initialValue: adapter)
-    }
+    let adapter: PowerAdapter
 
     var body: some View {
-        List {
+        VStack(alignment: .leading) {
             Section {
                 PowerAdapterHeaderView(adapter: adapter)
 
@@ -27,29 +20,33 @@ struct StatusBarMenu: View {
                 }
             }
 
-            Section("Settings") {
+            Divider()
+                .padding(.horizontal, 8)
+
+            Section {
                 AutoLaunchView()
 
                 OpenSystemSettingsView()
+            } header: {
+                StatusBarMenuSectionHeader("Settings")
             }
 
-            Section("Acknowledgments") {
-                PiyotasoView()
-            }
+            Divider()
+                .padding(.horizontal, 8)
 
             Section {
-                QuitView(action: { NSApp.terminate(nil) })
+                PiyotasoView()
+            } header: {
+                StatusBarMenuSectionHeader("Acknowledgments")
             }
-        }
-        .listStyle(.plain)
-        .fixedSize(horizontal: false, vertical: true)
-        .task {
-            let publisher = powerAdapterClient.publisher
-                .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: true)
 
-            for await newValue in publisher.values {
-                adapter = newValue
+            Divider()
+                .padding(.horizontal, 8)
+
+            Section {
+                QuitView()
             }
         }
+        .padding(8)
     }
 }
