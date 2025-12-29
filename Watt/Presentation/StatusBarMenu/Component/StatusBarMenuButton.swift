@@ -36,14 +36,13 @@ struct StatusBarMenuButton: View {
             }
         } label: {
             StatusBarMenuLabel(title, systemImage: systemImage)
-                .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(minHeight: 20)
-                .padding(.horizontal, 8)
                 .background {
                     if isHovering {
                         //ConcentricRectangle(corners: .concentric(minimum: 10))
                         RoundedRectangle(cornerRadius: 10)
                             .fill(.fill.opacity(0.5))
+                            .padding(.horizontal, -8)
                     }
                 }
                 .onHover {

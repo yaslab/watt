@@ -20,7 +20,6 @@ struct PowerAdapterHeaderView: View {
             Text(connected(adapter.isAdapterConnected))
                 .foregroundColor(.secondary)
         }
-        .padding(.horizontal, 8)
     }
 }
 
