@@ -8,45 +8,48 @@
 import SwiftUI
 
 struct StatusBarButton: View {
+    @Environment(\.powerAdapterClient) private var powerAdapterClient
+
+    @Binding var adapter: PowerAdapter
+
+    var body: some View {
+        Label(title, systemImage: imageName.rawValue)
+            .labelStyle(.titleAndIcon)
+            .task {
+                let publisher = powerAdapterClient.publisher
+                    .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: true)
+
+                for await newValue in publisher.values {
+                    adapter = newValue
+                }
+            }
+    }
+}
+
+extension StatusBarButton {
+    private var title: String {
+        if let wattage = adapter.wattage {
+            return wattage.format()
+        } else {
+            return ""
+        }
+    }
+
     private enum ImageName: String {
         case bolt = "bolt.fill"
         case boltSlash = "bolt.slash.fill"
         case boltBadgeCheckmark = "bolt.badge.checkmark.fill"
     }
 
-    @Environment(\.powerAdapterClient) private var powerAdapterClient
-
-    @State private var title: String = ""
-    @State private var imageName: ImageName = .boltSlash
-
-    var body: some View {
-        Label(title, systemImage: imageName.rawValue)
-            .labelStyle(.titleAndIcon)
-            .onReceive(
-                powerAdapterClient.publisher
-                    .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
-            ) { adapter in
-                update(adapter)
-            }
-    }
-}
-
-extension StatusBarButton {
-    private func update(_ adapter: PowerAdapter) {
-        if let wattage = adapter.wattage {
-            title = wattage.format()
-        } else {
-            title = ""
-        }
-
+    private var imageName: ImageName {
         if adapter.isAdapterConnected {
             if let batteries = adapter.batteries, batteries.contains(where: \.isCharging) {
-                imageName = .bolt
+                return .bolt
             } else {
-                imageName = .boltBadgeCheckmark
+                return .boltBadgeCheckmark
             }
         } else {
-            imageName = .boltSlash
+            return .boltSlash
         }
     }
 }

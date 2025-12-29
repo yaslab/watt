@@ -5,9 +5,7 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
-import Synchronization
-
-import class Dispatch.DispatchQueue
+import struct Synchronization.Mutex
 import var notify.NOTIFY_STATUS_OK
 import func notify.notify_cancel
 import func notify.notify_register_dispatch

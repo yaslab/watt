@@ -14,18 +14,20 @@ struct AutoLaunchView: View {
     @State private var task: Task<Void, Never>?
 
     var body: some View {
-        Toggle("Launch at login", isOn: $isAutoLaunchEnabled)
-            .toggleStyle(.switch)
-            //.disabled(task != nil)
-            .onAppear {
-                isAutoLaunchEnabled = launcherClient.isEnabled
-            }
-            .onChange(of: isAutoLaunchEnabled) { oldValue, newValue in
-                change(isEnabled: launcherClient.isEnabled, isOn: newValue)
-            }
-            .onChange(of: launcherClient.isEnabled) { oldValue, newValue in
-                change(isEnabled: newValue, isOn: isAutoLaunchEnabled)
-            }
+        Toggle(isOn: $isAutoLaunchEnabled) {
+            StatusBarMenuLabel("Launch at login", systemImage: "arrow.up.right")
+        }
+        .toggleStyle(.switch)
+        .padding(.horizontal, 8)
+        .onAppear {
+            isAutoLaunchEnabled = launcherClient.isEnabled
+        }
+        .onChange(of: isAutoLaunchEnabled) { oldValue, newValue in
+            change(isEnabled: launcherClient.isEnabled, isOn: newValue)
+        }
+        .onChange(of: launcherClient.isEnabled) { oldValue, newValue in
+            change(isEnabled: newValue, isOn: isAutoLaunchEnabled)
+        }
     }
 }
 
