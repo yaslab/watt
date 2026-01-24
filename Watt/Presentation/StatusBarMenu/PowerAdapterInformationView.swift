@@ -43,6 +43,8 @@ struct PowerAdapterInformationView: View {
     }
 }
 
-#Preview {
-    PowerAdapterInformationView(adapter: .mock())
-}
+#if DEBUG
+    #Preview {
+        PowerAdapterInformationView(adapter: .mock())
+    }
+#endif

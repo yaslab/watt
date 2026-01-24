@@ -49,6 +49,8 @@ struct StatusBarMenu: View {
     }
 }
 
-#Preview {
-    StatusBarMenu(adapter: .mock())
-}
+#if DEBUG
+    #Preview {
+        StatusBarMenu(adapter: .mock())
+    }
+#endif
