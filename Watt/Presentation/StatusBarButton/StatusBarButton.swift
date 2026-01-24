@@ -15,13 +15,8 @@ struct StatusBarButton: View {
     var body: some View {
         Label(title, systemImage: imageName.rawValue)
             .labelStyle(.titleAndIcon)
-            .task {
-                let publisher = powerAdapterClient.publisher
-                    .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: true)
-
-                for await newValue in publisher.values {
-                    adapter = newValue
-                }
+            .onReceive(powerAdapterClient.publisher) { newValue in
+                adapter = newValue
             }
     }
 }

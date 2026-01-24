@@ -7,6 +7,7 @@
 
 import Combine
 
+import class Dispatch.DispatchQueue
 import protocol SwiftUI.EnvironmentKey
 import struct SwiftUI.EnvironmentValues
 
@@ -14,21 +15,21 @@ final class PowerAdapterClient {
     init(ps: PowerSource) {
         func convert(_ details: ExternalPowerAdapterDetails?, _ descriptions: [PowerSourceDescription]?) -> PowerAdapter {
             PowerAdapter(
-                wattage: details?.value(forKey: .watts).map { Wattage(rawValue: $0) },
+                wattage: details?.watts.map { Wattage(rawValue: $0) },
                 voltage: {
-                    if let voltage = details?.value(forKey: .voltage) {
+                    if let voltage = details?.voltage {
                         return Voltage(rawValue: voltage)
                     }
-                    if let voltage = details?.value(forKey: .adapterVoltage) {
+                    if let voltage = details?.adapterVoltage {
                         return Voltage(rawValue: voltage)
                     }
                     return nil
                 }(),
-                current: details?.value(forKey: .current).map { Current(rawValue: $0) },
-                name: details?.value(forKey: .name),
-                manufacturer: details?.value(forKey: .manufacturer),
+                current: details?.current.map { Current(rawValue: $0) },
+                name: details?.name,
+                manufacturer: details?.manufacturer,
                 batteries: descriptions?.map {
-                    PowerAdapter.Battery(isCharging: $0.value(forKey: .isCharging))
+                    PowerAdapter.Battery(isCharging: $0.isCharging)
                 }
             )
         }
@@ -39,10 +40,9 @@ final class PowerAdapterClient {
 
         self.subject = subject
 
-        let cancellable = ps.notificationPublisher(name: .any)
-            // .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
+        let cancellable = PowerSourceNotification.publisher(name: .any)
+            .throttle(for: 0.5, scheduler: DispatchQueue.main, latest: true)
             .map { convert(ps.externalPowerAdapterDetails(), ps.powerSources()) }
-            .share()
             .sink { subject.send($0) }
 
         self.cancellable = cancellable

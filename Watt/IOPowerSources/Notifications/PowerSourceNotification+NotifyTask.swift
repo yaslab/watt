@@ -1,5 +1,5 @@
 //
-//  Notification+Notify.swift
+//  PowerSourceNotification+NotifyTask.swift
 //  Watt
 //
 //  Created by Yasuhiro Hatta on 2022/08/27.
@@ -10,10 +10,10 @@ import var notify.NOTIFY_STATUS_OK
 import func notify.notify_cancel
 import func notify.notify_register_dispatch
 
-extension PowerSource {
+extension PowerSourceNotification {
     public final class NotifyTask: Sendable {
         enum State {
-            case ready(String, () -> Void)
+            case ready(Name, () -> Void)
             case running(Int32)
             case finished
             case error
@@ -23,6 +23,10 @@ extension PowerSource {
 
         init(state: State) {
             self.state = Mutex(state)
+        }
+
+        public convenience init(name: Name, callback: @escaping () -> Void) {
+            self.init(state: .ready(name, callback))
         }
 
         isolated deinit {
@@ -44,7 +48,7 @@ extension PowerSource {
                 if case .ready(let name, let callback) = state {
                     var token: Int32 = 0
 
-                    let status = notify_register_dispatch(name, &token, .main) { _ in
+                    let status = notify_register_dispatch(name.rawValue, &token, .main) { _ in
                         callback()
                     }
 
@@ -65,9 +69,5 @@ extension PowerSource {
                 }
             }
         }
-    }
-
-    public func notificationTask(name: NotificationName, callback: @escaping () -> Void) -> NotifyTask {
-        return NotifyTask(state: .ready(name.rawValue, callback))
     }
 }
