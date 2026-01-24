@@ -5,6 +5,9 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
+// Documentation:
+// https://developer.apple.com/documentation/iokit/iopowersources_h
+
 import func CoreFoundation.CFArrayGetCount
 import func CoreFoundation.CFArrayGetValueAtIndex
 import typealias CoreFoundation.CFTypeRef
@@ -33,7 +36,7 @@ public final class PowerSource {
         guard let details = IOPSCopyExternalPowerAdapterDetails()?.takeRetainedValue() else {
             return nil
         }
-        return ExternalPowerAdapterDetails(dictionary: details as! [String: Any])
+        return ExternalPowerAdapterDetails(from: details)
     }
 
     public func powerSources(snapshot: Bool = false) -> [PowerSourceDescription]? {
@@ -60,7 +63,7 @@ public final class PowerSource {
             guard let description = IOPSGetPowerSourceDescription(info, source)?.takeUnretainedValue() else {
                 return nil
             }
-            descriptions.append(PowerSourceDescription(dictionary: description as! [String: Any]))
+            descriptions.append(PowerSourceDescription(from: description))
         }
 
         return descriptions

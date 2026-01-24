@@ -1,12 +1,11 @@
 //
-//  PowerSourceDescriptionn.swift
+//  PowerSourceDescription.swift
 //  Watt
 //
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
-// import class Foundation.NSDictionary
-
+import class CoreFoundation.CFDictionary
 import var IOKit.ps.kIOPSBatteryFailureModesKey
 import var IOKit.ps.kIOPSBatteryHealthConditionKey
 import var IOKit.ps.kIOPSBatteryHealthKey
@@ -39,59 +38,49 @@ import var IOKit.ps.kIOPSVoltageKey
 public struct PowerSourceDescription {
     let dictionary: [String: Any]
 
-    public func value<T>(forKey key: PowerSourceDescription.Key<T>) -> T {
-        dictionary[key.rawValue] as! T
-    }
-
-    public func value<T>(forKey key: PowerSourceDescription.Key<T?>) -> T? {
-        dictionary[key.rawValue] as? T
-    }
-
-    public func value<T: RawRepresentable>(forKey key: PowerSourceDescription.Key<T>) -> T where T.RawValue == String {
-        let value = dictionary[key.rawValue] as! String
-        return T(rawValue: value)!
+    init(from dictionary: CFDictionary) {
+        self.dictionary = dictionary as! [String: Any]
     }
 }
 
 extension PowerSourceDescription {
-    public struct Key<ValueType>: RawRepresentable {
-        public let rawValue: String
-
-        public init(rawValue: String) {
-            self.rawValue = rawValue
-        }
+    func value<T>(forKey key: String) -> T {
+        return dictionary[key] as! T
     }
-}
 
-extension PowerSourceDescription.Key {
-    public typealias _Key = PowerSourceDescription.Key
+    func optionalValue<T>(forKey key: String) -> T? {
+        guard let value = dictionary[key] else {
+            return nil
+        }
+        return value as? T
+    }
 
-    public static var powerSourceID: _Key<Int> { .init(rawValue: kIOPSPowerSourceIDKey) }
-    public static var powerSourceState: _Key<PowerSourceState> { .init(rawValue: kIOPSPowerSourceStateKey) }
-    public static var currentCapacity: _Key<Int> { .init(rawValue: kIOPSCurrentCapacityKey) }
-    public static var maxCapacity: _Key<Int> { .init(rawValue: kIOPSMaxCapacityKey) }
-    public static var designCapacity: _Key<Int?> { .init(rawValue: kIOPSDesignCapacityKey) }
-    public static var nominalCapacity: _Key<Int?> { .init(rawValue: kIOPSNominalCapacityKey) }
-    public static var timeToEmpty: _Key<Int?> { .init(rawValue: kIOPSTimeToEmptyKey) }
-    public static var timeToFullCharge: _Key<Int?> { .init(rawValue: kIOPSTimeToFullChargeKey) }
-    public static var isCharging: _Key<Bool> { .init(rawValue: kIOPSIsChargingKey) }
-    public static var internalFailure: _Key<Bool?> { .init(rawValue: kIOPSInternalFailureKey) }
-    public static var isPresent: _Key<Bool> { .init(rawValue: kIOPSIsPresentKey) }
-    public static var voltage: _Key<Int?> { .init(rawValue: kIOPSVoltageKey) }
-    public static var current: _Key<Int?> { .init(rawValue: kIOPSCurrentKey) }
-    public static var temperature: _Key<Int?> { .init(rawValue: kIOPSTemperatureKey) }
-    public static var name: _Key<String> { .init(rawValue: kIOPSNameKey) }
-    public static var type: _Key<PowerSourceType> { .init(rawValue: kIOPSTypeKey) }
-    public static var transportType: _Key<TransportType> { .init(rawValue: kIOPSTransportTypeKey) }
-    public static var vendorID: _Key<Int?> { .init(rawValue: kIOPSVendorIDKey) }
-    public static var productID: _Key<Int?> { .init(rawValue: kIOPSProductIDKey) }
-    public static var vendorData: _Key<[AnyHashable: Any]?> { .init(rawValue: kIOPSVendorDataKey) }
-    public static var batteryHealth: _Key<String?> { .init(rawValue: kIOPSBatteryHealthKey) }
-    public static var batteryHealthCondition: _Key<String?> { .init(rawValue: kIOPSBatteryHealthConditionKey) }
-    public static var batteryFailureModes: _Key<[String]?> { .init(rawValue: kIOPSBatteryFailureModesKey) }
-    public static var healthConfidence: _Key<String?> { .init(rawValue: kIOPSHealthConfidenceKey) }
-    public static var maxError: _Key<Int?> { .init(rawValue: kIOPSMaxErrKey) }
-    public static var isCharged: _Key<Bool> { .init(rawValue: kIOPSIsChargedKey) }
-    public static var isFinishingCharge: _Key<Bool?> { .init(rawValue: kIOPSIsFinishingChargeKey) }
-    public static var hardwareSerialNumber: _Key<String?> { .init(rawValue: kIOPSHardwareSerialNumberKey) }
+    public var powerSourceID: Int { value(forKey: kIOPSPowerSourceIDKey) }
+    public var powerSourceState: PowerSourceState { PowerSourceState(rawValue: value(forKey: kIOPSPowerSourceStateKey)) }
+    public var currentCapacity: Int { value(forKey: kIOPSCurrentCapacityKey) }
+    public var maxCapacity: Int { value(forKey: kIOPSMaxCapacityKey) }
+    public var designCapacity: Int? { optionalValue(forKey: kIOPSDesignCapacityKey) }
+    public var nominalCapacity: Int? { optionalValue(forKey: kIOPSNominalCapacityKey) }
+    public var timeToEmpty: Int? { optionalValue(forKey: kIOPSTimeToEmptyKey) }
+    public var timeToFullCharge: Int? { optionalValue(forKey: kIOPSTimeToFullChargeKey) }
+    public var isCharging: Bool { value(forKey: kIOPSIsChargingKey) }
+    public var internalFailure: Bool? { optionalValue(forKey: kIOPSInternalFailureKey) }
+    public var isPresent: Bool { value(forKey: kIOPSIsPresentKey) }
+    public var voltage: Int? { optionalValue(forKey: kIOPSVoltageKey) }
+    public var current: Int? { optionalValue(forKey: kIOPSCurrentKey) }
+    public var temperature: Int? { optionalValue(forKey: kIOPSTemperatureKey) }
+    public var name: String { value(forKey: kIOPSNameKey) }
+    public var type: PowerSourceType { PowerSourceType(rawValue: value(forKey: kIOPSTypeKey)) }
+    public var transportType: TransportType { TransportType(rawValue: value(forKey: kIOPSTransportTypeKey)) }
+    public var vendorID: Int? { optionalValue(forKey: kIOPSVendorIDKey) }
+    public var productID: Int? { optionalValue(forKey: kIOPSProductIDKey) }
+    public var vendorData: [AnyHashable: Any]? { optionalValue(forKey: kIOPSVendorDataKey) }
+    public var batteryHealth: String? { optionalValue(forKey: kIOPSBatteryHealthKey) }
+    public var batteryHealthCondition: String? { optionalValue(forKey: kIOPSBatteryHealthConditionKey) }
+    public var batteryFailureModes: [String]? { optionalValue(forKey: kIOPSBatteryFailureModesKey) }
+    public var healthConfidence: String? { optionalValue(forKey: kIOPSHealthConfidenceKey) }
+    public var maxError: Int? { optionalValue(forKey: kIOPSMaxErrKey) }
+    public var isCharged: Bool { value(forKey: kIOPSIsChargedKey) }
+    public var isFinishingCharge: Bool? { optionalValue(forKey: kIOPSIsFinishingChargeKey) }
+    public var hardwareSerialNumber: String? { optionalValue(forKey: kIOPSHardwareSerialNumberKey) }
 }

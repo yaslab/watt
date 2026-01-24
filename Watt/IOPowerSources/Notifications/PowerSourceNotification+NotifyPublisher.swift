@@ -1,5 +1,5 @@
 //
-//  Notification+Combine.swift
+//  PowerSourceNotification+NotifyPublisher.swift
 //  Watt
 //
 //  Created by Yasuhiro Hatta on 2022/08/27.
@@ -8,11 +8,11 @@
 import struct Combine.AnyPublisher
 import class Combine.PassthroughSubject
 
-extension PowerSource {
-    public func notificationPublisher(name: NotificationName) -> AnyPublisher<Void, Never> {
+extension PowerSourceNotification {
+    public static func publisher(name: Name) -> AnyPublisher<Void, Never> {
         let subject = PassthroughSubject<Void, Never>()
 
-        let task = notificationTask(name: name) {
+        let task = NotifyTask(name: name) {
             subject.send()
         }
 

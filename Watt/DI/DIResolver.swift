@@ -31,11 +31,11 @@ final class DIResolverImpl: DIResolver {
         return sharedLauncherClient
     }
 
-    private lazy var sharedExternalPowerAdapterClient = PowerAdapterClient(
+    private lazy var sharedPowerAdapterClient = PowerAdapterClient(
         ps: resolve()
     )
 
     func resolve() -> PowerAdapterClient {
-        return sharedExternalPowerAdapterClient
+        return sharedPowerAdapterClient
     }
 }
