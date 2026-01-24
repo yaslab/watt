@@ -33,6 +33,6 @@ extension PowerAdapterHeaderView {
     }
 }
 
-//#Preview {
-//    PowerAdapterHeaderView(adapter: ...)
-//}
+#Preview {
+    PowerAdapterHeaderView(adapter: .mock())
+}
