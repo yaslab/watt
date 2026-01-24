@@ -11,7 +11,7 @@ struct PowerAdapterInformationView: View {
     let adapter: PowerAdapter
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if let name = adapter.name {
                 HStack {
                     Text(name)
@@ -19,8 +19,6 @@ struct PowerAdapterInformationView: View {
                     if let manufacturer = adapter.manufacturer {
                         Text("(" + manufacturer + ")")
                     }
-
-                    Spacer()
                 }
             }
 
@@ -31,8 +29,6 @@ struct PowerAdapterInformationView: View {
                     if let text = adapter.formatVA() {
                         Text(text)
                     }
-
-                    Spacer()
                 }
             }
 
@@ -40,8 +36,6 @@ struct PowerAdapterInformationView: View {
                 Text("Battery:")
 
                 Text(adapter.formatCharging())
-
-                Spacer()
             }
         }
         .font(.callout)
@@ -49,6 +43,6 @@ struct PowerAdapterInformationView: View {
     }
 }
 
-//#Preview {
-//    PowerAdapterInformationView(adapter: ...)
-//}
+#Preview {
+    PowerAdapterInformationView(adapter: .mock())
+}

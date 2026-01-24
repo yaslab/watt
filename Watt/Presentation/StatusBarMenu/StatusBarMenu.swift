@@ -12,7 +12,7 @@ struct StatusBarMenu: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Section {
+            VStack(alignment: .leading, spacing: 6) {
                 PowerAdapterHeaderView(adapter: adapter)
 
                 if adapter.isAdapterConnected {
@@ -47,4 +47,8 @@ struct StatusBarMenu: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
     }
+}
+
+#Preview {
+    StatusBarMenu(adapter: .mock())
 }
