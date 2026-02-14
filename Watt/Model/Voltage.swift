@@ -5,12 +5,14 @@
 //  Created by Yasuhiro Hatta on 2022/09/11.
 //
 
+/// The voltage in `mV`.
 struct Voltage: RawRepresentable {
     let rawValue: Int
 }
 
 extension Voltage {
     func format() -> String {
-        String(format: "%.2f", Double(rawValue) / 1000.0) + "V"
+        let voltage = Double(rawValue) / 1000.0
+        return voltage.formatted(.number.precision(.fractionLength(0 ... 2))) + "V"
     }
 }

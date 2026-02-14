@@ -7,20 +7,17 @@
 
 import SwiftUI
 
+private let liveResolver: DIResolver = .live()
+
 @main
 struct WattApp: App {
-    @State private var adapter: PowerAdapter
-
-    init() {
-        let client: PowerAdapterClient = liveResolver.resolve()
-        _adapter = State(initialValue: client.value)
-    }
-
     var body: some Scene {
         MenuBarExtra {
-            StatusBarMenu(adapter: adapter)
+            StatusBarMenu()
+                .environment(resolver: liveResolver)
         } label: {
-            StatusBarButton(adapter: $adapter)
+            StatusBarButton()
+                .environment(resolver: liveResolver)
         }
         .menuBarExtraStyle(.window)
     }

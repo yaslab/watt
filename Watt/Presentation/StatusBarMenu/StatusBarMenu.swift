@@ -8,16 +8,24 @@
 import SwiftUI
 
 struct StatusBarMenu: View {
-    let adapter: PowerAdapter
+    @Environment(PowerAdapterModel.self) private var powerAdapterModel
 
     var body: some View {
-        VStack(alignment: .leading) {
-            VStack(alignment: .leading, spacing: 6) {
-                PowerAdapterHeaderView(adapter: adapter)
+        let adapter = powerAdapterModel.value
 
-                if adapter.isAdapterConnected {
-                    PowerAdapterInformationView(adapter: adapter)
-                }
+        VStack(alignment: .leading) {
+            Section {
+                PowerAdapterInformationView(adapter: adapter)
+            } header: {
+                StatusBarMenuSectionHeader("Power Adapter")
+            }
+
+            Divider()
+
+            Section {
+                PowerSourceInformationView(sources: adapter.sources)
+            } header: {
+                StatusBarMenuSectionHeader("Power Source")
             }
 
             Divider()
@@ -51,6 +59,7 @@ struct StatusBarMenu: View {
 
 #if DEBUG
     #Preview {
-        StatusBarMenu(adapter: .mock())
+        StatusBarMenu()
+            .environment(resolver: .preview())
     }
 #endif

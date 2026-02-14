@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct StatusBarButton: View {
-    @Environment(\.powerAdapterClient) private var powerAdapterClient
-
-    @Binding var adapter: PowerAdapter
+    @Environment(PowerAdapterModel.self) private var powerAdapterModel
 
     var body: some View {
         Label(title, systemImage: imageName.rawValue)
             .labelStyle(.titleAndIcon)
-            .onReceive(powerAdapterClient.publisher) { newValue in
-                adapter = newValue
-            }
     }
 }
 
 extension StatusBarButton {
+    private var adapter: PowerAdapter {
+        return powerAdapterModel.value
+    }
+
     private var title: String {
         if let wattage = adapter.wattage {
             return wattage.format()
@@ -37,8 +36,8 @@ extension StatusBarButton {
     }
 
     private var imageName: ImageName {
-        if adapter.isAdapterConnected {
-            if let batteries = adapter.batteries, batteries.contains(where: \.isCharging) {
+        if adapter.isConnected {
+            if adapter.isBatteryCharging {
                 return .bolt
             } else {
                 return .boltBadgeCheckmark

@@ -5,7 +5,7 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
-import class CoreFoundation.CFDictionary
+import class Foundation.NSDictionary
 import var IOKit.ps.kIOPSNameKey
 import var IOKit.ps.kIOPSPowerAdapterCurrentKey
 import var IOKit.ps.kIOPSPowerAdapterFamilyKey
@@ -17,10 +17,10 @@ import var IOKit.ps.kIOPSPowerAdapterWattsKey
 import var IOKit.ps.kIOPSVoltageKey
 
 public struct ExternalPowerAdapterDetails {
-    let dictionary: [String: Any]
+    let dictionary: NSDictionary
 
-    init(from dictionary: CFDictionary) {
-        self.dictionary = dictionary as! [String: Any]
+    init(from dictionary: NSDictionary) {
+        self.dictionary = dictionary
     }
 }
 

@@ -36,7 +36,6 @@ struct StatusBarMenuButton: View {
             }
         } label: {
             StatusBarMenuLabel(title, systemImage: systemImage)
-                .frame(minHeight: 20)
                 .background {
                     if isHovering {
                         //ConcentricRectangle(corners: .concentric(minimum: 10))
