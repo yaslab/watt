@@ -24,6 +24,7 @@ struct StatusBarMenuLabel: View {
             Image(systemName: systemImage)
                 .frame(width: 16, height: 16)
         }
+        //.labelIconToTitleSpacing(16) // This is only available in macOS 26.0 or newer.
         .frame(minHeight: 20)
     }
 }
