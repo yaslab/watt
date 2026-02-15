@@ -5,37 +5,30 @@
 //  Created by Yasuhiro Hatta on 2022/09/04.
 //
 
-protocol DIResolver {
-    // MARK: Client
-
-    func resolve() -> LauncherClient
-    func resolve() -> PowerAdapterClient
-}
-
-let liveResolver = DIResolverImpl()
-
-final class DIResolverImpl: DIResolver {
-    private lazy var sharedPowerSource = PowerSource()
-
-    private func resolve() -> PowerSource {
-        return sharedPowerSource
+class DIResolver {
+    init(
+        autoStartManager: AutoStartManager,
+        powerAdapterService: PowerAdapterService
+    ) {
+        self.sharedAutoStartModel = AutoStartModel(
+            manager: autoStartManager
+        )
+        self.sharedPowerAdapterModel = PowerAdapterModel(
+            service: powerAdapterService
+        )
     }
 
-    // MARK: Client
+    // MARK: Model
 
-    private lazy var sharedLauncherClient = LauncherClient(
-        service: .mainApp
-    )
+    private let sharedAutoStartModel: AutoStartModel
 
-    func resolve() -> LauncherClient {
-        return sharedLauncherClient
+    func resolve() -> AutoStartModel {
+        return sharedAutoStartModel
     }
 
-    private lazy var sharedPowerAdapterClient = PowerAdapterClient(
-        ps: resolve()
-    )
+    private let sharedPowerAdapterModel: PowerAdapterModel
 
-    func resolve() -> PowerAdapterClient {
-        return sharedPowerAdapterClient
+    func resolve() -> PowerAdapterModel {
+        return sharedPowerAdapterModel
     }
 }

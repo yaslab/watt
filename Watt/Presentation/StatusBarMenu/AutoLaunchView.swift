@@ -8,24 +8,20 @@
 import SwiftUI
 
 struct AutoLaunchView: View {
-    @Environment(\.launcherClient) private var launcherClient
-
-    @State private var isAutoLaunchEnabled: Bool = false
-    @State private var task: Task<Void, Never>?
+    @Environment(AutoStartModel.self) private var autoStartModel
 
     var body: some View {
-        Toggle(isOn: $isAutoLaunchEnabled) {
+        Toggle(
+            isOn: Binding(
+                get: { autoStartModel.isEnabled },
+                set: { change(isEnabled: autoStartModel.isEnabled, isOn: $0) }
+            )
+        ) {
             StatusBarMenuLabel("Launch at login", systemImage: "arrow.up.right")
         }
         .toggleStyle(.switch)
         .onAppear {
-            isAutoLaunchEnabled = launcherClient.isEnabled
-        }
-        .onChange(of: isAutoLaunchEnabled) { oldValue, newValue in
-            change(isEnabled: launcherClient.isEnabled, isOn: newValue)
-        }
-        .onChange(of: launcherClient.isEnabled) { oldValue, newValue in
-            change(isEnabled: newValue, isOn: isAutoLaunchEnabled)
+            autoStartModel.fetchStatus()
         }
     }
 }
@@ -36,20 +32,16 @@ extension AutoLaunchView {
             return
         }
 
-        task?.cancel()
-
-        task = Task {
+        Task {
             do {
                 if isOn {
-                    try launcherClient.register()
+                    try autoStartModel.register()
                 } else {
-                    try await launcherClient.unregister()
+                    try await autoStartModel.unregister()
                 }
             } catch {
-                isAutoLaunchEnabled = launcherClient.isEnabled
+                autoStartModel.fetchStatus()
             }
-
-            task = nil
         }
     }
 }

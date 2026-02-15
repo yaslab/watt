@@ -5,12 +5,13 @@
 //  Created by Yasuhiro Hatta on 2022/09/11.
 //
 
+/// The wattage in `W`.
 struct Wattage: RawRepresentable {
     let rawValue: Int
 }
 
 extension Wattage {
     func format() -> String {
-        "\(rawValue)W"
+        rawValue.formatted(.number) + "W"
     }
 }

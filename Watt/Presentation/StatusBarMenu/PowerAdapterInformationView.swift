@@ -11,40 +11,22 @@ struct PowerAdapterInformationView: View {
     let adapter: PowerAdapter
 
     var body: some View {
-        VStack(alignment: .leading) {
-            if let name = adapter.name {
-                HStack {
-                    Text(name)
+        if let wattage = adapter.formatWattage() {
+            StatusBarMenuLabel(wattage, systemImage: "bolt.fill")
 
-                    if let manufacturer = adapter.manufacturer {
-                        Text("(" + manufacturer + ")")
-                    }
-                }
+            if let name = adapter.formatName() {
+                StatusBarMenuLabel(name, systemImage: "info.circle")
+                    .foregroundStyle(.secondary)
             }
-
-            if let wattage = adapter.wattage {
-                HStack {
-                    Text(wattage.format())
-
-                    if let text = adapter.formatVA() {
-                        Text(text)
-                    }
-                }
-            }
-
-            HStack {
-                Text("Battery:")
-
-                Text(adapter.formatCharging())
-            }
+        } else {
+            StatusBarMenuLabel("Not connected", systemImage: "bolt.slash.fill")
         }
-        .font(.callout)
-        .foregroundColor(.secondary)
     }
 }
 
 #if DEBUG
     #Preview {
-        PowerAdapterInformationView(adapter: .mock())
+        PowerAdapterInformationView(adapter: .preview(.connected))
+        PowerAdapterInformationView(adapter: .preview(.notConnected))
     }
 #endif

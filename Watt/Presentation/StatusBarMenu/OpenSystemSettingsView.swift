@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct OpenSystemSettingsView: View {
-    @Environment(\.launcherClient) private var launcherClient
+    @Environment(AutoStartModel.self) private var autoStartModel
 
     var body: some View {
-        StatusBarMenuButton("Open System Settings", systemImage: "gear") {
-            launcherClient.openSystemSettingsLoginItems()
+        StatusBarMenuButton("Open System Settings...", systemImage: "gear") {
+            autoStartModel.openSystemSettingsLoginItems()
         }
     }
 }
 
 #Preview {
     OpenSystemSettingsView()
+        .environment(resolver: .preview())
 }

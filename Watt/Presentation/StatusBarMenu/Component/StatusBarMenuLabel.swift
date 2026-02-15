@@ -17,13 +17,13 @@ struct StatusBarMenuLabel: View {
     }
 
     var body: some View {
-        HStack {
+        Label {
+            Text(title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        } icon: {
             Image(systemName: systemImage)
                 .frame(width: 16, height: 16)
-
-            Text(title)
-
-            Spacer()
         }
+        .frame(minHeight: 20)
     }
 }
