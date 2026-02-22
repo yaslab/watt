@@ -13,6 +13,7 @@ import Observation
 class PowerAdapterModel {
     private(set) var value: PowerAdapter
 
+    @ObservationIgnored
     private var cancellables: Set<AnyCancellable> = []
 
     init(service: PowerAdapterService) {
