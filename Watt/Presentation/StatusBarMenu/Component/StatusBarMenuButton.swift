@@ -14,12 +14,12 @@ struct StatusBarMenuButton: View {
     @State private var isAwaitingDismiss: Bool = false
 
     private let title: String
-    private let systemImage: String
+    private let image: () -> Image
     private let action: () -> Void
 
-    init(_ title: String, systemImage: String, action: @escaping () -> Void) {
+    init(_ title: String, image: @escaping @autoclosure () -> Image, action: @escaping () -> Void) {
         self.title = title
-        self.systemImage = systemImage
+        self.image = image
         self.action = action
     }
 
@@ -35,7 +35,7 @@ struct StatusBarMenuButton: View {
                 isAwaitingDismiss = false
             }
         } label: {
-            StatusBarMenuLabel(title, systemImage: systemImage)
+            StatusBarMenuLabel(title, image: image())
                 .background {
                     if isHovering {
                         //ConcentricRectangle(corners: .concentric(minimum: 10))
