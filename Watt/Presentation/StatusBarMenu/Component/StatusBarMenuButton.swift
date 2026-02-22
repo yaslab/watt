@@ -39,9 +39,10 @@ struct StatusBarMenuButton: View {
                 .background {
                     if isHovering {
                         //ConcentricRectangle(corners: .concentric(minimum: 10))
-                        RoundedRectangle(cornerRadius: 10)
+                        RoundedRectangle(cornerRadius: 8)
                             .fill(.fill.opacity(0.5))
                             .padding(.horizontal, -8)
+                            .padding(.vertical, -2)
                     }
                 }
                 .onHover {
