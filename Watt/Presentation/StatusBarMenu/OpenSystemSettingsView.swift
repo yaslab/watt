@@ -17,7 +17,9 @@ struct OpenSystemSettingsView: View {
     }
 }
 
-#Preview {
-    OpenSystemSettingsView()
-        .environment(resolver: .preview())
-}
+#if DEBUG
+    #Preview {
+        OpenSystemSettingsView()
+            .environment(resolver: .preview())
+    }
+#endif
