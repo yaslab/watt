@@ -6,12 +6,12 @@
 //
 
 private nonisolated struct PersistenceKeys {
-    static let test = "test"
+    static let menuOpenCount = "Watt.menuOpenCount"
 }
 
 nonisolated extension PersistenceDataSource {
-    var test: Int {
-        get { integer(for: PersistenceKeys.test) }
-        set { set(newValue, for: PersistenceKeys.test) }
+    var menuOpenCount: Int {
+        get { integer(for: PersistenceKeys.menuOpenCount) }
+        set { set(newValue, for: PersistenceKeys.menuOpenCount) }
     }
 }

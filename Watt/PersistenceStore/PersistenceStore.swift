@@ -8,7 +8,9 @@
 import Synchronization
 
 @dynamicMemberLookup
-class PersistenceStore<Source: PersistenceDataSource>: Sendable {
+class PersistenceStore: Sendable {
+    typealias Source = any PersistenceDataSource
+
     private let source: Mutex<Source>
 
     init(source: sending Source) {
