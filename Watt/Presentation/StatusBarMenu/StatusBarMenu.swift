@@ -47,7 +47,6 @@ struct StatusBarMenu: View {
 
             Section {
                 AutoLaunchView()
-
                 OpenSystemSettingsView()
             } header: {
                 StatusBarMenuSectionHeader("Settings")
@@ -56,9 +55,10 @@ struct StatusBarMenu: View {
             Divider()
 
             Section {
+                GitHubView()
                 PiyotasoView()
             } header: {
-                StatusBarMenuSectionHeader("Acknowledgments")
+                StatusBarMenuSectionHeader("About Watt")
             }
 
             Divider()

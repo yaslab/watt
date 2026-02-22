@@ -12,14 +12,14 @@ struct PowerAdapterInformationView: View {
 
     var body: some View {
         if let wattage = adapter.formatWattage() {
-            StatusBarMenuLabel(wattage, systemImage: "bolt.fill")
+            StatusBarMenuLabel(wattage, image: Image(systemName: "bolt.fill"))
 
             if let name = adapter.formatName() {
-                StatusBarMenuLabel(name, systemImage: "info.circle")
+                StatusBarMenuLabel(name, image: Image(systemName: "info.circle"))
                     .foregroundStyle(.secondary)
             }
         } else {
-            StatusBarMenuLabel("Not connected", systemImage: "bolt.slash.fill")
+            StatusBarMenuLabel("Not connected", image: Image(systemName: "bolt.slash.fill"))
         }
     }
 }
