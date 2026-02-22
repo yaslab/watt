@@ -63,9 +63,16 @@ extension PowerSourceNotification {
 
         public func cancel() {
             state.withLock { state in
-                if case .running(let token) = state {
+                switch state {
+                case .ready:
+                    state = .finished
+
+                case .running(let token):
                     notify_cancel(token)
                     state = .finished
+
+                case .finished, .error:
+                    break
                 }
             }
         }

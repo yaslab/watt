@@ -7,14 +7,18 @@
 
 class DIResolver {
     init(
+        persistenceStore: PersistenceStore,
         autoStartManager: AutoStartManager,
-        powerAdapterService: PowerAdapterService
+        powerAdapterService: PowerAdapterService,
     ) {
         self.sharedAutoStartModel = AutoStartModel(
             manager: autoStartManager
         )
         self.sharedPowerAdapterModel = PowerAdapterModel(
             service: powerAdapterService
+        )
+        self.sharedReviewRequestModel = ReviewRequestModel(
+            persistenceStore: persistenceStore
         )
     }
 
@@ -30,5 +34,11 @@ class DIResolver {
 
     func resolve() -> PowerAdapterModel {
         return sharedPowerAdapterModel
+    }
+
+    private let sharedReviewRequestModel: ReviewRequestModel
+
+    func resolve() -> ReviewRequestModel {
+        return sharedReviewRequestModel
     }
 }

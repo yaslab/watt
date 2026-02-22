@@ -8,6 +8,7 @@
 extension DIResolver {
     static func live() -> DIResolver {
         return DIResolver(
+            persistenceStore: PersistenceStore(source: UserDefaultsDataSource()),
             autoStartManager: AutoStartManagerLiveImpl(),
             powerAdapterService: PowerAdapterServiceLiveImpl()
         )

@@ -23,7 +23,6 @@ extension PowerSourceNotification {
         }
 
         return subject.handleEvents(
-            receiveCompletion: { _ in task.cancel() },
             receiveCancel: { task.cancel() }
         )
         .eraseToAnyPublisher()
