@@ -18,15 +18,7 @@ class PowerAdapterServiceLiveImpl: PowerAdapterService {
     private func convert(_ details: ExternalPowerAdapterDetails?, _ descriptions: [PowerSourceDescription]?) -> PowerAdapter {
         return PowerAdapter(
             wattage: details?.watts.map { Wattage(rawValue: $0) },
-            voltage: {
-                if let voltage = details?.voltage {
-                    return Voltage(rawValue: voltage)
-                }
-                if let voltage = details?.adapterVoltage {
-                    return Voltage(rawValue: voltage)
-                }
-                return nil
-            }(),
+            voltage: details?.voltage.map { Voltage(rawValue: $0) },
             current: details?.current.map { Current(rawValue: $0) },
             name: details?.name?.trimmingCharacters(in: .whitespaces),
             manufacturer: details?.manufacturer?.trimmingCharacters(in: .whitespaces),
