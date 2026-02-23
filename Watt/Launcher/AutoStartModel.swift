@@ -11,12 +11,12 @@ import ServiceManagement
 @Observable
 class AutoStartModel {
     private let manager: AutoStartManager
+    private var status: SMAppService.Status
 
     init(manager: AutoStartManager) {
         self.manager = manager
+        self.status = manager.status
     }
-
-    private var status: SMAppService.Status = .notFound
 
     var isEnabled: Bool {
         return status == .enabled
@@ -42,5 +42,21 @@ class AutoStartModel {
 
     func fetchStatus() {
         status = manager.status
+    }
+}
+
+extension AutoStartModel {
+    func onChange(enabled: Bool) {
+        Task {
+            do {
+                if enabled {
+                    try register()
+                } else {
+                    try await unregister()
+                }
+            } catch {
+                fetchStatus()
+            }
+        }
     }
 }
