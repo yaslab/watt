@@ -35,12 +35,14 @@ struct StatusBarMenu: View {
                 StatusBarMenuSectionHeader("Power Adapter")
             }
 
-            Divider()
+            if !adapter.sources.isEmpty {
+                Divider()
 
-            Section {
-                PowerSourceInformationView(sources: adapter.sources)
-            } header: {
-                StatusBarMenuSectionHeader("Power Source")
+                Section {
+                    PowerSourceInformationView(sources: adapter.sources)
+                } header: {
+                    StatusBarMenuSectionHeader("Power Source")
+                }
             }
 
             Divider()
