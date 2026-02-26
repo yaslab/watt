@@ -7,11 +7,13 @@
 
 extension DIResolver {
     static func preview(
+        infoDictionary: [String: Any] = InfoPreviewImpl.dictionary(),
         persistenceDataSource: PersistenceStore.Source = PersistenceDataSourcePreviewImpl(),
         autoStartManager: AutoStartManager = AutoStartManagerPreviewImpl(),
         powerAdapterService: PowerAdapterService = PowerAdapterServicePreviewImpl()
     ) -> DIResolver {
         return DIResolver(
+            wattConfiguration: WattConfiguration(infoDictionary: infoDictionary),
             persistenceStore: PersistenceStore(source: persistenceDataSource),
             autoStartManager: autoStartManager,
             powerAdapterService: powerAdapterService
