@@ -9,7 +9,8 @@ import SwiftUI
 
 extension View {
     func environment(resolver: DIResolver) -> some View {
-        self.environment(resolver.resolve() as AutoStartModel)
+        self.environment(resolver.resolve() as WattConfiguration)
+            .environment(resolver.resolve() as AutoStartModel)
             .environment(resolver.resolve() as PowerAdapterModel)
             .environment(resolver.resolve() as ReviewRequestModel)
     }
