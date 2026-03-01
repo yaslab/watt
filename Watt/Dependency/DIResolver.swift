@@ -7,11 +7,14 @@
 
 class DIResolver {
     init(
+        wattConfiguration: WattConfiguration,
         persistenceStore: PersistenceStore,
         autoStartManager: AutoStartManager,
         powerAdapterService: PowerAdapterService,
     ) {
+        self.sharedWattConfiguration = wattConfiguration
         self.sharedAutoStartModel = AutoStartModel(
+            persistenceStore: persistenceStore,
             manager: autoStartManager
         )
         self.sharedPowerAdapterModel = PowerAdapterModel(
@@ -20,6 +23,14 @@ class DIResolver {
         self.sharedReviewRequestModel = ReviewRequestModel(
             persistenceStore: persistenceStore
         )
+    }
+
+    // MARK: Configuration
+
+    private let sharedWattConfiguration: WattConfiguration
+
+    func resolve() -> WattConfiguration {
+        return sharedWattConfiguration
     }
 
     // MARK: Model

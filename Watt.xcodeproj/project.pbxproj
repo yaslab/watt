@@ -6,6 +6,16 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		0EC809452F545CD100973F39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E0D1E7028BA4999005B9693 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E0D1E7728BA4999005B9693;
+			remoteInfo = Watt;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		0E0D1ED128BA8791005B9693 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -18,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		0E0D1E7828BA4999005B9693 /* Watt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EC809412F545CD100973F39 /* WattTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WattTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -39,10 +50,20 @@
 			path = Watt;
 			sourceTree = "<group>";
 		};
+		0EC809422F545CD100973F39 /* WattTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WattTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0E0D1E7528BA4999005B9693 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		0EC8093E2F545CD100973F39 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -54,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				0E85A9FA2F016EE4008B5990 /* Watt */,
+				0EC809422F545CD100973F39 /* WattTests */,
 				0E0D1E7928BA4999005B9693 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				0E0D1E7828BA4999005B9693 /* Watt.app */,
+				0EC809412F545CD100973F39 /* WattTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,6 +111,27 @@
 			productReference = 0E0D1E7828BA4999005B9693 /* Watt.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0EC809402F545CD100973F39 /* WattTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EC809492F545CD100973F39 /* Build configuration list for PBXNativeTarget "WattTests" */;
+			buildPhases = (
+				0EC8093D2F545CD100973F39 /* Sources */,
+				0EC8093E2F545CD100973F39 /* Frameworks */,
+				0EC8093F2F545CD100973F39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0EC809462F545CD100973F39 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				0EC809422F545CD100973F39 /* WattTests */,
+			);
+			name = WattTests;
+			productName = WattTests;
+			productReference = 0EC809412F545CD100973F39 /* WattTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,11 +139,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 2630;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					0E0D1E7728BA4999005B9693 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					0EC809402F545CD100973F39 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 0E0D1E7728BA4999005B9693;
 					};
 				};
 			};
@@ -119,12 +167,18 @@
 			projectRoot = "";
 			targets = (
 				0E0D1E7728BA4999005B9693 /* Watt */,
+				0EC809402F545CD100973F39 /* WattTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0E0D1E7628BA4999005B9693 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		0EC8093F2F545CD100973F39 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -137,7 +191,20 @@
 			files = (
 			);
 		};
+		0EC8093D2F545CD100973F39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0EC809462F545CD100973F39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E0D1E7728BA4999005B9693 /* Watt */;
+			targetProxy = 0EC809452F545CD100973F39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0E0D1E8528BA499A005B9693 /* Debug configuration for PBXProject "Watt" */ = {
@@ -328,6 +395,55 @@
 			};
 			name = Release;
 		};
+		0EC809472F545CD100973F39 /* Debug configuration for PBXNativeTarget "WattTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 65W3HJERJX;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yaslab.WattTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Watt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Watt";
+			};
+			name = Debug;
+		};
+		0EC809482F545CD100973F39 /* Release configuration for PBXNativeTarget "WattTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 65W3HJERJX;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.yaslab.WattTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Watt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Watt";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,6 +460,14 @@
 			buildConfigurations = (
 				0E0D1E8828BA499A005B9693 /* Debug configuration for PBXNativeTarget "Watt" */,
 				0E0D1E8928BA499A005B9693 /* Release configuration for PBXNativeTarget "Watt" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		0EC809492F545CD100973F39 /* Build configuration list for PBXNativeTarget "WattTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EC809472F545CD100973F39 /* Debug configuration for PBXNativeTarget "WattTests" */,
+				0EC809482F545CD100973F39 /* Release configuration for PBXNativeTarget "WattTests" */,
 			);
 			defaultConfigurationName = Release;
 		};

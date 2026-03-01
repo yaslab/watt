@@ -14,7 +14,7 @@ struct AutoLaunchView: View {
         Toggle(
             isOn: Binding(
                 get: { autoStartModel.isEnabled },
-                set: { change(isEnabled: autoStartModel.isEnabled, isOn: $0) }
+                set: { autoStartModel.onChange(enabled: $0) }
             )
         ) {
             StatusBarMenuLabel("Launch at login", image: Image(systemName: "arrow.up.right"))
@@ -22,26 +22,6 @@ struct AutoLaunchView: View {
         .toggleStyle(.switch)
         .onAppear {
             autoStartModel.fetchStatus()
-        }
-    }
-}
-
-extension AutoLaunchView {
-    private func change(isEnabled: Bool, isOn: Bool) {
-        if isEnabled == isOn {
-            return
-        }
-
-        Task {
-            do {
-                if isOn {
-                    try autoStartModel.register()
-                } else {
-                    try await autoStartModel.unregister()
-                }
-            } catch {
-                autoStartModel.fetchStatus()
-            }
         }
     }
 }

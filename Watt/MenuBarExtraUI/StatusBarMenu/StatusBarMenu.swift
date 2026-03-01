@@ -9,6 +9,7 @@ import StoreKit
 import SwiftUI
 
 struct StatusBarMenu: View {
+    @Environment(WattConfiguration.self) private var configuration
     @Environment(PowerAdapterModel.self) private var powerAdapterModel
     @Environment(ReviewRequestModel.self) private var reviewRequestModel
     @Environment(\.requestReview) private var requestReview
@@ -60,7 +61,7 @@ struct StatusBarMenu: View {
                 GitHubView()
                 PiyotasoView()
             } header: {
-                StatusBarMenuSectionHeader("About Watt")
+                StatusBarMenuSectionHeader("About Watt", detail: configuration.formattedVersion())
             }
 
             Divider()

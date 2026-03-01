@@ -20,17 +20,21 @@ class ReviewRequestModel {
 
     func recordMenuOpen() {
         let count = persistenceStore.withLock { source in
-            if source.menuOpenCount < 0 {
-                source.menuOpenCount = 0
+            var temp = source.menuOpenCount
+
+            if temp < 0 {
+                temp = 0
             }
 
-            source.menuOpenCount += 1
+            temp += 1
 
-            if source.menuOpenCount == 200 {
-                source.menuOpenCount = 100
+            if temp >= 200 {
+                temp = 100
             }
 
-            return source.menuOpenCount
+            source.menuOpenCount = temp
+
+            return temp
         }
 
         shouldRequestReview = {
