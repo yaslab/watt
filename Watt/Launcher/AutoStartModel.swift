@@ -10,10 +10,12 @@ import ServiceManagement
 
 @Observable
 class AutoStartModel {
+    private let persistenceStore: PersistenceStore
     private let manager: AutoStartManager
     private var status: SMAppService.Status
 
-    init(manager: AutoStartManager) {
+    init(persistenceStore: PersistenceStore, manager: AutoStartManager) {
+        self.persistenceStore = persistenceStore
         self.manager = manager
         self.status = manager.status
     }
@@ -46,6 +48,22 @@ class AutoStartModel {
 }
 
 extension AutoStartModel {
+    func setup() {
+        if persistenceStore.isInitialAutoStartSetupCompleted {
+            return
+        }
+
+        do {
+            try register()
+        } catch {
+            fetchStatus()
+        }
+
+        persistenceStore.withLock { source in
+            source.isInitialAutoStartSetupCompleted = true
+        }
+    }
+
     func onChange(enabled: Bool) {
         Task {
             do {
