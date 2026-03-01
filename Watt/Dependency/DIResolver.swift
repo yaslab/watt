@@ -14,6 +14,7 @@ class DIResolver {
     ) {
         self.sharedWattConfiguration = wattConfiguration
         self.sharedAutoStartModel = AutoStartModel(
+            persistenceStore: persistenceStore,
             manager: autoStartManager
         )
         self.sharedPowerAdapterModel = PowerAdapterModel(
