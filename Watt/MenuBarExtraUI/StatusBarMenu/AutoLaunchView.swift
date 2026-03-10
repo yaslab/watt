@@ -17,7 +17,7 @@ struct AutoLaunchView: View {
                 set: { autoStartModel.onChange(enabled: $0) }
             )
         ) {
-            StatusBarMenuLabel("Launch at login", image: Image(systemName: "arrow.up.right"))
+            StatusBarMenuLabel(.menuLaunchAtLogin, image: Image(systemName: "arrow.up.right"))
         }
         .toggleStyle(.switch)
         .onAppear {

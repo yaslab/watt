@@ -21,6 +21,6 @@ class WattConfiguration {
 
 extension WattConfiguration {
     func formattedVersion() -> String {
-        return "Version \(marketingVersion) (\(projectVersion))"
+        return "v\(marketingVersion)-\(projectVersion)"
     }
 }

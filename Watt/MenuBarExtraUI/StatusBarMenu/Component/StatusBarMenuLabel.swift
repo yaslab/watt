@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct StatusBarMenuLabel: View {
-    private let title: String
+    private let title: LocalizedStringResource
     private let image: () -> Image
 
-    init(_ title: String, image: @escaping @autoclosure () -> Image) {
+    init(_ title: LocalizedStringResource, image: @escaping @autoclosure () -> Image) {
         self.title = title
+        self.image = image
+
+    }
+
+    init(_ title: String, image: @escaping @autoclosure () -> Image) {
+        self.title = LocalizedStringResource(stringLiteral: title)
         self.image = image
     }
 

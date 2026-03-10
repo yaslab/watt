@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuitView: View {
     var body: some View {
-        StatusBarMenuButton("Quit Watt", image: Image(systemName: "xmark.rectangle")) {
+        StatusBarMenuButton(.menuQuitWatt, image: Image(systemName: "xmark.rectangle")) {
             NSApp.terminate(nil)
         }
     }

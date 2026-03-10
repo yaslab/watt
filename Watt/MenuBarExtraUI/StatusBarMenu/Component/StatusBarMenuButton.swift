@@ -13,12 +13,18 @@ struct StatusBarMenuButton: View {
     @State private var isHovering: Bool = false
     @State private var isAwaitingDismiss: Bool = false
 
-    private let title: String
+    private let title: LocalizedStringResource
     private let image: () -> Image
     private let action: () -> Void
 
-    init(_ title: String, image: @escaping @autoclosure () -> Image, action: @escaping () -> Void) {
+    init(_ title: LocalizedStringResource, image: @escaping @autoclosure () -> Image, action: @escaping () -> Void) {
         self.title = title
+        self.image = image
+        self.action = action
+    }
+
+    init(_ title: String, image: @escaping @autoclosure () -> Image, action: @escaping () -> Void) {
+        self.title = LocalizedStringResource(stringLiteral: title)
         self.image = image
         self.action = action
     }

@@ -19,7 +19,7 @@ struct PowerAdapterInformationView: View {
                     .foregroundStyle(.secondary)
             }
         } else {
-            StatusBarMenuLabel("Not connected", image: Image(systemName: "bolt.slash.fill"))
+            StatusBarMenuLabel(.menuNotConnected, image: Image(systemName: "bolt.slash.fill"))
         }
     }
 }

@@ -23,7 +23,7 @@ extension TimeInMinutes {
 extension TimeInMinutes {
     func format() -> String {
         if isCalculating {
-            return "Calculating..."
+            return String(localized: .menuCalculating)
         }
 
         let hour = rawValue / 60
@@ -32,10 +32,13 @@ extension TimeInMinutes {
         var value = ""
 
         if hour > 0 {
-            value += "\(hour)h "
+            value += "\(hour)"
+            value += String(localized: .menuHoursShort)
+            value += " "
         }
 
-        value += "\(minute)m"
+        value += "\(minute)"
+        value += String(localized: .menuMinutesShort)
 
         return value
     }
