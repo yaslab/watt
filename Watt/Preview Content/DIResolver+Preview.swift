@@ -8,7 +8,7 @@
 extension DIResolver {
     static func preview(
         infoDictionary: [String: Any] = InfoPreviewImpl.dictionary(),
-        persistenceDataSource: PersistenceStore.Source = PersistenceDataSourcePreviewImpl(),
+        persistenceDataSource: sending PersistenceStore.Source = PersistenceDataSourcePreviewImpl(),
         autoStartManager: AutoStartManager = AutoStartManagerPreviewImpl(),
         powerAdapterService: PowerAdapterService = PowerAdapterServicePreviewImpl()
     ) -> DIResolver {
