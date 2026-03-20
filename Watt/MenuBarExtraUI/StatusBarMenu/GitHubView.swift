@@ -11,7 +11,7 @@ struct GitHubView: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        StatusBarMenuButton("View on GitHub...", image: Image(.gitHubInvertocat).resizable()) {
+        StatusBarMenuButton(.menuViewOnGitHub, icon: { Image(.gitHubInvertocat).resizable() }) {
             openURL(URL(string: "https://github.com/yaslab/watt")!)
         }
     }

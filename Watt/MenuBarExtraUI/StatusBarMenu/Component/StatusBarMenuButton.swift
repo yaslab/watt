@@ -7,19 +7,25 @@
 
 import SwiftUI
 
-struct StatusBarMenuButton: View {
+struct StatusBarMenuButton<Icon: View>: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var isHovering: Bool = false
     @State private var isAwaitingDismiss: Bool = false
 
     private let title: String
-    private let image: () -> Image
+    private let icon: () -> Icon
     private let action: () -> Void
 
-    init(_ title: String, image: @escaping @autoclosure () -> Image, action: @escaping () -> Void) {
+    init(_ resource: LocalizedStringResource, icon: @escaping () -> Icon, action: @escaping () -> Void) {
+        self.title = String(localized: resource)
+        self.icon = icon
+        self.action = action
+    }
+
+    init(_ title: String, icon: @escaping () -> Icon, action: @escaping () -> Void) {
         self.title = title
-        self.image = image
+        self.icon = icon
         self.action = action
     }
 
@@ -35,7 +41,7 @@ struct StatusBarMenuButton: View {
                 isAwaitingDismiss = false
             }
         } label: {
-            StatusBarMenuLabel(title, image: image())
+            StatusBarMenuLabel(title, icon: icon)
                 .background {
                     if isHovering {
                         //ConcentricRectangle(corners: .concentric(minimum: 10))

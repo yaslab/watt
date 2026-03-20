@@ -11,6 +11,11 @@ struct StatusBarMenuSectionHeader: View {
     private let content: String
     private let detail: String?
 
+    init(_ resource: LocalizedStringResource, detail: String? = nil) {
+        self.content = String(localized: resource)
+        self.detail = detail
+    }
+
     init(_ content: String, detail: String? = nil) {
         self.content = content
         self.detail = detail

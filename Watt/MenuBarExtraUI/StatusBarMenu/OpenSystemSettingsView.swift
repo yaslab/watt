@@ -11,7 +11,7 @@ struct OpenSystemSettingsView: View {
     @Environment(AutoStartModel.self) private var autoStartModel
 
     var body: some View {
-        StatusBarMenuButton("Open System Settings...", image: Image(systemName: "gear")) {
+        StatusBarMenuButton(.menuOpenSystemSettings, icon: { Image(systemName: "gear") }) {
             autoStartModel.openSystemSettingsLoginItems()
         }
     }

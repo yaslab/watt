@@ -33,7 +33,7 @@ struct StatusBarMenu: View {
             Section {
                 PowerAdapterInformationView(adapter: adapter)
             } header: {
-                StatusBarMenuSectionHeader("Power Adapter")
+                StatusBarMenuSectionHeader(.menuPowerAdapter)
             }
 
             if !adapter.sources.isEmpty {
@@ -42,7 +42,7 @@ struct StatusBarMenu: View {
                 Section {
                     PowerSourceInformationView(sources: adapter.sources)
                 } header: {
-                    StatusBarMenuSectionHeader("Power Source")
+                    StatusBarMenuSectionHeader(.menuPowerSource)
                 }
             }
 
@@ -52,7 +52,7 @@ struct StatusBarMenu: View {
                 AutoLaunchView()
                 OpenSystemSettingsView()
             } header: {
-                StatusBarMenuSectionHeader("Settings")
+                StatusBarMenuSectionHeader(.menuSettings)
             }
 
             Divider()
@@ -61,7 +61,7 @@ struct StatusBarMenu: View {
                 GitHubView()
                 PiyotasoView()
             } header: {
-                StatusBarMenuSectionHeader("About Watt", detail: configuration.formattedVersion())
+                StatusBarMenuSectionHeader(.menuAboutWatt, detail: configuration.formattedVersion())
             }
 
             Divider()

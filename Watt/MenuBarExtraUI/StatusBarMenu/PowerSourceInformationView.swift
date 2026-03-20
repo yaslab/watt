@@ -31,9 +31,9 @@ struct PowerSourceInformationView: View {
     }
 
     private func adapter(_ source: PowerAdapter.PowerSource) -> some View {
-        StatusBarMenuLabel("Power Adapter", image: Image(systemName: "powercord.fill"))
+        StatusBarMenuLabel(.menuPowerAdapter, icon: { Image(systemName: "powercord.fill") })
             .overlay(alignment: .trailing) {
-                Text(source.isBatteryCharging ? "Charging" : "Connected")
+                Text(source.isBatteryCharging ? LocalizedStringResource.menuCharging : .menuConnected)
                     .foregroundStyle(.secondary)
             }
     }
@@ -57,15 +57,15 @@ struct PowerSourceInformationView: View {
             }
         }
 
-        return StatusBarMenuLabel("Battery", image: Image(systemName: image))
+        return StatusBarMenuLabel(.menuBattery, icon: { Image(systemName: image) })
             .overlay(alignment: .trailing) {
-                Text("\(source.batteryCurrentCapacity.formatted())%")
+                Text(source.batteryCurrentCapacity.formatted() + "%")
                     .foregroundStyle(.secondary)
             }
     }
 
     private func timeRemaining(_ time: TimeInMinutes) -> some View {
-        StatusBarMenuLabel("Time remaining", image: Image(systemName: "clock"))
+        StatusBarMenuLabel(.menuTimeRemaining, icon: { Image(systemName: "clock") })
             .overlay(alignment: .trailing) {
                 Text(time.format())
                     .foregroundStyle(.secondary)
@@ -73,7 +73,7 @@ struct PowerSourceInformationView: View {
     }
 
     private func timeToFullCharge(_ time: TimeInMinutes) -> some View {
-        StatusBarMenuLabel("Time to full charge", image: Image(systemName: "clock"))
+        StatusBarMenuLabel(.menuTimeToFullCharge, icon: { Image(systemName: "clock") })
             .overlay(alignment: .trailing) {
                 Text(time.format())
                     .foregroundStyle(.secondary)
