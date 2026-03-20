@@ -29,7 +29,8 @@ extension TimeInMinutes {
         let hour = rawValue / 60
         let minute = rawValue % 60
 
-        var value = ""
+        var value = String(localized: .menuApproximately)
+        value += " "
 
         if hour > 0 {
             value += "\(hour)"

@@ -18,6 +18,23 @@
         }
       }
     },
+    "Menu/Approximately" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "approx."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おおよそ"
+          }
+        }
+      }
+    },
     "Menu/Battery" : {
       "extractionState" : "manual",
       "localizations" : {
