@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct StatusBarMenuSectionHeader: View {
-    private let content: LocalizedStringResource
+    private let content: String
     private let detail: String?
 
-    init(_ content: LocalizedStringResource, detail: String? = nil) {
-        self.content = content
+    init(_ resource: LocalizedStringResource, detail: String? = nil) {
+        self.content = String(localized: resource)
         self.detail = detail
     }
 
     init(_ content: String, detail: String? = nil) {
-        self.content = LocalizedStringResource(stringLiteral: content)
+        self.content = content
         self.detail = detail
     }
 

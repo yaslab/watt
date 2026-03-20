@@ -11,7 +11,7 @@ struct PiyotasoView: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        StatusBarMenuButton(.menuThanksPiyotaso, image: Image(systemName: "link")) {
+        StatusBarMenuButton(.menuThanksPiyotaso, icon: { Image(systemName: "link") }) {
             openURL(URL(string: "https://hiyokoyarou.com/")!)
         }
     }

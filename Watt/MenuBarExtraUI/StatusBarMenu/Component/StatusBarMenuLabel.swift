@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct StatusBarMenuLabel: View {
-    private let title: LocalizedStringResource
-    private let image: () -> Image
+struct StatusBarMenuLabel<Icon: View>: View {
+    private let title: String
+    private let icon: () -> Icon
 
-    init(_ title: LocalizedStringResource, image: @escaping @autoclosure () -> Image) {
-        self.title = title
-        self.image = image
+    init(_ resource: LocalizedStringResource, icon: @escaping () -> Icon) {
+        self.title = String(localized: resource)
+        self.icon = icon
 
     }
 
-    init(_ title: String, image: @escaping @autoclosure () -> Image) {
-        self.title = LocalizedStringResource(stringLiteral: title)
-        self.image = image
+    init(_ title: String, icon: @escaping () -> Icon) {
+        self.title = title
+        self.icon = icon
     }
 
     var body: some View {
@@ -27,7 +27,7 @@ struct StatusBarMenuLabel: View {
             Text(title)
                 .frame(maxWidth: .infinity, alignment: .leading)
         } icon: {
-            image()
+            icon()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 16, height: 16)
         }
