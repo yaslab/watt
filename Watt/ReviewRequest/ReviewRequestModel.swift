@@ -37,9 +37,11 @@ class ReviewRequestModel {
             return temp
         }
 
-        shouldRequestReview = {
-            if count == 5 || count == 30 || count == 100 { return true }
-            return false
-        }()
+        shouldRequestReview =
+            if count == 5 || count == 30 || count == 100 {
+                true
+            } else {
+                false
+            }
     }
 }

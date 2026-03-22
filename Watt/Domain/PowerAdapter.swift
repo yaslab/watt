@@ -74,3 +74,24 @@ extension PowerAdapter {
         }
     }
 }
+
+extension PowerAdapter.PowerSource {
+    var batteryImageName: String {
+        if isBatteryCharging, batteryCurrentCapacity < 100 {
+            "battery.100percent.bolt"
+        } else {
+            switch batteryCurrentCapacity {
+            case ..<20:
+                "battery.0percent"
+            case ..<40:
+                "battery.25percent"
+            case ..<60:
+                "battery.50percent"
+            case ..<80:
+                "battery.75percent"
+            default:
+                "battery.100percent"
+            }
+        }
+    }
+}
