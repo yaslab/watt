@@ -24,10 +24,12 @@ public struct ExternalPowerAdapterDetails {
 
 extension ExternalPowerAdapterDetails {
     func optionalValue<T>(forKey key: String) -> T? {
-        guard let value = dictionary[key] else {
+        guard let _value = dictionary[key] else {
             return nil
         }
-        return value as? T
+        let value = _value as? T
+        assert(value != nil)
+        return value!
     }
 
     /// This key refers to the attached external AC power adapter's ID. The value associated with this key is a  integer.
