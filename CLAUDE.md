@@ -29,7 +29,7 @@ The app uses **MV with a service locator DI pattern**.
 ```
 IOKit (macOS power source APIs)
   → IOPowerSources/ (type-safe IOKit wrapper)
-    → PowerAdapter/ (protocol, converts to domain models)
+    → PowerAdapterService (protocol, converts to domain models)
       → PowerAdapterModel (@Observable, Combine throttle at 0.5s)
         → SwiftUI views (StatusBarButton, StatusBarMenu)
 ```
