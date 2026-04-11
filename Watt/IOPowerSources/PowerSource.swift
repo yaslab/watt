@@ -19,38 +19,27 @@ import func IOKit.ps.IOPSGetPowerSourceDescription
 import func IOKit.ps.IOPSGetProvidingPowerSourceType
 import func IOKit.ps.IOPSGetTimeRemainingEstimate
 
-public final class PowerSource {
-    private var _snapshot: CFTypeRef?
-
-    public init() {}
+public struct PowerSource {
+    private init() {}
 
     // MARK: - Quick Power Source Info
 
-    public var timeRemainingEstimate: TimeRemainingEstimate {
+    public static var timeRemainingEstimate: TimeRemainingEstimate {
         TimeRemainingEstimate(rawValue: IOPSGetTimeRemainingEstimate())
     }
 
     // MARK: - Power Source Descriptions
 
-    public func externalPowerAdapterDetails() -> ExternalPowerAdapterDetails? {
+    public static func externalPowerAdapterDetails() -> ExternalPowerAdapterDetails? {
         guard let details = IOPSCopyExternalPowerAdapterDetails()?.takeRetainedValue() else {
             return nil
         }
         return ExternalPowerAdapterDetails(from: details)
     }
 
-    public func powerSources(snapshot: Bool = false) -> [PowerSourceDescription]? {
-        let info: CFTypeRef
-        if snapshot {
-            guard let _snapshot else {
-                return nil
-            }
-            info = _snapshot
-        } else {
-            guard let blob = getinfo() else {
-                return nil
-            }
-            info = blob
+    public static func powerSources() -> [PowerSourceDescription]? {
+        guard let info = IOPSCopyPowerSourcesInfo()?.takeRetainedValue() else {
+            return nil
         }
 
         guard let list = IOPSCopyPowerSourcesList(info)?.takeRetainedValue() else {
@@ -65,42 +54,24 @@ public final class PowerSource {
             }
             descriptions.append(PowerSourceDescription(from: description))
         }
-
         return descriptions
     }
 
-    public func providingPowerSourceType(snapshot: Bool = false) -> ProvidingPowerSourceType? {
-        let info: CFTypeRef?
-        if snapshot {
-            guard let _snapshot else {
-                return nil
-            }
-            info = _snapshot
-        } else {
-            info = nil
+    public static func providingPowerSourceType() -> ProvidingPowerSourceType? {
+        guard let info = IOPSCopyPowerSourcesInfo()?.takeRetainedValue() else {
+            return nil
         }
 
         guard let type = IOPSGetProvidingPowerSourceType(info)?.takeRetainedValue() else {
             return nil
         }
+
         return ProvidingPowerSourceType(rawValue: type as String)
-    }
-
-    public func takeSnapshot() -> Bool {
-        guard let blob = getinfo() else {
-            return false
-        }
-        _snapshot = blob
-        return true
-    }
-
-    private func getinfo() -> CFTypeRef? {
-        IOPSCopyPowerSourcesInfo()?.takeRetainedValue()
     }
 
     // MARK: - Low Power Warnings
 
-    public var batteryWarningLevel: LowBatteryWarningLevel {
+    public static var batteryWarningLevel: LowBatteryWarningLevel {
         LowBatteryWarningLevel(rawValue: IOPSGetBatteryWarningLevel())
     }
 }
