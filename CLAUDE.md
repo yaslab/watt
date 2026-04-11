@@ -8,7 +8,7 @@ Watt is a macOS menu bar application that displays the wattage supplied by the c
 
 ## Build & Development
 
-This is a native macOS Xcode project (not a Swift Package). Swift 6.0.
+This is a native macOS Xcode project (not a Swift Package). Swift 6.0 or later.
 
 ```bash
 # Build from command line
@@ -22,14 +22,14 @@ There are no test targets. UI verification is done via SwiftUI `#Preview` blocks
 
 ## Architecture
 
-The app uses **MVVM with a service locator DI pattern**.
+The app uses **MV with a service locator DI pattern**.
 
 ### Data Flow
 
 ```
 IOKit (macOS power source APIs)
   → IOPowerSources/ (type-safe IOKit wrapper)
-    → PowerAdapterService (protocol, converts to domain models)
+    → PowerAdapter/ (protocol, converts to domain models)
       → PowerAdapterModel (@Observable, Combine throttle at 0.5s)
         → SwiftUI views (StatusBarButton, StatusBarMenu)
 ```
@@ -40,12 +40,11 @@ IOKit (macOS power source APIs)
 
 ### Module Organization (all under `Watt/`)
 
-- **DI/** — `DIResolver` service locator with overloaded `resolve()` methods. `DIResolver+Live.swift` for production, `DIResolver+Preview.swift` for previews. Injected via SwiftUI environment (`View+DIResolver.swift`).
-- **Model/** — Value types: `PowerAdapter` (with nested `PowerSource`), `Wattage`, `Voltage`, `Current`, `TimeInMinutes`. All use `RawRepresentable` with formatting extensions.
+- **Dependency/** — `DIResolver` service locator with overloaded `resolve()` methods. `DIResolver+Live.swift` for production, `DIResolver+Preview.swift` for previews. Injected via SwiftUI environment (`View+DIResolver.swift`).
 - **IOPowerSources/** — Wraps IOKit's `IOPSCopyPowerSourcesInfo`/`IOPSCopyPowerSourcesList` APIs. `PowerSource` reads CFDictionary data into typed structs. `Notifications/` provides Combine publishers for Darwin power change notifications.
 - **PowerAdapter/** — `PowerAdapterService` protocol fetches adapter data; `PowerAdapterModel` is the `@Observable` view model that subscribes to notifications with Combine throttling.
 - **Launcher/** — `AutoStartManager` protocol wraps `SMAppService` for login item registration. `AutoStartModel` is the `@Observable` view model.
-- **Presentation/** — SwiftUI views split into `StatusBarButton/` (menu bar label) and `StatusBarMenu/` (dropdown content with adapter info, battery info, settings, quit).
+- **MenuBarExtraUI/** — SwiftUI views split into `StatusBarButton/` (menu bar label) and `StatusBarMenu/` (dropdown content with adapter info, battery info, settings, quit).
 
 ### Key Patterns
 
