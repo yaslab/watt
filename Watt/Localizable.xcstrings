@@ -86,6 +86,23 @@
         }
       }
     },
+    "Menu/ChargingAt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charging at %(current)@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%(current)@で充電中"
+          }
+        }
+      }
+    },
     "Menu/Connected" : {
       "extractionState" : "manual",
       "localizations" : {
