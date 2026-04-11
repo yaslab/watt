@@ -26,6 +26,9 @@ extension PowerAdapter {
                     PowerSource(
                         id: 0,
                         state: .acPower,
+                        voltage: nil,
+                        current: Current(rawValue: 2_500),
+                        batteryHealth: .good,
                         batteryCurrentCapacity: 100,
                         batteryTimeToEmpty: TimeInMinutes(rawValue: 0),
                         batteryTimeToFullCharge: TimeInMinutes(rawValue: 61),
@@ -45,6 +48,9 @@ extension PowerAdapter {
                     PowerSource(
                         id: 0,
                         state: .batteryPower,
+                        voltage: nil,
+                        current: Current(rawValue: -500),
+                        batteryHealth: .good,
                         batteryCurrentCapacity: 75,
                         batteryTimeToEmpty: TimeInMinutes(rawValue: 61),
                         batteryTimeToFullCharge: TimeInMinutes(rawValue: 0),

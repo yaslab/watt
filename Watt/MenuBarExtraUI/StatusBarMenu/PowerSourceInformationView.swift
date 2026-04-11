@@ -33,7 +33,14 @@ struct PowerSourceInformationView: View {
     private func adapter(_ source: PowerAdapter.PowerSource) -> some View {
         StatusBarMenuLabel(.menuPowerAdapter, icon: { Image(systemName: "powercord.fill") })
             .overlay(alignment: .trailing) {
-                Text(source.isBatteryCharging ? LocalizedStringResource.menuCharging : .menuConnected)
+                let label: LocalizedStringResource =
+                    if let current = source.current, current.rawValue > 0 {
+                        .menuChargingAt(current: current.format())
+                    } else {
+                        source.isBatteryCharging ? .menuCharging : .menuConnected
+                    }
+
+                Text(label)
                     .foregroundStyle(.secondary)
             }
     }

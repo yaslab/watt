@@ -24,6 +24,9 @@ extension PowerAdapter {
     struct PowerSource: Identifiable {
         let id: Int
         let state: PowerSourceState
+        let voltage: Voltage?
+        let current: Current?
+        let batteryHealth: BatteryHealth?
         let batteryCurrentCapacity: Int
         let batteryTimeToEmpty: TimeInMinutes?
         let batteryTimeToFullCharge: TimeInMinutes?
