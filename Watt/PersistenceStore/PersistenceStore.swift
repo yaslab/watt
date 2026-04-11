@@ -5,7 +5,7 @@
 //  Created by Yasuhiro Hatta on 2026/02/15.
 //
 
-import os
+import struct os.OSAllocatedUnfairLock
 
 @dynamicMemberLookup
 class PersistenceStore: Sendable {

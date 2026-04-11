@@ -48,15 +48,30 @@ extension PowerSourceDescription {
         return dictionary[key] as! T
     }
 
+    func value<T: RawRepresentable>(forKey key: String) -> T {
+        return T(rawValue: dictionary[key] as! T.RawValue)!
+    }
+
     func optionalValue<T>(forKey key: String) -> T? {
-        guard let value = dictionary[key] else {
+        guard let _value = dictionary[key] else {
             return nil
         }
-        return value as? T
+        let value = _value as? T
+        assert(value != nil)
+        return value!
+    }
+
+    func optionalValue<T: RawRepresentable>(forKey key: String) -> T? {
+        guard let _value = dictionary[key] else {
+            return nil
+        }
+        let value = _value as? T.RawValue
+        assert(value != nil)
+        return T(rawValue: value!)
     }
 
     public var powerSourceID: Int { value(forKey: kIOPSPowerSourceIDKey) }
-    public var powerSourceState: PowerSourceState { PowerSourceState(rawValue: value(forKey: kIOPSPowerSourceStateKey)) }
+    public var powerSourceState: PowerSourceState { value(forKey: kIOPSPowerSourceStateKey) }
     public var currentCapacity: Int { value(forKey: kIOPSCurrentCapacityKey) }
     public var maxCapacity: Int { value(forKey: kIOPSMaxCapacityKey) }
     public var designCapacity: Int? { optionalValue(forKey: kIOPSDesignCapacityKey) }
@@ -70,12 +85,12 @@ extension PowerSourceDescription {
     public var current: Int? { optionalValue(forKey: kIOPSCurrentKey) }
     public var temperature: Int? { optionalValue(forKey: kIOPSTemperatureKey) }
     public var name: String { value(forKey: kIOPSNameKey) }
-    public var type: PowerSourceType { PowerSourceType(rawValue: value(forKey: kIOPSTypeKey)) }
-    public var transportType: TransportType { TransportType(rawValue: value(forKey: kIOPSTransportTypeKey)) }
+    public var type: PowerSourceType { value(forKey: kIOPSTypeKey) }
+    public var transportType: TransportType { value(forKey: kIOPSTransportTypeKey) }
     public var vendorID: Int? { optionalValue(forKey: kIOPSVendorIDKey) }
     public var productID: Int? { optionalValue(forKey: kIOPSProductIDKey) }
     public var vendorData: [AnyHashable: Any]? { optionalValue(forKey: kIOPSVendorDataKey) }
-    public var batteryHealth: String? { optionalValue(forKey: kIOPSBatteryHealthKey) }
+    public var batteryHealth: BatteryHealth? { optionalValue(forKey: kIOPSBatteryHealthKey) }
     public var batteryHealthCondition: String? { optionalValue(forKey: kIOPSBatteryHealthConditionKey) }
     public var batteryFailureModes: [String]? { optionalValue(forKey: kIOPSBatteryFailureModesKey) }
     public var healthConfidence: String? { optionalValue(forKey: kIOPSHealthConfidenceKey) }

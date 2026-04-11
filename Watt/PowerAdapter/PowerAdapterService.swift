@@ -13,30 +13,37 @@ protocol PowerAdapterService {
 }
 
 class PowerAdapterServiceLiveImpl: PowerAdapterService {
-    private let ps = PowerSource()
-
-    private func convert(_ details: ExternalPowerAdapterDetails?, _ descriptions: [PowerSourceDescription]?) -> PowerAdapter {
+    private func convert(
+        details: ExternalPowerAdapterDetails?,
+        descriptions: [PowerSourceDescription]?
+    ) -> PowerAdapter {
         return PowerAdapter(
             wattage: details?.watts.map { Wattage(rawValue: $0) },
             voltage: details?.voltage.map { Voltage(rawValue: $0) },
             current: details?.current.map { Current(rawValue: $0) },
             name: details?.name?.trimmingCharacters(in: .whitespaces),
             manufacturer: details?.manufacturer?.trimmingCharacters(in: .whitespaces),
-            sources: descriptions?.map {
+            sources: descriptions?.map { description in
                 PowerAdapter.PowerSource(
-                    id: $0.powerSourceID,
-                    state: $0.powerSourceState,
-                    batteryCurrentCapacity: $0.currentCapacity,
-                    batteryTimeToEmpty: $0.timeToEmpty.map { TimeInMinutes(rawValue: $0) },
-                    batteryTimeToFullCharge: $0.timeToFullCharge.map { TimeInMinutes(rawValue: $0) },
-                    isBatteryCharging: $0.isCharging
+                    id: description.powerSourceID,
+                    state: description.powerSourceState,
+                    voltage: description.voltage.map { Voltage(rawValue: $0) },
+                    current: description.current.map { Current(rawValue: $0) },
+                    batteryHealth: description.batteryHealth,
+                    batteryCurrentCapacity: description.currentCapacity,
+                    batteryTimeToEmpty: description.timeToEmpty.map { TimeInMinutes(rawValue: $0) },
+                    batteryTimeToFullCharge: description.timeToFullCharge.map { TimeInMinutes(rawValue: $0) },
+                    isBatteryCharging: description.isCharging
                 )
             } ?? []
         )
     }
 
     func adapter() -> PowerAdapter {
-        return convert(ps.externalPowerAdapterDetails(), ps.powerSources())
+        return convert(
+            details: PowerSource.externalPowerAdapterDetails(),
+            descriptions: PowerSource.powerSources()
+        )
     }
 
     func notifications() -> AnyPublisher<Void, Never> {

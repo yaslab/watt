@@ -14,7 +14,9 @@ struct AutoLaunchView: View {
         Toggle(
             isOn: Binding(
                 get: { autoStartModel.isEnabled },
-                set: { autoStartModel.onChange(enabled: $0) }
+                set: { newValue in
+                    Task { await autoStartModel.onChange(enabled: newValue) }
+                }
             )
         ) {
             StatusBarMenuLabel(.menuLaunchAtLogin, icon: { Image(systemName: "arrow.up.right") })

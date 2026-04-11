@@ -64,17 +64,15 @@ extension AutoStartModel {
         }
     }
 
-    func onChange(enabled: Bool) {
-        Task {
-            do {
-                if enabled {
-                    try register()
-                } else {
-                    try await unregister()
-                }
-            } catch {
-                fetchStatus()
+    func onChange(enabled: Bool) async {
+        do {
+            if enabled {
+                try register()
+            } else {
+                try await unregister()
             }
+        } catch {
+            fetchStatus()
         }
     }
 }

@@ -12,7 +12,7 @@ struct StatusBarButton: View {
     @Environment(PowerAdapterModel.self) private var powerAdapterModel
 
     var body: some View {
-        Label(title, systemImage: imageName.rawValue)
+        Label(title, systemImage: imageName)
             .labelStyle(.titleAndIcon)
             .onAppear {
                 autoStartModel.setup()
@@ -33,21 +33,15 @@ extension StatusBarButton {
         }
     }
 
-    private enum ImageName: String {
-        case bolt = "bolt.fill"
-        case boltSlash = "bolt.slash.fill"
-        case boltBadgeCheckmark = "bolt.badge.checkmark.fill"
-    }
-
-    private var imageName: ImageName {
+    private var imageName: String {
         if adapter.isConnected {
             if adapter.isBatteryCharging {
-                return .bolt
+                "bolt.fill"
             } else {
-                return .boltBadgeCheckmark
+                "bolt.badge.checkmark.fill"
             }
         } else {
-            return .boltSlash
+            "bolt.slash.fill"
         }
     }
 }
