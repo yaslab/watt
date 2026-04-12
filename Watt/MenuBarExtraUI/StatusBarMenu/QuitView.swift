@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct QuitView: View {
+    @Environment(TerminatorModel.self) private var terminatorModel
+
     var body: some View {
         StatusBarMenuButton(.menuQuitWatt, icon: { Image(systemName: "xmark.rectangle") }) {
-            NSApp.terminate(nil)
+            terminatorModel.terminate()
         }
     }
 }

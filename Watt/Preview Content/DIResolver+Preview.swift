@@ -14,6 +14,7 @@ extension DIResolver {
     ) -> DIResolver {
         return DIResolver(
             wattConfiguration: WattConfiguration(infoDictionary: infoDictionary),
+            terminator: TerminatorPreviewImpl(),
             persistenceStore: PersistenceStore(source: persistenceDataSource),
             autoStartManager: autoStartManager,
             powerAdapterService: powerAdapterService

@@ -9,6 +9,7 @@ extension DIResolver {
     static func live() -> DIResolver {
         return DIResolver(
             wattConfiguration: WattConfiguration(),
+            terminator: NSAppTerminator(),
             persistenceStore: PersistenceStore(source: UserDefaultsDataSource()),
             autoStartManager: AutoStartManagerLiveImpl(),
             powerAdapterService: PowerAdapterServiceLiveImpl()

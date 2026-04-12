@@ -8,11 +8,15 @@
 class DIResolver {
     init(
         wattConfiguration: WattConfiguration,
+        terminator: Terminator,
         persistenceStore: PersistenceStore,
         autoStartManager: AutoStartManager,
         powerAdapterService: PowerAdapterService,
     ) {
         self.sharedWattConfiguration = wattConfiguration
+        self.sharedTerminatorModel = TerminatorModel(
+            terminator: terminator
+        )
         self.sharedAutoStartModel = AutoStartModel(
             persistenceStore: persistenceStore,
             manager: autoStartManager
@@ -34,6 +38,12 @@ class DIResolver {
     }
 
     // MARK: Model
+
+    private let sharedTerminatorModel: TerminatorModel
+
+    func resolve() -> TerminatorModel {
+        return sharedTerminatorModel
+    }
 
     private let sharedAutoStartModel: AutoStartModel
 
