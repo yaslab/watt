@@ -21,11 +21,8 @@ class AutoStartModel {
     }
 
     var isEnabled: Bool {
-        return status == .enabled
-    }
-
-    var isRequiresApproval: Bool {
-        return status == .requiresApproval
+        get { status == .enabled }
+        set { Task { await onChange(enabled: newValue) } }
     }
 
     func register() throws {
@@ -64,7 +61,7 @@ extension AutoStartModel {
         }
     }
 
-    func onChange(enabled: Bool) async {
+    private func onChange(enabled: Bool) async {
         do {
             if enabled {
                 try register()
