@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Watt is a macOS menu bar application that displays the wattage supplied by the charger on the status bar. It shows real-time power adapter information (wattage, voltage, current) and battery status. Available on the [Mac App Store](https://apps.apple.com/us/app/id1642732100).
+Watt is a macOS menu bar application that displays the wattage supplied by the charger on the menu bar. It shows real-time power adapter information (wattage, voltage, current) and battery status. Available on the [Mac App Store](https://apps.apple.com/us/app/id1642732100).
 
 ## Build & Development
 
