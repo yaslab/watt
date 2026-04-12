@@ -49,7 +49,7 @@ struct StatusBarMenu: View {
             Divider()
 
             Section {
-                AutoLaunchView()
+                AutoStartView()
                 OpenSystemSettingsView()
             } header: {
                 StatusBarMenuSectionHeader(.menuSettings)

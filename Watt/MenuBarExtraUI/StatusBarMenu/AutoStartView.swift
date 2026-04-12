@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AutoLaunchView: View {
+struct AutoStartView: View {
     @Environment(AutoStartModel.self) private var autoStartModel
 
     var body: some View {
