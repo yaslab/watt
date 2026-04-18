@@ -5,6 +5,8 @@
 //  Created by Yasuhiro Hatta on 2026/02/15.
 //
 
+import Foundation
+
 /// The time in minutes.
 struct TimeInMinutes: RawRepresentable {
     let rawValue: Int

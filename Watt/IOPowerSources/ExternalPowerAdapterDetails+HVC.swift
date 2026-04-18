@@ -5,6 +5,8 @@
 //  Created by Yasuhiro Hatta on 2026/02/15.
 //
 
+import Foundation
+
 // HVC (High Voltage Charging)
 extension ExternalPowerAdapterDetails {
     // Note: If PD is not supported, the value will be 255.
