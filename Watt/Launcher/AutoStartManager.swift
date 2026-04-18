@@ -11,7 +11,7 @@ protocol AutoStartManager {
     var status: SMAppService.Status { get }
 
     func register() throws
-    func unregister() async throws
+    func unregister() throws
     func openSystemSettingsLoginItems()
 }
 
@@ -30,8 +30,8 @@ class AutoStartManagerLiveImpl: AutoStartManager {
         try service.register()
     }
 
-    func unregister() async throws {
-        try await service.unregister()
+    func unregister() throws {
+        try service.unregister()
     }
 
     func openSystemSettingsLoginItems() {

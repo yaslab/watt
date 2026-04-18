@@ -22,7 +22,7 @@ class AutoStartModel {
 
     var isEnabled: Bool {
         get { status == .enabled }
-        set { Task { await onChange(enabled: newValue) } }
+        set { onChange(enabled: newValue) }
     }
 
     func register() throws {
@@ -30,8 +30,8 @@ class AutoStartModel {
         fetchStatus()
     }
 
-    func unregister() async throws {
-        try await manager.unregister()
+    func unregister() throws {
+        try manager.unregister()
         fetchStatus()
     }
 
@@ -61,12 +61,12 @@ extension AutoStartModel {
         }
     }
 
-    private func onChange(enabled: Bool) async {
+    private func onChange(enabled: Bool) {
         do {
             if enabled {
                 try register()
             } else {
-                try await unregister()
+                try unregister()
             }
         } catch {
             fetchStatus()
