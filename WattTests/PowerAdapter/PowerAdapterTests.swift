@@ -31,6 +31,9 @@ struct PowerAdapterTests {
         let source = PowerAdapter.PowerSource(
             id: 0,
             state: .acPower,
+            voltage: nil,
+            current: nil,
+            batteryHealth: nil,
             batteryCurrentCapacity: capacity,
             batteryTimeToEmpty: nil,
             batteryTimeToFullCharge: nil,
@@ -51,6 +54,9 @@ struct PowerAdapterTests {
         let source = PowerAdapter.PowerSource(
             id: 0,
             state: .acPower,
+            voltage: nil,
+            current: nil,
+            batteryHealth: nil,
             batteryCurrentCapacity: capacity,
             batteryTimeToEmpty: nil,
             batteryTimeToFullCharge: nil,
