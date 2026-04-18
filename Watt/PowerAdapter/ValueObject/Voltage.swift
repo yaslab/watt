@@ -5,6 +5,8 @@
 //  Created by Yasuhiro Hatta on 2022/09/11.
 //
 
+import Foundation
+
 /// The voltage in `mV`.
 struct Voltage: RawRepresentable {
     let rawValue: Int

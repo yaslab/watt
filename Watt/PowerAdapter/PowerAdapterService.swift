@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Foundation
 
 protocol PowerAdapterService {
     func adapter() -> PowerAdapter

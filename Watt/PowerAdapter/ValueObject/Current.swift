@@ -5,6 +5,8 @@
 //  Created by Yasuhiro Hatta on 2022/09/11.
 //
 
+import Foundation
+
 /// The current in `mA`.
 struct Current: RawRepresentable {
     let rawValue: Int
