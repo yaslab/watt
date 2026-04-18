@@ -16,7 +16,7 @@ class AutoStartManagerPreviewImpl: AutoStartManager {
 
     func register() throws {}
 
-    func unregister() async throws {}
+    func unregister() throws {}
 
     func openSystemSettingsLoginItems() {}
 }
