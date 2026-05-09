@@ -17,6 +17,7 @@ struct AutoStartView: View {
             StatusBarMenuLabel(.menuLaunchAtLogin, icon: { Image(systemName: "arrow.up.right") })
         }
         .toggleStyle(.switch)
+        .controlSize(.mini)
         .onAppear {
             autoStartModel.fetchStatus()
         }
