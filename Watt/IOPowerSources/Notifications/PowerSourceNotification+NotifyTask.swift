@@ -25,7 +25,7 @@ extension PowerSourceNotification {
             self.state = Mutex(state)
         }
 
-        public convenience init(name: Name, callback: @escaping () -> Void) {
+        public convenience init(for name: Name, callback: @escaping () -> Void) {
             self.init(state: .ready(name, callback))
         }
 
