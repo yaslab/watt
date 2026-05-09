@@ -11,6 +11,9 @@ private let liveResolver: DIResolver = .live()
 
 @main
 struct WattApp: App {
+    @NSApplicationDelegateAdaptor
+    private var delegate: AppDelegate
+
     var body: some Scene {
         MenuBarExtra {
             StatusBarMenu()
@@ -20,5 +23,15 @@ struct WattApp: App {
                 .environment(resolver: liveResolver)
         }
         .menuBarExtraStyle(.window)
+    }
+}
+
+extension WattApp {
+    private class AppDelegate: NSObject, NSApplicationDelegate {
+        private let autoStartModel: AutoStartModel = liveResolver.resolve()
+
+        func applicationDidFinishLaunching(_ notification: Notification) {
+            autoStartModel.setup()
+        }
     }
 }
