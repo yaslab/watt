@@ -8,15 +8,11 @@
 import SwiftUI
 
 struct StatusBarButton: View {
-    @Environment(AutoStartModel.self) private var autoStartModel
     @Environment(PowerAdapterModel.self) private var powerAdapterModel
 
     var body: some View {
         Label(title, systemImage: imageName)
             .labelStyle(.titleAndIcon)
-            .onAppear {
-                autoStartModel.setup()
-            }
     }
 }
 
