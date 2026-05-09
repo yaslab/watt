@@ -48,6 +48,6 @@ class PowerAdapterServiceLiveImpl: PowerAdapterService {
     }
 
     func notifications() -> AnyPublisher<Void, Never> {
-        return PowerSourceNotification.publisher(name: .any)
+        return PowerSourceNotification.publisher(for: .any)
     }
 }
