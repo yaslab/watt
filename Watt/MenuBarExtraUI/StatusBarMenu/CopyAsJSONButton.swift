@@ -12,6 +12,7 @@ struct CopyAsJSONButton: View {
 
     @State private var isDisabled: Bool = false
     @State private var tempText: LocalizedStringResource?
+    @State private var task: Task<Void, Error>?
 
     var body: some View {
         Button {
@@ -31,8 +32,8 @@ struct CopyAsJSONButton: View {
                 tempText = .menuJsonCopyFailed
             }
 
-            Task {
-                try? await Task.sleep(for: .seconds(2))
+            task = Task {
+                try await Task.sleep(for: .seconds(2))
 
                 isDisabled = false
                 tempText = nil
@@ -43,5 +44,8 @@ struct CopyAsJSONButton: View {
         .buttonStyle(.bordered)
         .controlSize(.mini)
         .disabled(isDisabled)
+        .onDisappear {
+            task?.cancel()
+        }
     }
 }
