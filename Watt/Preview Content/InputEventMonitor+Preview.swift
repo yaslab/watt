@@ -15,6 +15,10 @@ class InputEventMonitorPreviewImpl: InputEventMonitor {
         self.isOptionKeyPressed = isOptionKeyPressed
     }
 
+    var currentModifierFlags: NSEvent.ModifierFlags {
+        return []
+    }
+
     func events(matching mask: NSEvent.EventTypeMask) -> AnyPublisher<NSEvent, Never> {
         Just(
             .keyEvent(

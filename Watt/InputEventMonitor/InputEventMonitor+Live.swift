@@ -18,6 +18,10 @@ class InputEventMonitorLiveImpl: InputEventMonitor {
         }
     }
 
+    var currentModifierFlags: NSEvent.ModifierFlags {
+        return NSEvent.modifierFlags
+    }
+
     func events(matching mask: NSEvent.EventTypeMask) -> AnyPublisher<NSEvent, Never> {
         let subject = PassthroughSubject<NSEvent, Never>()
         let monitor = NSEvent.addLocalMonitorForEvents(matching: mask) { event in

@@ -14,6 +14,8 @@ class InputEventModel {
     private let monitor: InputEventMonitor
 
     private(set) var isOptionKeyPressed: Bool = false
+
+    @ObservationIgnored
     private var cancellables: Set<AnyCancellable> = []
 
     init(monitor: InputEventMonitor) {
@@ -24,5 +26,9 @@ class InputEventModel {
             .receive(on: DispatchQueue.main)
             .assign(to: \.isOptionKeyPressed, on: self)
             .store(in: &cancellables)
+    }
+
+    func syncWithCurrentModifierFlags() {
+        isOptionKeyPressed = monitor.currentModifierFlags.contains(.option)
     }
 }

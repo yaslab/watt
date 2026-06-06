@@ -9,5 +9,6 @@ import AppKit
 import Combine
 
 protocol InputEventMonitor {
+    var currentModifierFlags: NSEvent.ModifierFlags { get }
     func events(matching mask: NSEvent.EventTypeMask) -> AnyPublisher<NSEvent, Never>
 }

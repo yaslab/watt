@@ -19,6 +19,7 @@ struct StatusBarMenu: View {
         content()
             .onAppear {
                 reviewRequestModel.recordMenuOpen()
+                inputEventModel.syncWithCurrentModifierFlags()
             }
             .onDisappear {
                 if reviewRequestModel.shouldRequestReview {
