@@ -32,7 +32,7 @@ extension ExternalPowerAdapterDetails {
         return value!
     }
 
-    /// This key refers to the attached external AC power adapter's ID. The value associated with this key is a  integer.
+    /// This key refers to the attached external AC power adapter's ID. The value associated with this key is a integer.
     ///
     /// This key may be present in the dictionary returned from `IOPSCopyExternalPowerAdapterDetails`. This key might not be defined in the adapter details dictionary.
     public var id: Int? { optionalValue(forKey: kIOPSPowerAdapterIDKey) }
