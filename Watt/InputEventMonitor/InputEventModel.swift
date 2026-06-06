@@ -21,6 +21,7 @@ class InputEventModel {
 
         monitor.events(matching: .flagsChanged)
             .map { $0.modifierFlags.contains(.option) }
+            .receive(on: DispatchQueue.main)
             .assign(to: \.isOptionKeyPressed, on: self)
             .store(in: &cancellables)
     }
