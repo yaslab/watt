@@ -28,20 +28,18 @@ extension TimeInMinutes {
             return String(localized: .menuCalculating)
         }
 
-        let hour = rawValue / 60
-        let minute = rawValue % 60
+        let hours = rawValue / 60
+        let minutes = rawValue % 60
 
         var value = String(localized: .menuApproximately)
         value += " "
 
-        if hour > 0 {
-            value += "\(hour)"
-            value += String(localized: .menuHoursShort)
+        if hours > 0 {
+            value += String(localized: .menuHoursShort(hours: hours))
             value += " "
         }
 
-        value += "\(minute)"
-        value += String(localized: .menuMinutesShort)
+        value += String(localized: .menuMinutesShort(minutes: minutes))
 
         return value
     }

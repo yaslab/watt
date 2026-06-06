@@ -86,23 +86,6 @@
         }
       }
     },
-    "Menu/ChargingAt" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Charging at %(current)@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%(current)@で充電中"
-          }
-        }
-      }
-    },
     "Menu/Connected" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -126,13 +109,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "h"
+            "value" : "%(hours)ldh"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "時間"
+            "value" : "%(hours)ld時間"
           }
         }
       }
@@ -160,13 +143,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "m"
+            "value" : "%(minutes)ldm"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "分"
+            "value" : "%(minutes)ld分"
           }
         }
       }
