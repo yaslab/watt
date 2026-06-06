@@ -12,7 +12,8 @@ extension DIResolver {
             terminator: NSAppTerminator(),
             persistenceStore: PersistenceStore(source: UserDefaultsDataSource()),
             autoStartManager: AutoStartManagerLiveImpl(),
-            powerAdapterService: PowerAdapterServiceLiveImpl()
+            powerAdapterService: PowerAdapterServiceLiveImpl(),
+            inputEventMonitor: InputEventMonitorLiveImpl()
         )
     }
 }

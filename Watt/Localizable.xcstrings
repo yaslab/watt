@@ -103,6 +103,23 @@
         }
       }
     },
+    "Menu/CopyAsJSON" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy as JSON"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON形式でコピー"
+          }
+        }
+      }
+    },
     "Menu/HoursShort" : {
       "extractionState" : "manual",
       "localizations" : {

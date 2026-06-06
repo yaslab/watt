@@ -17,6 +17,8 @@ struct PowerAdapter {
     let manufacturer: String?
 
     let sources: [PowerSource]
+
+    let dictionary: NSDictionary?
 }
 
 extension PowerAdapter {
@@ -31,6 +33,8 @@ extension PowerAdapter {
         let batteryTimeToEmpty: TimeInMinutes?
         let batteryTimeToFullCharge: TimeInMinutes?
         let isBatteryCharging: Bool
+
+        let dictionary: NSDictionary
     }
 }
 
@@ -96,5 +100,27 @@ extension PowerAdapter.PowerSource {
                 "battery.100percent"
             }
         }
+    }
+}
+
+extension PowerAdapter {
+    func json() -> Data? {
+        guard let dictionary else {
+            return nil
+        }
+
+        return try? JSONSerialization.data(
+            withJSONObject: dictionary,
+            options: [.prettyPrinted, .sortedKeys]
+        )
+    }
+}
+
+extension PowerAdapter.PowerSource {
+    func json() -> Data? {
+        return try? JSONSerialization.data(
+            withJSONObject: dictionary,
+            options: [.prettyPrinted, .sortedKeys]
+        )
     }
 }

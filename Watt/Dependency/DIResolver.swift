@@ -12,6 +12,7 @@ class DIResolver {
         persistenceStore: PersistenceStore,
         autoStartManager: AutoStartManager,
         powerAdapterService: PowerAdapterService,
+        inputEventMonitor: InputEventMonitor
     ) {
         self.sharedWattConfiguration = wattConfiguration
         self.sharedTerminatorModel = TerminatorModel(
@@ -26,6 +27,9 @@ class DIResolver {
         )
         self.sharedReviewRequestModel = ReviewRequestModel(
             persistenceStore: persistenceStore
+        )
+        self.sharedInputEventModel = InputEventModel(
+            monitor: inputEventMonitor
         )
     }
 
@@ -61,5 +65,11 @@ class DIResolver {
 
     func resolve() -> ReviewRequestModel {
         return sharedReviewRequestModel
+    }
+
+    private let sharedInputEventModel: InputEventModel
+
+    func resolve() -> InputEventModel {
+        return sharedInputEventModel
     }
 }

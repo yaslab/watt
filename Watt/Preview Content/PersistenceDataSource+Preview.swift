@@ -16,6 +16,10 @@ class PersistenceDataSourcePreviewImpl: PersistenceDataSource {
         self.storage = storage
     }
 
+    isolated deinit {
+        subject.send(completion: .finished)
+    }
+
     func boolean(for key: String) -> Bool {
         return storage[key] as? Bool ?? false
     }

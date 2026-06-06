@@ -19,7 +19,7 @@ extension PowerSourceNotification {
             }
 
             continuation.onTermination = { termination in
-                Task { @MainActor in task.cancel() }
+                Task { await task.cancel() }
             }
         }
     }

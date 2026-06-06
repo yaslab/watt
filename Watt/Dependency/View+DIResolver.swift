@@ -14,5 +14,6 @@ extension View {
             .environment(resolver.resolve() as AutoStartModel)
             .environment(resolver.resolve() as PowerAdapterModel)
             .environment(resolver.resolve() as ReviewRequestModel)
+            .environment(resolver.resolve() as InputEventModel)
     }
 }
