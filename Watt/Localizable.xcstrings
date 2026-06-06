@@ -103,7 +103,7 @@
         }
       }
     },
-    "Menu/CopyAsJSON" : {
+    "Menu/CopyAsJson" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -133,6 +133,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%(hours)ld時間"
+          }
+        }
+      }
+    },
+    "Menu/JsonCopied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copied!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コピーしました!"
+          }
+        }
+      }
+    },
+    "Menu/JsonCopyFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy Failed"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コピー失敗"
           }
         }
       }
