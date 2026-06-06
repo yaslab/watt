@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct PowerAdapterInformationView: View {
-    @Environment(InputEventModel.self) private var inputEventModel
-
     let adapter: PowerAdapter
 
     var body: some View {
@@ -22,13 +20,6 @@ struct PowerAdapterInformationView: View {
             }
         } else {
             StatusBarMenuLabel(.menuNotConnected, icon: { Image(systemName: "bolt.slash.fill") })
-        }
-
-        if inputEventModel.isOptionKeyPressed, let json = adapter.json() {
-            StatusBarMenuButton(.menuCopyAsJSON, icon: { Image(systemName: "document.on.document") }) {
-                NSPasteboard.general.clearContents()
-                NSPasteboard.general.setData(json, forType: .string)
-            }
         }
     }
 }

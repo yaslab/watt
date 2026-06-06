@@ -102,25 +102,3 @@ extension PowerAdapter.PowerSource {
         }
     }
 }
-
-extension PowerAdapter {
-    func json() -> Data? {
-        guard let dictionary else {
-            return nil
-        }
-
-        return try? JSONSerialization.data(
-            withJSONObject: dictionary,
-            options: [.prettyPrinted, .sortedKeys]
-        )
-    }
-}
-
-extension PowerAdapter.PowerSource {
-    func json() -> Data? {
-        return try? JSONSerialization.data(
-            withJSONObject: dictionary,
-            options: [.prettyPrinted, .sortedKeys]
-        )
-    }
-}

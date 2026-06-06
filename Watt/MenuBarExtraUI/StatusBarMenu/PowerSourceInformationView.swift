@@ -8,34 +8,23 @@
 import SwiftUI
 
 struct PowerSourceInformationView: View {
-    @Environment(InputEventModel.self) private var inputEventModel
-
-    let sources: [PowerAdapter.PowerSource]
+    let source: PowerAdapter.PowerSource
 
     var body: some View {
-        ForEach(sources) { source in
-            if source.state == .acPower {
-                adapter(source)
-            }
+        if source.state == .acPower {
+            adapter(source)
+        }
 
-            battery(source)
+        battery(source)
 
-            if let time = source.batteryTimeToEmpty, time.isAvailable {
-                timeRemaining(time)
-                    .foregroundStyle(.secondary)
-            }
+        if let time = source.batteryTimeToEmpty, time.isAvailable {
+            timeRemaining(time)
+                .foregroundStyle(.secondary)
+        }
 
-            if let time = source.batteryTimeToFullCharge, time.isAvailable {
-                timeToFullCharge(time)
-                    .foregroundStyle(.secondary)
-            }
-
-            if inputEventModel.isOptionKeyPressed, let json = source.json() {
-                StatusBarMenuButton(.menuCopyAsJSON, icon: { Image(systemName: "document.on.document") }) {
-                    NSPasteboard.general.clearContents()
-                    NSPasteboard.general.setData(json, forType: .string)
-                }
-            }
+        if let time = source.batteryTimeToFullCharge, time.isAvailable {
+            timeToFullCharge(time)
+                .foregroundStyle(.secondary)
         }
     }
 
@@ -75,27 +64,7 @@ struct PowerSourceInformationView: View {
 #if DEBUG
     #Preview {
         PowerSourceInformationView(
-            sources: PowerAdapter.preview(.notConnected).sources
+            source: PowerAdapter.preview(.connected).sources[0]
         )
-        .environment(
-            resolver: PreviewHelper.resolver(keyPressed: false)
-        )
-    }
-
-    #Preview {
-        PowerSourceInformationView(
-            sources: PowerAdapter.preview(.connected).sources
-        )
-        .environment(
-            resolver: PreviewHelper.resolver(keyPressed: true)
-        )
-    }
-
-    private enum PreviewHelper {
-        static func resolver(keyPressed: Bool) -> DIResolver {
-            return .preview(
-                inputEventMonitor: InputEventMonitorPreviewImpl(isOptionKeyPressed: keyPressed)
-            )
-        }
     }
 #endif

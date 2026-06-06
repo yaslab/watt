@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct StatusBarMenuSectionHeader: View {
+struct StatusBarMenuSectionHeader<Detail: View>: View {
     private let content: String
-    private let detail: String?
+    private let detail: () -> Detail
 
-    init(_ resource: LocalizedStringResource, detail: String? = nil) {
+    init(_ resource: LocalizedStringResource, @ViewBuilder detail: @escaping () -> Detail = { EmptyView() }) {
         self.content = String(localized: resource)
         self.detail = detail
     }
 
-    init(_ content: String, detail: String? = nil) {
+    init(_ content: String, @ViewBuilder detail: @escaping () -> Detail = { EmptyView() }) {
         self.content = content
         self.detail = detail
     }
@@ -24,7 +24,7 @@ struct StatusBarMenuSectionHeader: View {
     var body: some View {
         Text(content)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .overlay(alignment: .trailing) { Text(detail ?? "") }
+            .overlay(alignment: .trailing) { detail() }
             .font(.subheadline.bold())
             .foregroundStyle(.secondary)
     }
