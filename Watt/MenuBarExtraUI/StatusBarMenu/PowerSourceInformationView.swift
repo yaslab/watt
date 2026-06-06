@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct PowerSourceInformationView: View {
-    let sources: [PowerAdapter.PowerSource]
+    let source: PowerAdapter.PowerSource
 
     var body: some View {
-        ForEach(sources) { source in
-            if source.state == .acPower {
-                adapter(source)
-            }
+        if source.state == .acPower {
+            adapter(source)
+        }
 
-            battery(source)
+        battery(source)
 
-            if let time = source.batteryTimeToEmpty, time.isAvailable {
-                timeRemaining(time)
-                    .foregroundStyle(.secondary)
-            }
+        if let time = source.batteryTimeToEmpty, time.isAvailable {
+            timeRemaining(time)
+                .foregroundStyle(.secondary)
+        }
 
-            if let time = source.batteryTimeToFullCharge, time.isAvailable {
-                timeToFullCharge(time)
-                    .foregroundStyle(.secondary)
-            }
+        if let time = source.batteryTimeToFullCharge, time.isAvailable {
+            timeToFullCharge(time)
+                .foregroundStyle(.secondary)
         }
     }
 
@@ -62,3 +60,11 @@ struct PowerSourceInformationView: View {
             }
     }
 }
+
+#if DEBUG
+    #Preview {
+        PowerSourceInformationView(
+            source: PowerAdapter.preview(.connected).sources[0]
+        )
+    }
+#endif

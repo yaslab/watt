@@ -29,9 +29,11 @@ class PowerAdapterServiceLiveImpl: PowerAdapterService {
                     batteryCurrentCapacity: description.currentCapacity,
                     batteryTimeToEmpty: description.timeToEmpty.map { TimeInMinutes(rawValue: $0) },
                     batteryTimeToFullCharge: description.timeToFullCharge.map { TimeInMinutes(rawValue: $0) },
-                    isBatteryCharging: description.isCharging
+                    isBatteryCharging: description.isCharging,
+                    dictionary: description.dictionary
                 )
-            } ?? []
+            } ?? [],
+            dictionary: details?.dictionary
         )
     }
 

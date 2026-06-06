@@ -17,6 +17,8 @@ struct PowerAdapter {
     let manufacturer: String?
 
     let sources: [PowerSource]
+
+    let dictionary: NSDictionary?
 }
 
 extension PowerAdapter {
@@ -31,6 +33,8 @@ extension PowerAdapter {
         let batteryTimeToEmpty: TimeInMinutes?
         let batteryTimeToFullCharge: TimeInMinutes?
         let isBatteryCharging: Bool
+
+        let dictionary: NSDictionary
     }
 }
 

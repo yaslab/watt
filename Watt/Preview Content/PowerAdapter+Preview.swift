@@ -5,6 +5,7 @@
 //  Created by Yasuhiro Hatta on 2026/01/24.
 //
 
+import Foundation
 import IOKit.ps
 
 extension PowerAdapter {
@@ -32,9 +33,11 @@ extension PowerAdapter {
                         batteryCurrentCapacity: 100,
                         batteryTimeToEmpty: TimeInMinutes(rawValue: 0),
                         batteryTimeToFullCharge: TimeInMinutes(rawValue: 61),
-                        isBatteryCharging: true
+                        isBatteryCharging: true,
+                        dictionary: [:]
                     )
-                ]
+                ],
+                dictionary: nil
             )
 
         case .notConnected:
@@ -54,9 +57,11 @@ extension PowerAdapter {
                         batteryCurrentCapacity: 75,
                         batteryTimeToEmpty: TimeInMinutes(rawValue: 61),
                         batteryTimeToFullCharge: TimeInMinutes(rawValue: 0),
-                        isBatteryCharging: false
+                        isBatteryCharging: false,
+                        dictionary: [:]
                     )
-                ]
+                ],
+                dictionary: nil
             )
         }
     }

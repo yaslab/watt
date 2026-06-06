@@ -27,6 +27,11 @@ struct PowerAdapterInformationView: View {
 #if DEBUG
     #Preview {
         PowerAdapterInformationView(adapter: .preview(.connected))
+            .environment(resolver: .preview())
+    }
+
+    #Preview {
         PowerAdapterInformationView(adapter: .preview(.notConnected))
+            .environment(resolver: .preview())
     }
 #endif

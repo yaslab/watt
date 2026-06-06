@@ -12,12 +12,14 @@ struct StatusBarMenu: View {
     @Environment(WattConfiguration.self) private var configuration
     @Environment(PowerAdapterModel.self) private var powerAdapterModel
     @Environment(ReviewRequestModel.self) private var reviewRequestModel
+    @Environment(InputEventModel.self) private var inputEventModel
     @Environment(\.requestReview) private var requestReview
 
     var body: some View {
         content()
             .onAppear {
                 reviewRequestModel.recordMenuOpen()
+                inputEventModel.syncWithCurrentModifierFlags()
             }
             .onDisappear {
                 if reviewRequestModel.shouldRequestReview {
@@ -33,16 +35,24 @@ struct StatusBarMenu: View {
             Section {
                 PowerAdapterInformationView(adapter: adapter)
             } header: {
-                StatusBarMenuSectionHeader(.menuPowerAdapter)
+                StatusBarMenuSectionHeader(.menuPowerAdapter) {
+                    if inputEventModel.isOptionKeyPressed, let dictionary = adapter.dictionary {
+                        CopyAsJSONButton(dictionary: dictionary)
+                    }
+                }
             }
 
-            if !adapter.sources.isEmpty {
+            ForEach(adapter.sources) { source in
                 Divider()
 
                 Section {
-                    PowerSourceInformationView(sources: adapter.sources)
+                    PowerSourceInformationView(source: source)
                 } header: {
-                    StatusBarMenuSectionHeader(.menuPowerSource)
+                    StatusBarMenuSectionHeader(.menuPowerSource) {
+                        if inputEventModel.isOptionKeyPressed {
+                            CopyAsJSONButton(dictionary: source.dictionary)
+                        }
+                    }
                 }
             }
 
@@ -61,7 +71,9 @@ struct StatusBarMenu: View {
                 GitHubView()
                 PiyotasoView()
             } header: {
-                StatusBarMenuSectionHeader(.menuAboutWatt, detail: configuration.formattedVersion())
+                StatusBarMenuSectionHeader(.menuAboutWatt) {
+                    Text(configuration.formattedVersion())
+                }
             }
 
             Divider()

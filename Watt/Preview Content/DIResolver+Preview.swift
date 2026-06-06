@@ -10,14 +10,16 @@ extension DIResolver {
         infoDictionary: [String: Any] = InfoPreviewImpl.dictionary(),
         persistenceDataSource: sending PersistenceStore.Source = PersistenceDataSourcePreviewImpl(),
         autoStartManager: AutoStartManager = AutoStartManagerPreviewImpl(),
-        powerAdapterService: PowerAdapterService = PowerAdapterServicePreviewImpl()
+        powerAdapterService: PowerAdapterService = PowerAdapterServicePreviewImpl(),
+        inputEventMonitor: InputEventMonitor = InputEventMonitorPreviewImpl()
     ) -> DIResolver {
         return DIResolver(
             wattConfiguration: WattConfiguration(infoDictionary: infoDictionary),
             terminator: TerminatorPreviewImpl(),
             persistenceStore: PersistenceStore(source: persistenceDataSource),
             autoStartManager: autoStartManager,
-            powerAdapterService: powerAdapterService
+            powerAdapterService: powerAdapterService,
+            inputEventMonitor: inputEventMonitor
         )
     }
 }

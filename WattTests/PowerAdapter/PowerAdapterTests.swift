@@ -5,6 +5,7 @@
 //  Created by Yasuhiro Hatta on 2026/03/28.
 //
 
+import Foundation
 import Testing
 
 @testable import Watt
@@ -37,7 +38,8 @@ struct PowerAdapterTests {
             batteryCurrentCapacity: capacity,
             batteryTimeToEmpty: nil,
             batteryTimeToFullCharge: nil,
-            isBatteryCharging: false  // -> not charging
+            isBatteryCharging: false,  // -> not charging
+            dictionary: [:]
         )
 
         // Assert
@@ -60,7 +62,8 @@ struct PowerAdapterTests {
             batteryCurrentCapacity: capacity,
             batteryTimeToEmpty: nil,
             batteryTimeToFullCharge: nil,
-            isBatteryCharging: true  // -> charging
+            isBatteryCharging: true,  // -> charging
+            dictionary: [:]
         )
 
         // Assert
