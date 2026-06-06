@@ -33,7 +33,7 @@ struct CopyAsJSONButton: View {
             }
 
             task = Task {
-                try await Task.sleep(for: .seconds(2))
+                try? await Task.sleep(for: .seconds(2))
 
                 isDisabled = false
                 tempText = nil
