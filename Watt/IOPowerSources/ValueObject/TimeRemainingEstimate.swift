@@ -5,14 +5,14 @@
 //  Created by Yasuhiro Hatta on 2022/08/27.
 //
 
-import struct Foundation.TimeInterval
+import struct CoreFoundation.CFTimeInterval
 import var IOKit.ps.kIOPSTimeRemainingUnknown
 import var IOKit.ps.kIOPSTimeRemainingUnlimited
 
 public struct TimeRemainingEstimate: RawRepresentable, Sendable, Equatable {
-    public let rawValue: TimeInterval
+    public let rawValue: CFTimeInterval
 
-    public init(rawValue: Double) {
+    public init(rawValue: CFTimeInterval) {
         self.rawValue = rawValue
     }
 }
