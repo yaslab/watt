@@ -12,27 +12,27 @@ struct CopyAsJSONButton: View {
 
     @State private var isDisabled: Bool = false
     @State private var tempText: LocalizedStringResource?
-    @State private var task: Task<Void, Error>?
+    @State private var task: Task<Void, Never>?
 
     var body: some View {
         Button {
             isDisabled = true
 
-            do {
-                let json = try JSONSerialization.data(
-                    withJSONObject: dictionary,
-                    options: [.prettyPrinted, .sortedKeys]
-                )
-
-                NSPasteboard.general.clearContents()
-                NSPasteboard.general.setData(json, forType: .string)
-
-                tempText = .menuJsonCopied
-            } catch {
-                tempText = .menuJsonCopyFailed
-            }
-
             task = Task {
+                do {
+                    let json = try JSONSerialization.data(
+                        withJSONObject: dictionary,
+                        options: [.prettyPrinted, .sortedKeys]
+                    )
+
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setData(json, forType: .string)
+
+                    tempText = .menuJsonCopied
+                } catch {
+                    tempText = .menuJsonCopyFailed
+                }
+
                 try? await Task.sleep(for: .seconds(2))
 
                 isDisabled = false

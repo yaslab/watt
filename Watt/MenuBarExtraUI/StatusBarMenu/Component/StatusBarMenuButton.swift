@@ -33,18 +33,21 @@ struct StatusBarMenuButton<Icon: View>: View {
         Button {
             if isAwaitingDismiss { return }
             isAwaitingDismiss = true
+
             Task {
-                try await Task.sleep(for: .seconds(0.3))
+                try? await Task.sleep(for: .seconds(0.2))
+
                 dismiss()
                 action()
-                try await Task.sleep(for: .seconds(1.0))
+
+                try? await Task.sleep(for: .seconds(1.0))
+
                 isAwaitingDismiss = false
             }
         } label: {
             StatusBarMenuLabel(title, icon: icon)
                 .background {
                     if isHovering {
-                        //ConcentricRectangle(corners: .concentric(minimum: 10))
                         RoundedRectangle(cornerRadius: 8)
                             .fill(.fill.opacity(0.5))
                             .padding(.horizontal, -8)
