@@ -50,10 +50,11 @@ extension CopyAsJSONButton {
                 withJSONObject: dictionary,
                 options: [.prettyPrinted, .sortedKeys]
             )
+            let jsonString = String(decoding: json, as: UTF8.self)
 
             let pasteboard: NSPasteboard = .general
             pasteboard.clearContents()
-            pasteboard.setData(json, forType: .string)
+            pasteboard.setString(jsonString, forType: .string)
         }
 
         try await task.value
