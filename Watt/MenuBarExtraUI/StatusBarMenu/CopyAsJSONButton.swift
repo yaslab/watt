@@ -20,14 +20,7 @@ struct CopyAsJSONButton: View {
 
             task = Task {
                 do {
-                    let json = try JSONSerialization.data(
-                        withJSONObject: dictionary,
-                        options: [.prettyPrinted, .sortedKeys]
-                    )
-
-                    NSPasteboard.general.clearContents()
-                    NSPasteboard.general.setData(json, forType: .string)
-
+                    try await copyToPasteboard(dictionary)
                     tempText = .menuJsonCopied
                 } catch {
                     tempText = .menuJsonCopyFailed
@@ -47,5 +40,23 @@ struct CopyAsJSONButton: View {
         .onDisappear {
             task?.cancel()
         }
+    }
+}
+
+extension CopyAsJSONButton {
+    private func copyToPasteboard(_ dictionary: sending NSDictionary) async throws {
+        let task = Task.detached {
+            let json = try JSONSerialization.data(
+                withJSONObject: dictionary,
+                options: [.prettyPrinted, .sortedKeys]
+            )
+            let jsonString = String(decoding: json, as: UTF8.self)
+
+            let pasteboard: NSPasteboard = .general
+            pasteboard.clearContents()
+            pasteboard.setString(jsonString, forType: .string)
+        }
+
+        try await task.value
     }
 }
